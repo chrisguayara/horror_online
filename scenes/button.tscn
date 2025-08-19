@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://vurifdt5behq"]
+
+[ext_resource type="Script" uid="uid://cpnftvo67iy8i" path="res://scripts/PC/pc.gd" id="1_mi6dp"]
+[ext_resource type="Script" uid="uid://b75gdexgb2v2w" path="res://scripts/interactable.gd" id="2_rhj8v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi6dp"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n4pas"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mi6dp"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhj8v"]
+size = Vector3(1, 1.04358, 0.604874)
+
+[node name="desk" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_mi6dp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.994709, 0, 0, 0, 0.994709, 0, 0, 0, 0.994709, -0.00170898, 0, 0)
+shape = SubResource("BoxShape3D_mi6dp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_n4pas")
+
+[node name="PC" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_rhj8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_mi6dp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02076, -0.00229645)
+shape = SubResource("BoxShape3D_rhj8v")
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

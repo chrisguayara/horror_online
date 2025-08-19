@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce44wurxmtn8p"]
+
+[ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_sugp2")
+
+[node name="player" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4231, -0.252441, 1.94888)
+use_collision = true
+collision_layer = 2
+size = Vector3(11.3774, 0.495117, 11.1489)
+
+[node name="UI_Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
