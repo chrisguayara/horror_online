@@ -5,8 +5,14 @@ extends CharacterBody3D
 @export var gravity := 9.8
 var canMove = true
 @onready var interact_ray = $head/camera/InteractRay
+@onready var head = $head
+var mode = "idle"
+
+
 
 func _physics_process(delta: float) -> void:
+	
+	
 	if Input.is_action_just_pressed("interact"):
 		if interact_ray.is_colliding():
 			var body = interact_ray.get_collider()
@@ -38,3 +44,13 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity
 
 		move_and_slide()
+		
+
+func pcEnter():
+	mode = "surfing"
+	canMove = false
+	head.canLook = false
+	
+
+func pcExit():
+	canMove = true

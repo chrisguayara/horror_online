@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=15 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://vurifdt5behq" path="res://scenes/button.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
 [ext_resource type="Shader" uid="uid://p1krn6q7hsh" path="res://shaders/ps1_post_process.gdshader" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -23,6 +27,11 @@ shader = ExtResource("4_jyhfs")
 shader_parameter/viewport_size = Vector2(640, 480)
 shader_parameter/virtual_resolution = Vector2(320, 240)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o6xl0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
+size = Vector3(0.41037, 0.249512, 0.577576)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sugp2")
 
@@ -35,6 +44,9 @@ shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="inventory" type="Node3D" parent="player"]
+script = ExtResource("3_tbgi4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4231, -0.252441, 1.94888)
@@ -57,6 +69,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="alarmclock" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_o6xl0")
+script = ExtResource("6_o6xl0")
+
+[node name="alarmclock" parent="alarmclock" instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="alarmclock"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.805309, 1.14826, 0.00515157)
+shape = SubResource("BoxShape3D_tipki")
+
+[node name="Soundmanager" type="Node3D" parent="."]
+script = ExtResource("8_tipki")
+
+[node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
+
+[connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
 
 [editable path="player"]
 [editable path="button"]
