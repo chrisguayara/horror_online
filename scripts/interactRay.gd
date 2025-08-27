@@ -14,4 +14,5 @@ func _process(delta):
 			
 			prompt.text = collider.prompt_msg
 			if Input.is_action_just_pressed("interact"):
+				print(prompt.text)
 				collider.interact(owner)

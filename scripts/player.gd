@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var speed := 5.0
-@export var jump_velocity := 5.5
+@export var speed := 4.2
+@export var jump_velocity := 1.5
 @export var gravity := 9.8
 var canMove = true
 @onready var interact_ray = $head/camera/InteractRay

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cu34kle5sljk4" path="res://assets/models/ivorypc_ipc.png" id="1_onpuh"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_onpuh")
 texture_filter = 0
 disable_receive_shadows = true

@@ -7,5 +7,5 @@ signal interacted(body)
 @export var prompt_msg = "Interact"
 
 func interact(body):
-	print(body.name, " interacted with ", name)
+	print("yo")
 	interacted.emit(body)
