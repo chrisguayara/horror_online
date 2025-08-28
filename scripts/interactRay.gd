@@ -5,6 +5,7 @@ extends RayCast3D
 
 
 
+
 func _process(delta):
 	prompt.text = ""
 	if is_colliding():

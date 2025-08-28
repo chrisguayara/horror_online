@@ -3,9 +3,19 @@ extends Node3D
 @export var mouse_sensitivity := 0.002
 var pitch := 0.0  # Up/down rotation
 var canLook = true
+var using_pc = false
 
-func _ready() -> void:
+var isMovng = false
+var speed = 5.0
+@export var camera_path: NodePath
+@onready var camera: Camera3D = get_node_or_null(camera_path)
+
+
+func _ready():
+	if not camera:
+		push_warning("Camera not assigned in inspector!")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func _input(event: InputEvent) -> void:
 	if canLook:
@@ -18,3 +28,11 @@ func _input(event: InputEvent) -> void:
 			pitch -= event.relative.y * mouse_sensitivity
 			pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 			rotation.x = pitch
+
+
+func _on_pc_transition(pos: Vector3):
+	var target = Vector3(pos[0], pos[1], pos[2])
+	
+	isMovng = true
+	
+	camera.global_position = camera.global_position.lerp(pos, 0.1)

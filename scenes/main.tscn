@@ -60,6 +60,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521571, 0)
 [node name="PC" parent="button" index="2"]
 prompt_msg = "Open PC"
 
+[node name="Marker3D" type="Marker3D" parent="button/PC" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0644763, 1.16778, 0.524729)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
@@ -73,6 +76,7 @@ grow_vertical = 2
 [node name="alarmclock" type="StaticBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
+prompt_msg = "Set Alarm"
 
 [node name="alarmclock" parent="alarmclock" instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
@@ -86,6 +90,7 @@ script = ExtResource("8_tipki")
 
 [node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
 
+[connection signal="transition" from="button/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
 
 [editable path="player"]
