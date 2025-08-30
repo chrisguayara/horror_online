@@ -3,10 +3,12 @@ extends Node3D
 @onready var main_inventory: Array = []
 var inventory_space = 5
 var itemAmount = 0
+signal addSound
 
 func add_to_inventory(item: Dictionary):
 	if itemAmount < inventory_space:
 		main_inventory.append(item)
+		emit_signal("addSound", "inventory")
 		return true
 	return false
 

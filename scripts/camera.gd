@@ -30,14 +30,14 @@ func _input(event: InputEvent) -> void:
 			rotation.x = pitch
 
 
-func _on_pc_transition(pos: Vector3, rota: Vector3):
-	
-	isMovng = true
-	oldPos = camera.global_position
-	camera.global_position = camera.global_position.lerp(pos, 0.3)
-	camera.global_rotation = camera.global_rotation.lerp(rota, 0.3)
-	canLook = false
-
-func _on_pc_exit():
-	camera.global_position = camera.global_position.lerp(oldPos, 0.3)
-	canLook = true
+#func _on_pc_transition(pos: Vector3, rota: Vector3):
+	#
+	#isMovng = true
+	#oldPos = camera.global_position
+	#camera.global_position = camera.global_position.lerp(pos, 0.3)
+	#camera.global_rotation = camera.global_rotation.lerp(rota, 0.3)
+	#canLook = false
+#
+#func _on_pc_exit():
+	#camera.global_position = camera.global_position.lerp(oldPos, 0.3)
+	#canLook = true
