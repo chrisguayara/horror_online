@@ -7,6 +7,7 @@ var canMove = true
 @onready var interact_ray = $head/camera/InteractRay
 @onready var head = $head
 var mode = "idle"
+@onready var inventorymanager = $inventory
 
 
 
@@ -45,6 +46,10 @@ func _physics_process(delta: float) -> void:
 
 		move_and_slide()
 		
+		
+func add_to_inventory(item):
+	
+	return inventorymanager.add_to_inventory(item)
 
 func pcEnter():
 	mode = "surfing"

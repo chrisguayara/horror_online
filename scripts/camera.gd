@@ -7,8 +7,8 @@ var using_pc = false
 
 var isMovng = false
 var speed = 5.0
-@export var camera_path: NodePath
-@onready var camera: Camera3D = get_node_or_null(camera_path)
+@onready var camera: Camera3D = $camera
+
 
 
 func _ready():
@@ -30,9 +30,10 @@ func _input(event: InputEvent) -> void:
 			rotation.x = pitch
 
 
-func _on_pc_transition(pos: Vector3):
+func _on_pc_transition(pos: Vector3, rota: Vector3):
 	var target = Vector3(pos[0], pos[1], pos[2])
 	
 	isMovng = true
 	
-	camera.global_position = camera.global_position.lerp(pos, 0.1)
+	camera.global_position = camera.global_position.lerp(pos, 0.3)
+	camera.global_rotation = camera.global_rotation.lerp(rota, 0.3)

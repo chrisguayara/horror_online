@@ -1,6 +1,6 @@
 extends Interactable
 
-@onready var marker_3d = $button/PC/Marker3D
+@onready var marker = $button/PC/Marker3D
 signal transition
 
 
@@ -16,6 +16,7 @@ func interact(body):
 		return
 
 	var pos: Vector3 = marker.global_position
+	var rotation : Vector3 = marker.global_rotation
 	body.pcEnter()
-	emit_signal("transition", pos)
+	emit_signal("transition", pos, rotation)
 	
