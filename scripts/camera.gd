@@ -8,7 +8,7 @@ var using_pc = false
 var isMovng = false
 var speed = 5.0
 @onready var camera: Camera3D = $camera
-
+var oldPos : Vector3
 
 
 func _ready():
@@ -31,9 +31,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_pc_transition(pos: Vector3, rota: Vector3):
-	var target = Vector3(pos[0], pos[1], pos[2])
 	
 	isMovng = true
-	
+	oldPos = camera.global_position
 	camera.global_position = camera.global_position.lerp(pos, 0.3)
 	camera.global_rotation = camera.global_rotation.lerp(rota, 0.3)
+	canLook = false
+
+func _on_pc_exit():
+	camera.global_position = camera.global_position.lerp(oldPos, 0.3)
+	canLook = true

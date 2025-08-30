@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://b2kpa0tgmfh0e" path="res://scenes/spark.tscn" id="9_85g3d"]
-[ext_resource type="AudioStream" uid="uid://xal1aqvw64fh" path="res://assets/models/sound/playtestAlarm.wav" id="9_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://xal1aqvw64fh" path="res://assets/models/sound/soundfx/playtestAlarm.wav" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://b4dttgvb0c7my" path="res://scenes/spark2.gd" id="10_choun"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
@@ -60,7 +60,8 @@ size = Vector3(8.03649, 0.495117, 8.47656)
 [node name="button" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521571, 0)
 
-[node name="PC" parent="button" index="2"]
+[node name="PC" parent="button" index="2" node_paths=PackedStringArray("label")]
+label = NodePath("../../CanvasLayer/Label")
 prompt_msg = "Open PC"
 
 [node name="Marker3D" type="Marker3D" parent="button/PC" index="2"]
@@ -76,6 +77,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "MODE: "
+
 [node name="alarmclock" type="StaticBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
@@ -88,17 +96,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.805309, 1.14826, 0.00515157)
 shape = SubResource("BoxShape3D_tipki")
 
-[node name="Soundmanager" type="Node3D" parent="."]
+[node name="Soundmanager" type="Node3D" parent="." node_paths=PackedStringArray("alarm_node")]
 script = ExtResource("8_tipki")
+alarm_node = NodePath("alarm")
 
 [node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
 stream = ExtResource("9_ya4ey")
-volume_db = -3.089
+volume_db = -1.688
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Soundmanager"]
 
 [node name="StaticBody3D" parent="." instance=ExtResource("9_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431668, 2.04506)
 script = ExtResource("10_choun")
 
+[connection signal="exit" from="button/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="button/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
 

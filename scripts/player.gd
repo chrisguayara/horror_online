@@ -58,4 +58,7 @@ func pcEnter():
 	
 
 func pcExit():
+	mode = "idle"
 	canMove = true
+	head.canLook = true
+	

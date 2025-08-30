@@ -15,7 +15,8 @@ func _process(delta):
 			
 			prompt.text = collider.prompt_msg
 			if Input.is_action_just_pressed("interact"):
-				collider.interact(owner)
+
+				collider.prompt_msg = ""
 				#var p = get_tree().current_scene.get_node("Main/Player")
 				#collider.interact(p)
 				#print("working ")

@@ -1,11 +1,11 @@
 extends Node3D
 
-
+@export var alarm_node: AudioStreamPlayer
 var interactable_sounds = {}
 
 func _ready():
 	interactable_sounds = {
-		"alarmclock": $alarm
+		"alarmclock": alarm_node
 	}
 
 
