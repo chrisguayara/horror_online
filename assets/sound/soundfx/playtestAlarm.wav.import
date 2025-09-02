@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://xal1aqvw64fh"
-path="res://.godot/imported/playtestAlarm.wav-aeef41b92943976a59ac2603871de6dd.sample"
+path="res://.godot/imported/playtestAlarm.wav-a7bd4718c66bf0ab3b1af2a8407906d3.sample"
 
 [deps]
 
-source_file="res://assets/models/sound/soundfx/playtestAlarm.wav"
-dest_files=["res://.godot/imported/playtestAlarm.wav-aeef41b92943976a59ac2603871de6dd.sample"]
+source_file="res://assets/sound/soundfx/playtestAlarm.wav"
+dest_files=["res://.godot/imported/playtestAlarm.wav-a7bd4718c66bf0ab3b1af2a8407906d3.sample"]
 
 [params]
 

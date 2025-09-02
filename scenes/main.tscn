@@ -1,16 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=25 format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://vurifdt5behq" path="res://scenes/button.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
 [ext_resource type="Shader" uid="uid://p1krn6q7hsh" path="res://shaders/ps1_post_process.gdshader" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://chymvpefamkua" path="res://assets/models/mouse.glb" id="5_jkv2x"]
+[ext_resource type="Material" uid="uid://ba8ddrxs7ufi5" path="res://assets/models/ivorypc.tres" id="5_trceg"]
 [ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://6nxb7ppm8m8h" path="res://assets/models/tower.glb" id="7_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://by45mhycoiupd" path="res://assets/models/keyboard.glb" id="8_jbj1t"]
 [ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://b2kpa0tgmfh0e" path="res://scenes/spark.tscn" id="9_85g3d"]
-[ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/models/sound/soundfx/pickup.mp3" id="9_eb6dy"]
-[ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/models/sound/soundfx/playtest.mp3" id="9_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://b4dttgvb0c7my" path="res://scenes/spark2.gd" id="10_choun"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
@@ -25,6 +29,40 @@ background_mode = 2
 sky = SubResource("Sky_jyhfs")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fc8wa"]
+_surfaces = [{
+"aabb": AABB(-1.23194, -1.57596, -2.96778, 1.70921, 36.4434, 5.93555),
+"format": 34896613377,
+"index_count": 252,
+"index_data": PackedByteArray("DwAlACYACwAPACYAEQAmACUAAAAPAAsACwAmACcAJwAAAAsAEAAnACYAEAAmABEAEQAlAA0ADQAQABEADwAOACUAAAAOAA8AJwAQAAkADQAJABAAKAANACUAKAAlAA4AKAAKAA0AKAAOAAwABwANAAoACQANAAcACgAoACkADAApACgACgApAAcADgACAAwADAACACkADgAAAAIABwApAAUAAgAFACkABwAFAAgACQAHAAgAAgABAAUAAAABAAIACQAIAAYAAAADAAEAKgAJAAYAKgADAAAAJwAJACoAJwAqAAAAKgAEAAMAKgAGAAQAKwATABQAFAATABUAKwAsABMAFAAVABoALQAVABMALQATACwAGgAVAC0AKwAWACwALQAsABYALQAWABcAEgAXABYAKwASABYAGAAtABcAEgAYABcAGgAtABsAGAAbAC0AHAAaABsAHAAbABgAGgAZABQAGQArABQAHAAfABoAGgAfABkAGAASAB0AHQASACsAHAAYAB4AGAAdAB4AIAAfABwAIAAcAB4AIAAkAB8AIAAeACIAHwAkACMAHwAjABkAJAAgAC4AIgAuACAAJAAuACMAHgAhACIAIgAhAC4AHgAdACEALwAZACMALwAjAC4ALwAuACEALwAhAB0AGQAvACsAHQArAC8A"),
+"lods": [0.0088142, PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAgABAAUAAAAGAAQABwACAAUABwAFAAgACQAIAAYACQAHAAgAAAAJAAYACgACAAcACwAJAAAACgAMAAIABwANAAoADAAKAA0ACQANAAcADgACAAwADgAAAAIADAANAA4AAAAPAAsAAAAOAA8ACwAQAAkADQAJABAAEAALAA8AEQAOAA0ADQAQABEAEQAPAA4AEAAPABEAEgATABQAFAATABUAEgAWABMAFQATABYAEgAXABYAFQAWABcAEgAYABcAGAAVABcAGQASABQAFAAVABoAGgAZABQAGgAVABsAGAAbABUAHAAaABsAHAAbABgAGAASAB0AHQASABkAHAAYAB4AGAAdAB4AHAAfABoAGgAfABkAIAAcAB4AIAAfABwAHgAdACEAGQAhAB0AIAAeACIAHgAhACIAGQAjACEAIgAhACMAHwAjABkAIgAjACAAHwAkACMAJAAgACMAIAAkAB8A")],
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("pUqBEby1AABLlcozvLUAAEuVgRG8tQAApUrKM7y1AAClSsoz/38AAEuVyjP/fwAApUrKM0JKAABLlYERQkoAAEuVyjNCSgAApUqBEUJKAAD//4ERQkoAAAAAgRG8tQAA//+BEby1AAD//wAAQkoAAP//AAC8tQAAAAAAALy1AAAAAIERQkoAAAAAAABCSgAA0cuh8H8KAADQqKHwf/UAANHLofB/9QAA0KhBTn/1AADQqKHwfwoAANCoQU5/CgAA0ctBTn8KAADRy///7f8AANHLQU5/9QAA0ctBTv9/AADRy3wz/38AANHL//8RAAAAzsn7MwAAAADOyfsz//8AALcpfDP/fwAAtyn//xEAAAC3KXwzEQAAALcp///t/wAAtyl8M+3/AAD//wAA/38AAAAAAAD/fwAAAACBEf9/AAD//4ER/38AAEuVgRH/fwAApUqBEf9/AADRy6Hw/38AANCoofD/fwAA0KhBTv9/AAC3Kf///38AANHL////fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a8y0u"]
+resource_name = "ivorypc_Cube_002"
+_surfaces = [{
+"aabb": AABB(-1.23194, -1.57596, -2.96778, 1.70921, 36.4434, 5.93555),
+"attribute_data": PackedByteArray("S+FsY+jv0kro72xjS+HSSnX2ewkuyqcsdfanLHX2pyx19nsJ330wcN99i1JHtotS330wcN99i1L7NZoqjUKaKvs1miqNQpoqQleWiC5ulDBCV5QwLm6WiEDCEl4V1iWBQMIElhXWEl5jdOj15Djo9WN0GJJjdOj1Y3QYkuK5uSE2WdUI4rnVCE9CuSHNGtjp5gN1B80a2hnmAzz8ADamo69VcKqvVXCqADamoxkvNF8yIwnkGS8J5DIjNF8nLjAsUiEwLCcuB04nLjAsUiEwLJbFZz1c0N0dXNBnPVzQWROWxdYIXNDWCJGzej+Dh3o/g4d6P5Gzej9L4Wxj6O/SSkvh0kro72xjP/VRMD/1XB4/9VweP/VRMAvg+/uY7vv7mO77+wvg+/tczRYmXM2eMVzNnjFczRYmQleWiC5ulDAubpaIQleUMEDCEl4V1iWBFdYSXkDCBJbrzc77N8HO++vNzvs3wc774rm5ITZZ1QhPQrkh4rnVCM0a2OnmA3UH5gM8/M0a2hnVfpaxm7iWsdV+lrGbuJaxGS80XzIjCeQyIzRfGS8J5FXXohhV14UoVdeFKFXXohhc0N0dlsVnPVzQZz1c0FkTXNDWCJbF1giDh3MpkbNzKffIXB73yFEwC+Cb15jum9cuynsJsfQWJrH0njFHtjBw+zXuS41C7kvJ4qGpN8GhqeQ4GJJfdXCqX3Wmo9V+cdubuHHbUiEHTrX7hSi1+6IY"),
+"format": 34896613399,
+"index_count": 252,
+"index_data": PackedByteArray("PQB0AHUAPQA7AHQAOgB1AHQAOgB0ADwAAAABAAIAAAADAAEARQB2AHcARQBDAHYAQgB3AHYAQgB2AEQAeABIAEYAeAB5AEgAeABHAHkAeABJAEcAegAGAAQAegAFAAYAegAHAAUAegAIAAcAewBMAEoAewB8AEwAewBLAHwAewBNAEsACQALAH0ACQAKAAsADAB9AAsADAALAA0AfgAPABAAfgB/AA8AfgARAH8AfgAOABEAEgATABQAEgAVABMAFgAXABgAFgAZABcAgABZAIEAgABWAFkAgACBAFcAgABXAFgAGgCCABwAGgAbAIIAHQCCABsAHQAeAIIAHwAgACEAHwAiACAAIwAkACUAIwAmACQAJwCDACkAJwCEAIMAKgCDAIQAKgAoAIMAhQBlAIYAhQBiAGUAhQCGAGMAhQBjAGQAKwAsAC0AKwAuACwALwCHADEALwAwAIcAMgAxAIcAMgCHADMAbQCIAIkAbQBrAIgAagCJAIgAagCIAGwANAA1ADYANAA3ADUANwA0ADgANwA4ADkAPgA/AEAAPgBBAD8ATgBPAFAATgBRAE8AUgBTAFQAUgBVAFMAWgBbAFwAWgBdAFsAXgBfAGAAXgBhAF8AZgBnAGgAZgBpAGcAbgBvAHAAcQBvAG4AbwBxAHIAbwByAHMA"),
+"lods": [0.0088142, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUABAAIAAcACQAKAAsADAAJAAsADAALAA0ADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAHQAcABsAHQAeABwAHwAgACEAHwAiACAAIwAkACUAIwAmACQAJwAoACkAKgAoACcAKwAsAC0AKwAuACwALwAwADEAMgAxADAAMgAwADMANAA1ADYANAA3ADUANwA0ADgANwA4ADkAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMARgBHAEgARgBJAEcASgBLAEwASgBNAEsATgBPAFAATgBRAE8AUgBTAFQAUgBVAFMAVgBXAFgAVgBZAFcAWgBbAFwAWgBdAFsAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAZgBnAGgAZgBpAGcAagBrAGwAagBtAGsAbgBvAHAAcQBvAG4AbwBxAHIAbwByAHMA")],
+"material": ExtResource("5_trceg"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 138,
+"vertex_data": PackedByteArray("pUqBEby1AIBLlcozvLUAgEuVgRG8tQCApUrKM7y1AIClSoERvLX/P6VKyjP/f///pUrKM7y1/z+lSsozQkr//6VKgRFCSv//S5WBEby1/79LlcozvLX/v0uVyjP/fwAAS5WBEUJKAABLlcozQkoAANHLofB/Cv//0Kih8H/1AADRy6Hwf/UAANCoofB/Cv//zsn7M///nwK3Kf//7f8QANHL///t/wAAtyl8M+3/rwK3KXwz/39q087J+zP//yLV0ct8M/9/v9K3KXwz7f/U1bcpfDPt//+/tyl8M/9/AAC3Kf//7f//v7cpfDMRAAAAtyn//xEAAADRy3wz/3/mv9HLQU5/9ea/0ctBTv9/5r/Oyfsz///nv9HLQU5/9QPR0cv//+3/7sDRy6Hwf/XWwc7J+zP//xTR0cv//+3//7/Ry6HwfwoAANHLofB/9f+/0cv//xEAAADRy6Hwf/UAANCoQU5/9QAA0ctBTn/1AADQqKHwf/UAANHLQU5/9f8/0KhBTn/1/z/Ry0FO/3//v9HLQU5/Cv+/0KhBTn8K/7///wAAvLXQvEuVgRG8tbC4//+BEby1/7+lSoERvLUQuwAAAAC8tcO9AACBEby1/78AAAAAQkoAAP//AAC8tf////8AAEJKAAAAAAAAvLX//6VKgRFCSgAAS5XKM0JKAAClSsozQkoAAEuVgRFCSgAAAACBEUJK//8AAAAAvLX/PwAAAABCSv//AACBEby1/z8AAIERvLX/v6VKgRFCSv8/pUqBEby1/78AAIERQkr/P///gRG8tf+///8AAEJKAAD//wAAvLX/v///gRFCSgAAzsn7MwAA9/+3Kf//EQD3/7cpfDMRAPf/0cv//xEA9/+3KXwz/393Lc7J+zMAANArtyl8MxEAJCvRy3wz/38aLtHL///t//+/tyn//xEA/z/Ry///EQD/P7cp///t//+/0ct8M/9/XADRy0FOfwo8AM7J+zMAAKIA0ctBTv9/DADRy0FOfwpLJtHL//8RAI4Mzsn7MwAAXSbRy6HwfwogD9CoQU5/9VTV0Kih8H8KqirQqEFOfwqqKtCoofB/9VTV0cuh8H8KAIDQqEFOfwoAgNCoofB/CgCA0ctBTn8KAID//4ERQkpU1UuVgRG8taoqS5WBEUJKVNX//4ERvLWqKkuVgRFCSgAA//8AAEJKAAD//4ERQkoAAKVKgRFCSgAAAACBEUJKAAAAAAAAQkoAAP//AAD/fwAAAAAAAP9/AAAAAAAA/3///wAAgRH/f///AACBEf9//z+lSoER/3//P6VKgRH/f/////+BEf9/AAD//wAA/38AAEuVgRH/fwAA0cuh8P9////QqKHw/3///9HL////f/8/tyn///9//z+3Kf///38AANHLofD/fwAA0cv///9/AADQqEFO/3+qKtCoofD/f6oq0KhBTv9//79LlYER/39U1f//gRH/f1TV/3////9/////f////3////9/////P/9//3////8//3//P/9//38AAP9/AAD/v/9//7//f/+//3//f/8//3//P/9//z//f/8/9H//f/R//3/0f/9/9H//fxAoG9IlKTfUoCdC0ZEpCtX/f////z//f/9/////P/9//z//f8mAzAGFgEMB4383AGCB+QLhLgQozpMuKI+WxC3LLg8o/38AAP+//3//fwAA/7//f////3////9/////f////3////9/////f////3////9/////f/////////////////////////////////9//z//f/8//3//P/9//z////9/////f////3////9//z//f/9/////P/9//3///////3////9/////f////3//fwAA/7//f/9/AAD/v/9/AXwA/OZ/5f/qe+n7/3///6BSr1XJVKJUolU4VMJRG1b///9/////f////3////9/0b99f+O/oH+qvzB/DQDyv6ImSS0xutpytiY/Le64W3CqKqoqqiqqKqoqqiqqKqoq/3////9/////f////3///6qqqqpU1aoqqqqqqlTVqirAxT66+8ECvv+//7/PyS62CMb1uf+//7//f/8//3//P/8//3//P/9/////f////3//P/9//7//f/+//3//v/9//3//P/9//z////9/////f/8//3//v/9//7//f6oqqiqqKqoq////f6qqqqqqqqqq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fc8wa")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("4_jyhfs")
@@ -48,29 +86,52 @@ shadow_enabled = true
 
 [node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3.74523)
-floor_marker = NodePath("../button/PC/FloorMarker")
+speed = null
+jump_velocity = null
+gravity = null
+floor_marker = NodePath("../House/setup/PC/FloorMarker")
 
 [node name="inventory" type="Node3D" parent="player"]
 script = ExtResource("3_tbgi4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="House" type="Node3D" parent="."]
+
+[node name="StaticBody3D" parent="House" instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469, 0.426669, 4.10636)
+script = ExtResource("10_choun")
+prompt_msg = "Pick Up"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.752644, -0.252441, 2.2853)
 use_collision = true
 collision_layer = 2
 size = Vector3(8.03649, 0.495117, 8.47656)
 
-[node name="button" parent="." instance=ExtResource("3_sugp2")]
+[node name="setup" parent="House" instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="PC" parent="button" index="2" node_paths=PackedStringArray("label")]
-label = NodePath("../../CanvasLayer/Label")
+[node name="PC" parent="House/setup" index="3" node_paths=PackedStringArray("label")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111832, -0.0687391, 0.0258819)
+label = NodePath("../../../CanvasLayer/Label")
 prompt_msg = "Open PC"
 
-[node name="Marker3D" type="Marker3D" parent="button/PC" index="2"]
+[node name="Cube_001" parent="House/setup/PC/ivorypc" index="0"]
+mesh = SubResource("ArrayMesh_a8y0u")
+
+[node name="Marker3D" type="Marker3D" parent="House/setup/PC" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0644763, 1.16778, 0.218776)
 
-[node name="FloorMarker" type="Marker3D" parent="button/PC" index="3"]
+[node name="FloorMarker" type="Marker3D" parent="House/setup/PC" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375613, 1)
+
+[node name="mouse2" parent="House/setup" instance=ExtResource("5_jkv2x")]
+transform = Transform3D(-8.9407e-08, 0, -1, 0, 1, 0, 1, 0, -8.9407e-08, 0.0953856, -0.0163128, 0.221675)
+
+[node name="tower2" parent="House/setup" instance=ExtResource("7_jbj1t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0875111, -0.0238419, 0.122892)
+
+[node name="keyboard2" parent="House/setup" instance=ExtResource("8_jbj1t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0457813, 0, 0.155594)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -90,7 +151,7 @@ grow_horizontal = 2
 text = "MODE: "
 
 [node name="alarmclock" type="StaticBody3D" parent="."]
-transform = Transform3D(0.335569, 0, 0.370666, 0, 0.5, 0, -0.370666, 0, 0.335569, 0.337338, 0.504935, 0.465939)
+transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -0.564383, 0.504935, 0.465939)
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
 prompt_msg = "Set Alarm"
@@ -109,20 +170,17 @@ inventory_node = NodePath("Pickup")
 
 [node name="Pickup" type="AudioStreamPlayer" parent="Soundmanager"]
 stream = ExtResource("9_eb6dy")
+volume_db = 8.0
 
 [node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
 stream = ExtResource("9_ya4ey")
 volume_db = 2.734
 
-[node name="StaticBody3D" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469, 0.426669, 4.10636)
-script = ExtResource("10_choun")
-prompt_msg = "Pick Up"
-
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
-[connection signal="exit" from="button/PC" to="player/head" method="_on_pc_exit"]
-[connection signal="transition" from="button/PC" to="player/head" method="_on_pc_transition"]
+[connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
+[connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
 
 [editable path="player"]
-[editable path="button"]
+[editable path="House/setup"]
+[editable path="House/setup/PC/ivorypc"]

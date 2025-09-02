@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpe3lb5njyeu"
+path="res://.godot/imported/(gtr, alternative) jean parker - quicksilver 99.mp3-a385ae64615407db3f52bce127466ef9.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/music/(gtr, alternative) jean parker - quicksilver 99.mp3"
+dest_files=["res://.godot/imported/(gtr, alternative) jean parker - quicksilver 99.mp3-a385ae64615407db3f52bce127466ef9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

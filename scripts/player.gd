@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed := 4.2
-@export var jump_velocity := 10
+@export var jump_velocity := 2.5
 @export var gravity := 9.8
 var canMove = true
 @onready var interact_ray = $head/camera/InteractRay
@@ -10,7 +10,7 @@ var mode = "idle"
 @onready var inventorymanager = $inventory
 @export var floor_marker : Marker3D
 
-var prevLocation : Vector3
+var prevLocation : Vector3`
 
 
 func _physics_process(delta: float) -> void:
