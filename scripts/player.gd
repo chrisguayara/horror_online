@@ -10,7 +10,7 @@ var mode = "idle"
 @onready var inventorymanager = $inventory
 @export var floor_marker : Marker3D
 
-var prevLocation : Vector3`
+var prevLocation : Vector3
 
 
 func _physics_process(delta: float) -> void:

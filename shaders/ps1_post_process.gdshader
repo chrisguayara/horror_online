@@ -19,7 +19,7 @@ void fragment() {
 	int y = int(mod(virtual_pos.y, 4.0));x;
 	int index = y *4 + x;
 
-	float dither_offset = (ps1_dither[index]/ 8.0);
+	float dither_offset = (ps1_dither[index]/ 4.0);
 
 	vec3 quantized_color = floor((screen_color * 255.0)/ 8.0 + dither_offset)/ 31.0;
 
