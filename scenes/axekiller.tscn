@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7anke2xysecy"]
+
+[ext_resource type="Script" uid="uid://dd07vjbqihybk" path="res://scripts/killer/killerlogic.gd" id="1_rm7mu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_toumy"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7jvd"]
+radius = 0.539474
+height = 2.52312
+
+[node name="axekiller" type="CharacterBody3D"]
+script = ExtResource("1_rm7mu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
+mesh = SubResource("CapsuleMesh_toumy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2105, 0)
+shape = SubResource("CapsuleShape3D_t7jvd")
