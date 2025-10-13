@@ -16,22 +16,25 @@ var speed = 10
 var isRunning = false
 var isDead = false
 var charactername: String = "breach"
+var aggresiveness = 1.0
+var fear = 1.0
+var characteristics = [aggresiveness, fear]
+var update = false
 
 func _physics_process(delta):
 	
 	states[currentstate].call(delta)
-	
-
-
-
-
-
 #state logic !
 
 func _stalking_state(delta):
 	pass
 
 func _hunting_state(delta):
+	
+	if update:
+		speed *= characteristics[0] - characteristics[1]
+	
+	
 	pass
 	
 
