@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=32 format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://b4dttgvb0c7my" path="res://scenes/spark2.gd" id="10_choun"]
-[ext_resource type="PackedScene" uid="uid://c7anke2xysecy" path="res://scenes/axekiller.tscn" id="17_muem4"]
+[ext_resource type="Script" uid="uid://dd07vjbqihybk" path="res://scripts/killer/killerlogic.gd" id="17_muem4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -30,6 +30,11 @@ background_mode = 2
 sky = SubResource("Sky_jyhfs")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_muem4"]
+top_radius = 0.3
+bottom_radius = 0.2
+height = 0.6
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fc8wa"]
 _surfaces = [{
@@ -65,6 +70,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fc8wa")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_dp3eg"]
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ld40"]
+size = Vector3(2, 1, 2.7)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("4_jyhfs")
 shader_parameter/viewport_size = Vector2(640, 480)
@@ -74,6 +85,15 @@ shader_parameter/virtual_resolution = Vector2(320, 240)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(0.41037, 0.249512, 0.577576)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_toumy"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7jvd"]
+radius = 0.539474
+height = 2.52312
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_muem4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sugp2")
@@ -86,7 +106,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3.74523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
 floor_marker = NodePath("../House/setup/PC/FloorMarker")
 
 [node name="inventory" type="Node3D" parent="player"]
@@ -94,22 +114,32 @@ script = ExtResource("3_tbgi4")
 
 [node name="House" type="Node3D" parent="."]
 
+[node name="TrashBin" type="MeshInstance3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30751, 0.2, -1.00257)
+mesh = SubResource("CylinderMesh_muem4")
+
 [node name="StaticBody3D" parent="House" instance=ExtResource("9_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469, 0.426669, 4.10636)
 script = ExtResource("10_choun")
 prompt_msg = "Pick Up"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.752644, -0.252441, 2.2853)
+[node name="floorLiving" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244077, -0.252441, 3.05547)
 use_collision = true
 collision_layer = 2
-size = Vector3(8.03649, 0.495117, 8.47656)
+size = Vector3(9, 0.495117, 10)
+
+[node name="floorLiving3" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2388, -0.248495, 0.607302)
+use_collision = true
+collision_layer = 2
+size = Vector3(5, 0.495117, 5.09941)
 
 [node name="setup" parent="House" instance=ExtResource("3_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94048, 0.5, -0.991385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8065, 0.5, -0.845296)
 
 [node name="PC" parent="House/setup" index="3" node_paths=PackedStringArray("label")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111832, -0.0687391, 0.0258819)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.337091, -0.0687391, 0.0258819)
 label = NodePath("../../../CanvasLayer/Label")
 prompt_msg = "Open PC"
 
@@ -126,26 +156,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375613, 1)
 transform = Transform3D(-8.9407e-08, 0, -1, 0, 1, 0, 1, 0, -8.9407e-08, 0.0953856, -0.0163128, 0.221675)
 
 [node name="tower2" parent="House/setup" instance=ExtResource("7_jbj1t")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0875111, -0.0238419, 0.122892)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.112489, -0.0238419, 0.122892)
 
 [node name="keyboard2" parent="House/setup" instance=ExtResource("8_jbj1t")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0457813, 0, 0.155594)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.181573, 0, 0.155594)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 1.02836, 0.500144, -0.187993)
-size = Vector3(3, 1, 1)
+[node name="Couch" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 1.43843, 0.513706, 0.490518)
+size = Vector3(4, 1, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="House"]
+[node name="cubby" type="CSGBox3D" parent="House"]
 transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 4.03317, 0.300202, -0.187993)
 size = Vector3(1.6, 0.6, 1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="House"]
+[node name="Tv" type="CSGBox3D" parent="House"]
 transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 4.076, 1.41662, -0.137993)
 size = Vector3(1.9, 1.2, 0.1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 4.08543, 0.728628, -0.196496)
+[node name="stand" type="CSGBox3D" parent="House/Tv"]
+transform = Transform3D(1, 4.44089e-16, -7.10543e-15, 0, 1, -2.86065e-16, 1.06581e-14, -2.05265e-16, 1, -0.0710386, -0.668758, -0.00779343)
 size = Vector3(0.443994, 0.414941, 0.1)
+
+[node name="ChairPlacement" type="MeshInstance3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98783, 0.479311, 0.808412)
+mesh = SubResource("CylinderMesh_dp3eg")
+
+[node name="DiningSet" type="Node3D" parent="House"]
+
+[node name="DiningChair" type="MeshInstance3D" parent="House/DiningSet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.787827, 0.479311, 5.70841)
+mesh = SubResource("CylinderMesh_dp3eg")
+skeleton = NodePath("../..")
+
+[node name="DiningTable" type="MeshInstance3D" parent="House/DiningSet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50308, 0.5, 5.66223)
+mesh = SubResource("BoxMesh_0ld40")
+skeleton = NodePath("../..")
+
+[node name="Kitchen" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22126, -0.252726, 5.60226)
+use_collision = true
+collision_layer = 2
+size = Vector3(5, 0.495117, 4.9)
+
+[node name="Kitchen2" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.27126, 0.399715, 7.25226)
+use_collision = true
+collision_layer = 2
+size = Vector3(4.7, 0.8, 1.2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -165,7 +223,7 @@ grow_horizontal = 2
 text = "MODE: "
 
 [node name="alarmclock" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -0.564383, 0.504935, 0.465939)
+transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
 prompt_msg = "Set Alarm"
@@ -174,7 +232,7 @@ prompt_msg = "Set Alarm"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="alarmclock"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.805309, 1.14826, 0.00515157)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.77916, 1.14826, -1.50337)
 shape = SubResource("BoxShape3D_tipki")
 
 [node name="Soundmanager" type="Node3D" parent="." node_paths=PackedStringArray("alarm_node", "inventory_node")]
@@ -190,13 +248,31 @@ volume_db = 8.0
 stream = ExtResource("9_ya4ey")
 volume_db = 2.734
 
-[node name="axekiller" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_muem4")]
+[node name="axekiller" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("17_muem4")
 player = NodePath("../player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="axekiller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
+mesh = SubResource("CapsuleMesh_toumy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="axekiller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2105, 0)
+shape = SubResource("CapsuleShape3D_t7jvd")
+
+[node name="Timer" type="Timer" parent="axekiller"]
+wait_time = 5.964
+one_shot = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="axekiller"]
+navigation_mesh = SubResource("NavigationMesh_muem4")
 
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
 
 [editable path="player"]
 [editable path="House/setup"]
