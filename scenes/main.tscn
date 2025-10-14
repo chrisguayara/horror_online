@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=26 format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://b4dttgvb0c7my" path="res://scenes/spark2.gd" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://c7anke2xysecy" path="res://scenes/axekiller.tscn" id="17_muem4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -188,6 +189,9 @@ volume_db = 8.0
 [node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
 stream = ExtResource("9_ya4ey")
 volume_db = 2.734
+
+[node name="axekiller" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_muem4")]
+player = NodePath("../player")
 
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]

@@ -7,11 +7,12 @@ var states: Dictionary = {
 	"entry": _entry_state
 }
 
-var currentstate: String = "stalking"
+var currentstate: String = "hunting"
 
 var health = 200
 var visitedEntries = {}
-@export var axe : Node3D
+@export var axe: Node3D
+@export var player: Node3D
 var speed = 10
 var isRunning = false
 var isDead = false
@@ -19,28 +20,45 @@ var charactername: String = "breach"
 var aggresiveness = 1.0
 var fear = 1.0
 var characteristics = [aggresiveness, fear]
-var update = false
+var update_ready = false
+@onready var timer = $Timer
+
+func _ready():
+	timer.wait_time = 2.0
+	timer.start()
 
 func _physics_process(delta):
-	
+	if update_ready:
+		_timed_update()
+		update_ready = false
 	states[currentstate].call(delta)
-#state logic !
+
+func _timed_update():
+	speed *= characteristics[0]
+	var timed_method = currentstate + "_timed_update"
+	if has_method(timed_method):
+		call(timed_method)
 
 func _stalking_state(delta):
+	characteristics[0] = 1.02
 	pass
 
 func _hunting_state(delta):
-	
-	if update:
-		speed *= characteristics[0] - characteristics[1]
-	
-	
+	characteristics[0] = 1.2
 	pass
-	
 
 func _hurt_state(delta):
+	characteristics[0] = 1.4
+	characteristics[1] = 1.7
+	if player:
+		var direction = (player.global_transform.origin - global_transform.origin).normalized()
+		velocity = direction * speed
+		move_and_slide()
 	pass
 
 func _entry_state(delta):
+	characteristics[0]=1.02
 	pass
-	
+
+func _on_Timer_timeout():
+	update_ready = true
