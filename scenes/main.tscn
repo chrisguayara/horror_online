@@ -124,10 +124,58 @@ script = ExtResource("10_choun")
 prompt_msg = "Pick Up"
 
 [node name="floorLiving" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244077, -0.252441, 3.05547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244077, -0.252441, 2.55547)
 use_collision = true
 collision_layer = 2
-size = Vector3(9, 0.495117, 10)
+size = Vector3(9, 0.495117, 9)
+
+[node name="Walls" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.65295, 1.71157, 2.58893)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 9.02808)
+
+[node name="Walls5" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69408, 1.7, -1.04453)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 1.8)
+
+[node name="Walls7" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69408, 1.7, 2.20481)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 1.8)
+
+[node name="Walls8" type="CSGBox3D" parent="House"]
+transform = Transform3D(0.999922, 0, -0.0124788, 0, 1, 0, 0.0124788, 0, 0.999922, 4.6925, 2.68569, 0.557742)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.121664, 1.42861, 1.5)
+
+[node name="Walls6" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.19555, 1.7, 3.05547)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 5.09147)
+
+[node name="Walls2" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20592, 1.7, 2.55547)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 9)
+
+[node name="Walls3" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.76844, 1.7, 7.05547)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 13.9487)
+
+[node name="Walls4" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.76844, 1.7, -1.94453)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 13.9487)
 
 [node name="floorLiving3" type="CSGBox3D" parent="House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2388, -0.248495, 0.607302)
@@ -162,20 +210,20 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.112
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.181573, 0, 0.155594)
 
 [node name="Couch" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 1.43843, 0.513706, 0.490518)
-size = Vector3(4, 1, 1)
-
-[node name="cubby" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 4.03317, 0.300202, -0.187993)
-size = Vector3(1.6, 0.6, 1)
+transform = Transform3D(1, 5.76308e-09, 1.94397e-10, -7.6194e-09, 0.999712, -0.0240134, -3.32687e-10, 0.0240134, 0.999712, 2.13843, 0.513706, 2.49052)
+size = Vector3(2.4, 1, 1)
 
 [node name="Tv" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.33787e-08, -0.0240134, -0.999712, -7.6194e-09, 0.999712, -0.0240134, 1, 4.71342e-09, -4.35044e-08, 4.076, 1.41662, -0.137993)
+transform = Transform3D(1, 5.76308e-09, 1.94397e-10, -7.6194e-09, 0.999712, -0.0240134, -3.32687e-10, 0.0240134, 0.999712, 2.376, 1.41662, -1.33799)
 size = Vector3(1.9, 1.2, 0.1)
 
 [node name="stand" type="CSGBox3D" parent="House/Tv"]
 transform = Transform3D(1, 4.44089e-16, -7.10543e-15, 0, 1, -2.86065e-16, 1.06581e-14, -2.05265e-16, 1, -0.0710386, -0.668758, -0.00779343)
 size = Vector3(0.443994, 0.414941, 0.1)
+
+[node name="cubby" type="CSGBox3D" parent="House/Tv"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, -2.86065e-16, 3.55271e-15, -2.05265e-16, 1, -0.05, -1.11507, 0.0696268)
+size = Vector3(1.6, 0.6, 1)
 
 [node name="ChairPlacement" type="MeshInstance3D" parent="House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98783, 0.479311, 0.808412)
@@ -194,13 +242,23 @@ mesh = SubResource("BoxMesh_0ld40")
 skeleton = NodePath("../..")
 
 [node name="Kitchen" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22126, -0.252726, 5.60226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22126, -0.252726, 5.15226)
 use_collision = true
 collision_layer = 2
-size = Vector3(5, 0.495117, 4.9)
+size = Vector3(5, 0.495117, 4)
 
 [node name="Kitchen2" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.27126, 0.399715, 7.25226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 0.377534, 6.45725)
+use_collision = true
+collision_layer = 2
+size = Vector3(4.7, 0.8, 1.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House/Kitchen2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 0, -0.0843506)
+size = Vector3(1.3, 1, 1.38306)
+
+[node name="Cabinets" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 2.97753, 6.45725)
 use_collision = true
 collision_layer = 2
 size = Vector3(4.7, 0.8, 1.2)
