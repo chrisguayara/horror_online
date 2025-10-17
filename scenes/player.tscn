@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bohs6vfsil5ho"]
+[gd_scene load_steps=7 format=3 uid="uid://bohs6vfsil5ho"]
 
 [ext_resource type="Script" uid="uid://blmy0yy26ub0d" path="res://scripts/camera.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bdi8pev0qd8kc" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://ctcgcf3b3eh46" path="res://scenes/inventoryinhand.gd" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+height = 1.9265
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
 
 [node name="player" type="CharacterBody3D"]
 collision_mask = 6
@@ -21,3 +25,10 @@ script = ExtResource("1_3vyb7")
 [node name="camera" type="Camera3D" parent="head"]
 
 [node name="InteractRay" parent="head/camera" instance=ExtResource("3_qhqgy")]
+
+[node name="visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qhqgy")
+
+[node name="hand" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, -0.5)
+script = ExtResource("4_dqkch")

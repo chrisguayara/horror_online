@@ -119,7 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30751, 0.2, -1.00257)
 mesh = SubResource("CylinderMesh_muem4")
 
 [node name="StaticBody3D" parent="House" instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469, 0.426669, 4.10636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4469, 1.12667, 6.40636)
 script = ExtResource("10_choun")
 prompt_msg = "Pick Up"
 
@@ -130,10 +130,16 @@ collision_layer = 2
 size = Vector3(9, 0.495117, 9)
 
 [node name="Walls" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.65295, 1.71157, 2.58893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.65295, 1.71157, 5.10297)
 use_collision = true
 collision_layer = 2
-size = Vector3(0.1, 3.4, 9.02808)
+size = Vector3(0.1, 3.4, 4)
+
+[node name="Walls9" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.653, 1.71157, 2.60297)
+use_collision = true
+collision_layer = 2
+size = Vector3(0.1, 3.4, 9)
 
 [node name="Walls5" type="CSGBox3D" parent="House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69408, 1.7, -1.04453)
@@ -166,22 +172,36 @@ collision_layer = 2
 size = Vector3(0.1, 3.4, 9)
 
 [node name="Walls3" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.76844, 1.7, 7.05547)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.74409, 1.7, 7.06952)
 use_collision = true
 collision_layer = 2
-size = Vector3(0.1, 3.4, 13.9487)
+size = Vector3(0.1, 3.4, 15.9)
 
 [node name="Walls4" type="CSGBox3D" parent="House"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.76844, 1.7, -1.94453)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.74409, 1.7, -1.94453)
 use_collision = true
 collision_layer = 2
-size = Vector3(0.1, 3.4, 13.9487)
+size = Vector3(0.1, 3.4, 15.9)
 
 [node name="floorLiving3" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2388, -0.248495, 0.607302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1888, -0.248495, 0.607302)
 use_collision = true
 collision_layer = 2
-size = Vector3(5, 0.495117, 5.09941)
+size = Vector3(6.9, 0.495117, 5.09941)
+
+[node name="floorLiving4" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7388, 3.16266, 0.607302)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(15.8, 0.495117, 5.09941)
+
+[node name="floorLiving5" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7388, 3.16266, 5.1076)
+visible = false
+use_collision = true
+collision_layer = 2
+size = Vector3(13.8, 0.495117, 3.9)
 
 [node name="setup" parent="House" instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8065, 0.5, -0.845296)
@@ -241,11 +261,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50308, 0.5, 5.66223)
 mesh = SubResource("BoxMesh_0ld40")
 skeleton = NodePath("../..")
 
-[node name="Kitchen" type="CSGBox3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22126, -0.252726, 5.15226)
+[node name="KitchenFloor" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2092, -0.252726, 5.15226)
 use_collision = true
 collision_layer = 2
-size = Vector3(5, 0.495117, 4)
+size = Vector3(6.97588, 0.495117, 4)
 
 [node name="Kitchen2" type="CSGBox3D" parent="House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 0.377534, 6.45725)
@@ -262,6 +282,74 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 2.97753, 6.45725)
 use_collision = true
 collision_layer = 2
 size = Vector3(4.7, 0.8, 1.2)
+
+[node name="Stairs" type="Node3D" parent="House"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.15, 4.95)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 3.7)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.45, 5.1)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 3.4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.75, 5.25)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 3.1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.05, 5.4)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 2.8)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.35, 5.55)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 2.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.65, 5.7)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 2.2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.95, 5.85)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 1.9)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.25, 6)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 1.6)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.55, 6.15)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 1.3)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.85, 6.3)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="House/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 3.15, 6.45)
+use_collision = true
+collision_layer = 4
+size = Vector3(1.6, 0.3, 0.7)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
