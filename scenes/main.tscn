@@ -413,6 +413,7 @@ one_shot = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="axekiller"]
 navigation_mesh = SubResource("NavigationMesh_muem4")
 
+[connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
