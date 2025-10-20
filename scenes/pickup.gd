@@ -3,6 +3,11 @@ extends Interactable
 @export var item_name: String
 @export var item_description: String
 @export var item_scene: PackedScene
+@onready var spintimer = $spinTimer
+var canSpin = true
+
+func _ready():
+	prompt_msg = "Pick Up [E]"
 
 func interact(body):
 	var item_data = {
@@ -12,7 +17,11 @@ func interact(body):
 	}
 	
 	if body.add_to_inventory(item_data):
-		print("Picked up:", item_name)
+		print("Picked up: ", item_name)
 		queue_free()
 	else:
 		print("Inventory full")
+
+
+	
+	

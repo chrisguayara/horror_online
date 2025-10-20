@@ -21,6 +21,7 @@ func _on_alarmclock_playsound(str: String):
 
 func _on_inventory_add_sound(str: String):
 	if interactable_sounds.has(str):
+		interactable_sounds[str].pitch_scale = randf_range(0.97,1.03)
 		interactable_sounds[str].play()
 	else:
 		print("not a song")

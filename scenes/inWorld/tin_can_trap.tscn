@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b01g4ooka6vyk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_64cgn"]
+radius = 0.175
+height = 0.7
+
+[node name="TinCanTrap" type="Node3D"]
+
+[node name="meshes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
+mesh = SubResource("CapsuleMesh_64cgn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="meshes"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_64cgn")

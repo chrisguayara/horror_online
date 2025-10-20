@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://tdkn6oewacsk"]
+
+[ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_y2yc7"]
+[ext_resource type="PackedScene" uid="uid://b01g4ooka6vyk" path="res://scenes/inWorld/tin_can_trap.tscn" id="2_78wlp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_78wlp"]
+radius = 0.175
+height = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uk1in"]
+
+[node name="Area3D" type="Area3D"]
+collision_layer = 4
+script = ExtResource("1_y2yc7")
+item_name = "tincan trap"
+item_description = "noise trap that can be placed"
+item_scene = ExtResource("2_78wlp")
+prompt_msg = "Pickup[E]"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
+mesh = SubResource("CapsuleMesh_78wlp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_78wlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_uk1in")

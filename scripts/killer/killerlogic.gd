@@ -7,7 +7,7 @@ var states: Dictionary = {
 	"entry": _entry_state
 }
 
-var currentstate: String = "hunting"
+var currentstate: String = "stalking"
 
 var health = 200
 var visitedEntries = {}

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cue3ni070rfje"]
+
+[ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_obwjh"]
+[ext_resource type="PackedScene" uid="uid://bla1psyhvad2d" path="res://scenes/inWorld/remington.tscn" id="2_10jtr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_10jtr"]
+size = Vector3(1, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qet4j"]
+size = Vector3(0.8, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10jtr"]
+size = Vector3(0.439331, 0.387909, 0.749756)
+
+[node name="RemingtonPickup" type="Area3D"]
+script = ExtResource("1_obwjh")
+item_name = "Revienne 10"
+item_description = "Pump-action Shotgun"
+item_scene = ExtResource("2_10jtr")
+
+[node name="Meshes" type="Node3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="maincenter" type="MeshInstance3D" parent="Meshes"]
+mesh = SubResource("BoxMesh_10jtr")
+skeleton = NodePath("../..")
+
+[node name="muzzle and stock" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+mesh = SubResource("BoxMesh_qet4j")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.2, 0)
+mesh = SubResource("BoxMesh_qet4j")
+skeleton = NodePath("../..")
+
+[node name="spinTimer" type="Timer" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0142212, 0.0181122, -0.012085)
+shape = SubResource("BoxShape3D_10jtr")
+
+[connection signal="timeout" from="spinTimer" to="." method="_on_spin_timer_timeout"]
