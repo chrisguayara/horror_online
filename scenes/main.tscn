@@ -100,265 +100,276 @@ height = 2.52312
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sugp2")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 320.0
+offset_bottom = 240.0
+scale = Vector2(6, 6)
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(320, 240)
+size_2d_override = Vector2i(1920, 1440)
+size_2d_override_stretch = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_tbgi4")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
+[node name="player" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
 floor_marker = NodePath("../House/setup/PC/FloorMarker")
 
-[node name="hand" parent="player/head/camera" index="1"]
+[node name="hand" parent="SubViewportContainer/SubViewport/player/head/camera" index="1"]
 script = null
 
-[node name="inventory" type="Node3D" parent="player"]
+[node name="inventory" type="Node3D" parent="SubViewportContainer/SubViewport/player"]
 script = ExtResource("3_tbgi4")
 
-[node name="House" type="Node3D" parent="."]
+[node name="House" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="TrashBin" type="MeshInstance3D" parent="House"]
+[node name="TrashBin" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30751, 0.2, -1.00257)
 mesh = SubResource("CylinderMesh_muem4")
 
-[node name="StaticBody3D" parent="House" instance=ExtResource("9_85g3d")]
+[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/House" instance=ExtResource("9_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4469, 1.12667, 6.40636)
 script = ExtResource("10_choun")
 prompt_msg = "Pick Up"
 
-[node name="floorLiving" type="CSGBox3D" parent="House"]
+[node name="floorLiving" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244077, -0.252441, 2.55547)
 use_collision = true
 collision_layer = 2
 size = Vector3(9, 0.495117, 9)
 
-[node name="Walls" type="CSGBox3D" parent="House"]
+[node name="Walls" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.65295, 1.71157, 5.10297)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 4)
 
-[node name="Walls9" type="CSGBox3D" parent="House"]
+[node name="Walls9" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.653, 1.71157, 2.60297)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 9)
 
-[node name="Walls5" type="CSGBox3D" parent="House"]
+[node name="Walls5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69408, 1.7, -1.04453)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 1.8)
 
-[node name="Walls7" type="CSGBox3D" parent="House"]
+[node name="Walls7" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69408, 1.7, 2.20481)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 1.8)
 
-[node name="Walls8" type="CSGBox3D" parent="House"]
+[node name="Walls8" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(0.999922, 0, -0.0124788, 0, 1, 0, 0.0124788, 0, 0.999922, 4.6925, 2.68569, 0.557742)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.121664, 1.42861, 1.5)
 
-[node name="Walls6" type="CSGBox3D" parent="House"]
+[node name="Walls6" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.19555, 1.7, 3.05547)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 5.09147)
 
-[node name="Walls2" type="CSGBox3D" parent="House"]
+[node name="Walls2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20592, 1.7, 2.55547)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 9)
 
-[node name="Walls3" type="CSGBox3D" parent="House"]
+[node name="Walls3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.74409, 1.7, 7.06952)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 15.9)
 
-[node name="Walls4" type="CSGBox3D" parent="House"]
+[node name="Walls4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.74409, 1.7, -1.94453)
 use_collision = true
 collision_layer = 2
 size = Vector3(0.1, 3.4, 15.9)
 
-[node name="floorLiving3" type="CSGBox3D" parent="House"]
+[node name="floorLiving3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1888, -0.248495, 0.607302)
 use_collision = true
 collision_layer = 2
 size = Vector3(6.9, 0.495117, 5.09941)
 
-[node name="floorLiving4" type="CSGBox3D" parent="House"]
+[node name="floorLiving4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7388, 3.16266, 0.607302)
 visible = false
 use_collision = true
 collision_layer = 2
 size = Vector3(15.8, 0.495117, 5.09941)
 
-[node name="floorLiving5" type="CSGBox3D" parent="House"]
+[node name="floorLiving5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7388, 3.16266, 5.1076)
 visible = false
 use_collision = true
 collision_layer = 2
 size = Vector3(13.8, 0.495117, 3.9)
 
-[node name="setup" parent="House" instance=ExtResource("3_sugp2")]
+[node name="setup" parent="SubViewportContainer/SubViewport/House" instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8065, 0.5, -0.845296)
 
-[node name="PC" parent="House/setup" index="3" node_paths=PackedStringArray("label")]
+[node name="PC" parent="SubViewportContainer/SubViewport/House/setup" index="3" node_paths=PackedStringArray("label")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.337091, -0.0687391, 0.0258819)
 label = NodePath("../../../CanvasLayer/Label")
 prompt_msg = "Open PC"
 
-[node name="Cube_001" parent="House/setup/PC/ivorypc" index="0"]
+[node name="Cube_001" parent="SubViewportContainer/SubViewport/House/setup/PC/ivorypc" index="0"]
 mesh = SubResource("ArrayMesh_a8y0u")
 
-[node name="Marker3D" type="Marker3D" parent="House/setup/PC" index="2"]
+[node name="Marker3D" type="Marker3D" parent="SubViewportContainer/SubViewport/House/setup/PC" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0644763, 1.16778, 0.218776)
 
-[node name="FloorMarker" type="Marker3D" parent="House/setup/PC" index="3"]
+[node name="FloorMarker" type="Marker3D" parent="SubViewportContainer/SubViewport/House/setup/PC" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375613, 1)
 
-[node name="mouse2" parent="House/setup" instance=ExtResource("5_jkv2x")]
+[node name="mouse2" parent="SubViewportContainer/SubViewport/House/setup" instance=ExtResource("5_jkv2x")]
 transform = Transform3D(-8.9407e-08, 0, -1, 0, 1, 0, 1, 0, -8.9407e-08, 0.0953856, -0.0163128, 0.221675)
 
-[node name="tower2" parent="House/setup" instance=ExtResource("7_jbj1t")]
+[node name="tower2" parent="SubViewportContainer/SubViewport/House/setup" instance=ExtResource("7_jbj1t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.112489, -0.0238419, 0.122892)
 
-[node name="keyboard2" parent="House/setup" instance=ExtResource("8_jbj1t")]
+[node name="keyboard2" parent="SubViewportContainer/SubViewport/House/setup" instance=ExtResource("8_jbj1t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.181573, 0, 0.155594)
 
-[node name="Couch" type="CSGBox3D" parent="House"]
+[node name="Couch" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 5.76308e-09, 1.94397e-10, -7.6194e-09, 0.999712, -0.0240134, -3.32687e-10, 0.0240134, 0.999712, 2.13843, 0.513706, 2.49052)
 size = Vector3(2.4, 1, 1)
 
-[node name="Tv" type="CSGBox3D" parent="House"]
+[node name="Tv" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 5.76308e-09, 1.94397e-10, -7.6194e-09, 0.999712, -0.0240134, -3.32687e-10, 0.0240134, 0.999712, 2.376, 1.41662, -1.33799)
 size = Vector3(1.9, 1.2, 0.1)
 
-[node name="stand" type="CSGBox3D" parent="House/Tv"]
+[node name="stand" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Tv"]
 transform = Transform3D(1, 4.44089e-16, -7.10543e-15, 0, 1, -2.86065e-16, 1.06581e-14, -2.05265e-16, 1, -0.0710386, -0.668758, -0.00779343)
 size = Vector3(0.443994, 0.414941, 0.1)
 
-[node name="cubby" type="CSGBox3D" parent="House/Tv"]
+[node name="cubby" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Tv"]
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, -2.86065e-16, 3.55271e-15, -2.05265e-16, 1, -0.05, -1.11507, 0.0696268)
 size = Vector3(1.6, 0.6, 1)
 
-[node name="ChairPlacement" type="MeshInstance3D" parent="House"]
+[node name="ChairPlacement" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98783, 0.479311, 0.808412)
 mesh = SubResource("CylinderMesh_dp3eg")
 
-[node name="DiningSet" type="Node3D" parent="House"]
+[node name="DiningSet" type="Node3D" parent="SubViewportContainer/SubViewport/House"]
 
-[node name="DiningChair" type="MeshInstance3D" parent="House/DiningSet"]
+[node name="DiningChair" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/House/DiningSet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.787827, 0.479311, 5.70841)
 mesh = SubResource("CylinderMesh_dp3eg")
 skeleton = NodePath("../..")
 
-[node name="DiningTable" type="MeshInstance3D" parent="House/DiningSet"]
+[node name="DiningTable" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/House/DiningSet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50308, 0.5, 5.66223)
 mesh = SubResource("BoxMesh_0ld40")
 skeleton = NodePath("../..")
 
-[node name="KitchenFloor" type="CSGBox3D" parent="House"]
+[node name="KitchenFloor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2092, -0.252726, 5.15226)
 use_collision = true
 collision_layer = 2
 size = Vector3(6.97588, 0.495117, 4)
 
-[node name="Kitchen2" type="CSGBox3D" parent="House"]
+[node name="Kitchen2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 0.377534, 6.45725)
 use_collision = true
 collision_layer = 2
 size = Vector3(4.7, 0.8, 1.2)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="House/Kitchen2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Kitchen2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500002, 0, -0.0843506)
 size = Vector3(1.3, 1, 1.38306)
 
-[node name="Cabinets" type="CSGBox3D" parent="House"]
+[node name="Cabinets" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25469, 2.97753, 6.45725)
 use_collision = true
 collision_layer = 2
 size = Vector3(4.7, 0.8, 1.2)
 
-[node name="Stairs" type="Node3D" parent="House"]
+[node name="Stairs" type="Node3D" parent="SubViewportContainer/SubViewport/House"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.15, 4.95)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 3.7)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.45, 5.1)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 3.4)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 0.75, 5.25)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 3.1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.05, 5.4)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 2.8)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.35, 5.55)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 2.5)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.65, 5.7)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 2.2)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 1.95, 5.85)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 1.9)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.25, 6)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 1.6)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.55, 6.15)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 1.3)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D10" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 2.85, 6.3)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 1)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="House/Stairs"]
+[node name="CSGBox3D11" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6458, 3.15, 6.45)
 use_collision = true
 collision_layer = 4
 size = Vector3(1.6, 0.3, 0.7)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer"]
 material = SubResource("ShaderMaterial_tbgi4")
 anchors_preset = 15
 anchor_right = 1.0
@@ -366,74 +377,74 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "MODE: "
 
-[node name="alarmclock" type="StaticBody3D" parent="."]
+[node name="alarmclock" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
 prompt_msg = "Set Alarm"
 
-[node name="alarmclock" parent="alarmclock" instance=ExtResource("6_tefeu")]
+[node name="alarmclock" parent="SubViewportContainer/SubViewport/alarmclock" instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="alarmclock"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/alarmclock"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.77916, 1.14826, -1.50337)
 shape = SubResource("BoxShape3D_tipki")
 
-[node name="Soundmanager" type="Node3D" parent="." node_paths=PackedStringArray("alarm_node", "inventory_node")]
+[node name="Soundmanager" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("alarm_node", "inventory_node")]
 script = ExtResource("8_tipki")
 alarm_node = NodePath("alarm")
 inventory_node = NodePath("Pickup")
 
-[node name="Pickup" type="AudioStreamPlayer" parent="Soundmanager"]
+[node name="Pickup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
 stream = ExtResource("9_eb6dy")
 volume_db = 8.0
 
-[node name="alarm" type="AudioStreamPlayer" parent="Soundmanager"]
+[node name="alarm" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
 stream = ExtResource("9_ya4ey")
 volume_db = 2.734
 
-[node name="axekiller" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player")]
+[node name="axekiller" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player")]
 script = ExtResource("17_muem4")
 player = NodePath("../player")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="axekiller"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/axekiller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
 mesh = SubResource("CapsuleMesh_toumy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="axekiller"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/axekiller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2105, 0)
 shape = SubResource("CapsuleShape3D_t7jvd")
 
-[node name="Timer" type="Timer" parent="axekiller"]
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/axekiller"]
 wait_time = 5.964
 one_shot = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="axekiller"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport/axekiller"]
 navigation_mesh = SubResource("NavigationMesh_muem4")
 
-[node name="Items" type="Node3D" parent="."]
+[node name="Items" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="RemingtonPickup" parent="Items" instance=ExtResource("18_dp3eg")]
+[node name="RemingtonPickup" parent="SubViewportContainer/SubViewport/Items" instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
 
-[node name="Area3D" parent="Items" instance=ExtResource("19_0ld40")]
+[node name="Area3D" parent="SubViewportContainer/SubViewport/Items" instance=ExtResource("19_0ld40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
 
-[connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
-[connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
-[connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
-[connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
-[connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
-[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
-[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
+[connection signal="activeInHand" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
+[connection signal="addSound" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_inventory_add_sound"]
+[connection signal="exit" from="SubViewportContainer/SubViewport/House/setup/PC" to="SubViewportContainer/SubViewport/player/head" method="_on_pc_exit"]
+[connection signal="transition" from="SubViewportContainer/SubViewport/House/setup/PC" to="SubViewportContainer/SubViewport/player/head" method="_on_pc_transition"]
+[connection signal="playsound" from="SubViewportContainer/SubViewport/alarmclock" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/axekiller/Timer" to="SubViewportContainer/SubViewport/axekiller" method="_on_Timer_timeout"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/axekiller/Timer" to="SubViewportContainer/SubViewport/axekiller" method="_on_timer_timeout"]
 
-[editable path="player"]
-[editable path="House/setup"]
-[editable path="House/setup/PC/ivorypc"]
+[editable path="SubViewportContainer/SubViewport/player"]
+[editable path="SubViewportContainer/SubViewport/House/setup"]
+[editable path="SubViewportContainer/SubViewport/House/setup/PC/ivorypc"]
