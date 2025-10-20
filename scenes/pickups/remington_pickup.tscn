@@ -1,13 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cue3ni070rfje"]
+[gd_scene load_steps=8 format=3 uid="uid://cue3ni070rfje"]
 
 [ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_obwjh"]
 [ext_resource type="PackedScene" uid="uid://bla1psyhvad2d" path="res://scenes/inWorld/remington.tscn" id="2_10jtr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_10jtr"]
-size = Vector3(1, 0.25, 0.25)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qet4j"]
-size = Vector3(0.8, 0.2, 0.2)
+[ext_resource type="PackedScene" uid="uid://c70yv4cg1oqy5" path="res://assets/models/pickups/remingtonmodel.glb" id="3_qet4j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_10jtr"]
 size = Vector3(0.439331, 0.387909, 0.846069)
@@ -86,19 +81,8 @@ prompt_msg = "Pickup [E]"
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(3.77489e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 3.77489e-08, 0, 0, 0)
 
-[node name="maincenter" type="MeshInstance3D" parent="Meshes"]
-mesh = SubResource("BoxMesh_10jtr")
-skeleton = NodePath("../..")
-
-[node name="muzzle and stock" type="MeshInstance3D" parent="Meshes"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
-mesh = SubResource("BoxMesh_qet4j")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes"]
-transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.2, 0)
-mesh = SubResource("BoxMesh_qet4j")
-skeleton = NodePath("../..")
+[node name="remingtonmodel" parent="Meshes" instance=ExtResource("3_qet4j")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0339355, 0.0181122, -0.012085)

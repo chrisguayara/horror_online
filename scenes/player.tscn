@@ -27,7 +27,7 @@ script = ExtResource("1_3vyb7")
 [node name="InteractRay" parent="head/camera" instance=ExtResource("3_qhqgy")]
 
 [node name="hand" type="Marker3D" parent="head/camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -0.5)
 script = ExtResource("4_dqkch")
 
 [node name="visual" type="MeshInstance3D" parent="."]
