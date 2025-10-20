@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cue3ni070rfje"]
+
+[ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_obwjh"]
+[ext_resource type="PackedScene" uid="uid://bla1psyhvad2d" path="res://scenes/inWorld/remington.tscn" id="2_10jtr"]
+
+[node name="RemingtonPickup" type="Node3D"]
+script = ExtResource("1_obwjh")
+item_name = "Revienne 10"
+item_description = "Pump-action Shotgun"
+item_scene = ExtResource("2_10jtr")

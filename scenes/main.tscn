@@ -109,6 +109,9 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
 floor_marker = NodePath("../House/setup/PC/FloorMarker")
 
+[node name="hand" parent="player/head/camera" index="1" node_paths=PackedStringArray("inventory")]
+inventory = NodePath("../../../inventory")
+
 [node name="inventory" type="Node3D" parent="player"]
 script = ExtResource("3_tbgi4")
 
