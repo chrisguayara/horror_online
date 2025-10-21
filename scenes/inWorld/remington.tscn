@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c46d18dh82rg1" path="res://assets/models/bulletFlash.glb" id="6_85six"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_85six"]
-render_priority = 0
+render_priority = 2
 shader = ExtResource("3_q2qei")
 shader_parameter/affine_mapping = 1.0
 shader_parameter/color_texture = ExtResource("4_fmguq")
@@ -21,6 +21,7 @@ script = ExtResource("1_0dg32")
 transform = Transform3D(0.5, 0, -8.74228e-08, 0, 0.5, 0, 8.74228e-08, 0, 0.5, 0, 0, 0)
 
 [node name="Cube" parent="remingtonmodel" index="0"]
+layers = 2
 material_override = SubResource("ShaderMaterial_85six")
 cast_shadow = 0
 

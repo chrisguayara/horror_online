@@ -15,9 +15,8 @@ var loadedBullets = 0
 
 
 
-func _physics_process(delta):
-	if ammo <=0:
-		can_shoot = false
+
+
 
 func shoot():
 	if not can_shoot:
@@ -35,6 +34,10 @@ func shoot():
 	loadedBullets -= 1
 	ammo -= 1
 
+func _physics_process(delta):
+	if ammo <=0:
+		can_shoot = false
+	
 func reload():
 	if can_shoot:
 		for i in range(stock):

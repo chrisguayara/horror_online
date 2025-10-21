@@ -26,3 +26,9 @@ func _on_timer_timeout():
 	if currFlash:
 		currFlash.queue_free()
 		currFlash = null
+
+func _physics_process(delta):
+	var spawn = muzzle_1 if currMuzz == 1 else muzzle_2
+	if currFlash:
+		currFlash.global_transform = spawn.global_transform
+	

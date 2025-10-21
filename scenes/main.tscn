@@ -111,19 +111,6 @@ environment = SubResource("Environment_tbgi4")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
-floor_marker = NodePath("../House/setup/PC/FloorMarker")
-
-[node name="camera" parent="player/head" index="0"]
-keep_aspect = 0
-
-[node name="hand" parent="player/head/camera" index="1"]
-script = null
-
-[node name="inventory" type="Node3D" parent="player"]
-script = ExtResource("3_tbgi4")
-
 [node name="House" type="Node3D" parent="."]
 
 [node name="TrashBin" type="MeshInstance3D" parent="House"]
@@ -425,19 +412,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1, 3.8)
 [node name="Area3D" parent="Items" instance=ExtResource("19_0ld40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
 
+[node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
+floor_marker = NodePath("../House/setup/PC/FloorMarker")
+
+[node name="camera" parent="player/head" index="0"]
+keep_aspect = 0
+
+[node name="hand" parent="player/head/camera" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
+script = null
+
+[node name="inventory" type="Node3D" parent="player"]
+script = ExtResource("3_tbgi4")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_yc10j")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0ld40")
 
-[connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
-[connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
-[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
 [connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
+[connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
+[connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 
-[editable path="player"]
 [editable path="House/setup"]
 [editable path="House/setup/PC/ivorypc"]
+[editable path="player"]
