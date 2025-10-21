@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			rotation.x = pitch
 
 
-#func _on_pc_transition(pos: Vector3, rota: Vector3):
+#func _on_pc_transition(pos: `Vector3, rota: Vector3):
 	#
 	#isMovng = true
 	#oldPos = camera.global_position

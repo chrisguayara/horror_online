@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://0sbbpi8l56s6"]
+
+[ext_resource type="PackedScene" uid="uid://c46d18dh82rg1" path="res://assets/models/bulletFlash.glb" id="1_c1cfd"]
+
+[node name="muzzleFlash" type="Node3D"]
+
+[node name="bulletFlash" parent="." instance=ExtResource("1_c1cfd")]
+
+[node name="timer" type="Timer" parent="."]

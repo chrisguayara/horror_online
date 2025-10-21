@@ -1,10 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://bla1psyhvad2d"]
+[gd_scene load_steps=8 format=3 uid="uid://bla1psyhvad2d"]
 
 [ext_resource type="Script" uid="uid://cfuwmepvmv7xp" path="res://scenes/remingtonActive.gd" id="1_0dg32"]
 [ext_resource type="PackedScene" uid="uid://c70yv4cg1oqy5" path="res://assets/models/pickups/remingtonmodel.glb" id="2_elmnd"]
+[ext_resource type="Shader" uid="uid://xj85lbq6m6te" path="res://shaders/defaultobj.gdshader" id="3_q2qei"]
+[ext_resource type="Texture2D" uid="uid://h57jtf5vlyp0" path="res://assets/models/pickups/remingtonmodel_ShotgunSheet.png" id="4_fmguq"]
+[ext_resource type="Script" uid="uid://ddyfocejrb3i6" path="res://scenes/inWorld/remingtonmuzzle.gd" id="5_fmguq"]
+[ext_resource type="PackedScene" uid="uid://c46d18dh82rg1" path="res://assets/models/bulletFlash.glb" id="6_85six"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85six"]
+render_priority = 0
+shader = ExtResource("3_q2qei")
+shader_parameter/affine_mapping = 1.0
+shader_parameter/color_texture = ExtResource("4_fmguq")
+shader_parameter/vertex_wobble = 0.4
 
 [node name="RemingtonInHand" type="Node3D"]
 script = ExtResource("1_0dg32")
 
 [node name="remingtonmodel" parent="." instance=ExtResource("2_elmnd")]
 transform = Transform3D(0.5, 0, -8.74228e-08, 0, 0.5, 0, 8.74228e-08, 0, 0.5, 0, 0, 0)
+
+[node name="Cube" parent="remingtonmodel" index="0"]
+material_override = SubResource("ShaderMaterial_85six")
+cast_shadow = 0
+
+[node name="Muzzle" type="Node3D" parent="."]
+script = ExtResource("5_fmguq")
+flashModel = ExtResource("6_85six")
+
+[node name="Muzzle1" type="Marker3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.182563, -1.14181)
+
+[node name="Muzzle2" type="Marker3D" parent="Muzzle"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.117454, -1.13934)
+
+[node name="Timer" type="Timer" parent="Muzzle"]
+wait_time = 0.2
+
+[connection signal="timeout" from="Muzzle/Timer" to="Muzzle" method="_on_timer_timeout"]
+
+[editable path="remingtonmodel"]

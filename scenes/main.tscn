@@ -1,10 +1,9 @@
-[gd_scene load_steps=34 format=4 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=35 format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://vurifdt5behq" path="res://scenes/button.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
-[ext_resource type="Shader" uid="uid://p1krn6q7hsh" path="res://shaders/ps1_post_process.gdshader" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://chymvpefamkua" path="res://assets/models/mouse.glb" id="5_jkv2x"]
 [ext_resource type="Material" uid="uid://ba8ddrxs7ufi5" path="res://assets/models/ivorypc.tres" id="5_trceg"]
 [ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
@@ -19,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dd07vjbqihybk" path="res://scripts/killer/killerlogic.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
+[ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -78,11 +78,6 @@ height = 1.0
 [sub_resource type="BoxMesh" id="BoxMesh_0ld40"]
 size = Vector3(2, 1, 2.7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
-shader = ExtResource("4_jyhfs")
-shader_parameter/viewport_size = Vector2(640, 480)
-shader_parameter/virtual_resolution = Vector2(320, 240)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o6xl0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
@@ -97,6 +92,15 @@ height = 2.52312
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_muem4"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc10j"]
+render_priority = 0
+shader = ExtResource("20_gqmmt")
+shader_parameter/dither_amount = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_0ld40"]
+flip_faces = true
+size = Vector2(2, 2)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sugp2")
 
@@ -104,12 +108,15 @@ script = ExtResource("1_sugp2")
 environment = SubResource("Environment_tbgi4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="player" parent="." node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
 floor_marker = NodePath("../House/setup/PC/FloorMarker")
+
+[node name="camera" parent="player/head" index="0"]
+keep_aspect = 0
 
 [node name="hand" parent="player/head/camera" index="1"]
 script = null
@@ -358,14 +365,6 @@ size = Vector3(1.6, 0.3, 0.7)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_tbgi4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -380,7 +379,7 @@ script = ExtResource("6_o6xl0")
 prompt_msg = "Set Alarm"
 
 [node name="alarmclock" parent="alarmclock" instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806291, 1, 0)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 3.51928, 1, -3.08577)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="alarmclock"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.77916, 1.14826, -1.50337)
@@ -421,18 +420,23 @@ navigation_mesh = SubResource("NavigationMesh_muem4")
 [node name="Items" type="Node3D" parent="."]
 
 [node name="RemingtonPickup" parent="Items" instance=ExtResource("18_dp3eg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1, 3.8)
 
 [node name="Area3D" parent="Items" instance=ExtResource("19_0ld40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_yc10j")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0ld40")
 
 [connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
-[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
 [connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
 
 [editable path="player"]
 [editable path="House/setup"]

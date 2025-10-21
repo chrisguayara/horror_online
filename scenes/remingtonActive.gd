@@ -6,17 +6,43 @@ var fire_rate = 0.5
 
 var can_shoot : bool =  true
 
-var maxAmmo =  6
-var currAmmo = 6
+var ammo =  6
+var stock = 1
+var loadedBullets = 0
+
+@onready var muzzle = $Muzzle
+
+
 
 
 func _physics_process(delta):
-	if currAmmo <=0:
+	if ammo <=0:
 		can_shoot = false
-	pass
 
-func on_shoot():
+func shoot():
 	if not can_shoot:
 		return
+	if loadedBullets <=0:
+		reload()
+		return
+	if muzzle and muzzle.has_method("shoot"):
+		muzzle.shoot()
+		print("muzzle activated")
+	
 	print("BANG! %d Damage Done!" %damage)
 	
+	
+	loadedBullets -= 1
+	ammo -= 1
+
+func reload():
+	if can_shoot:
+		for i in range(stock):
+			loadedBullets += 1
+			print("reloaded %d bullet(s) !" %(i+1))
+
+func get_ammoCount():
+	return ammo - loadedBullets
+
+func get_loaded():
+	return loadedBullets

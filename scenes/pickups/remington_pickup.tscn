@@ -1,8 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cue3ni070rfje"]
+[gd_scene load_steps=11 format=3 uid="uid://cue3ni070rfje"]
 
 [ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_obwjh"]
 [ext_resource type="PackedScene" uid="uid://bla1psyhvad2d" path="res://scenes/inWorld/remington.tscn" id="2_10jtr"]
 [ext_resource type="PackedScene" uid="uid://c70yv4cg1oqy5" path="res://assets/models/pickups/remingtonmodel.glb" id="3_qet4j"]
+[ext_resource type="Shader" uid="uid://xj85lbq6m6te" path="res://shaders/defaultobj.gdshader" id="4_yoffh"]
+[ext_resource type="Texture2D" uid="uid://h57jtf5vlyp0" path="res://assets/models/pickups/remingtonmodel_ShotgunSheet.png" id="5_0rfxq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rfxq"]
+render_priority = 0
+shader = ExtResource("4_yoffh")
+shader_parameter/affine_mapping = 1.0
+shader_parameter/color_texture = ExtResource("5_0rfxq")
+shader_parameter/vertex_wobble = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_10jtr"]
 size = Vector3(0.439331, 0.387909, 0.846069)
@@ -84,6 +93,10 @@ transform = Transform3D(-1.81e-06, 0, -0.5, 0, 0.5, 0, 0.5, 0, -1.81e-06, 0, 0, 
 [node name="remingtonmodel" parent="Meshes" instance=ExtResource("3_qet4j")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
 
+[node name="Cube" parent="Meshes/remingtonmodel" index="0"]
+material_override = SubResource("ShaderMaterial_0rfxq")
+cast_shadow = 0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0.0339355, 0.0181122, -0.012085)
 shape = SubResource("BoxShape3D_10jtr")
@@ -95,3 +108,5 @@ libraries = {
 autoplay = "idle"
 
 [node name="Graphics" type="Node3D" parent="."]
+
+[editable path="Meshes/remingtonmodel"]

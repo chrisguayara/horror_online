@@ -43,7 +43,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
-
+		
+	if Input.is_action_just_pressed("shoot"):
+		if inventorymanager.current_item and inventorymanager.current_item.has_method("shoot"):
+			inventorymanager.current_item.shoot()
+	if Input.is_action_just_pressed("reload"):
+		if inventorymanager.current_item and inventorymanager.current_item.has_method("reload"):
+			inventorymanager.current_item.reload()
+	
 	move_and_slide()
 
 
