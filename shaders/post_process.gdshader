@@ -24,13 +24,13 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	vec2 uv = floor(SCREEN_UV * resolution)/resolution;
 	ivec2 int_uv = ivec2(uv* resolution);
 	vec3 color = texture(screen_tex, uv).rgb;
 	vec3  dithered_color = color + bayer_matrix[int_uv.x % 4 ][int_uv.y %4] / color_depth * dither_amount;
 	vec3 quantized_color = round(dithered_color * color_depth) / color_depth;
-	
+
 	ALBEDO = quantized_color;
-	
+
 }

@@ -7,6 +7,12 @@ signal addSound
 signal activeInHand
 @onready var hand = $"../head/camera/hand"
 var current_item: Node3D = null
+var handIsShowing = true
+
+func hideHand():
+	if handIsShowing:
+		hand.visible = false
+		handIsShowing = false
 
 func checkActive():
 	if current_item and current_item.is_inside_tree():

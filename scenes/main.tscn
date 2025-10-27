@@ -421,12 +421,11 @@ keep_aspect = 0
 
 [node name="hand" parent="player/head/camera" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
-script = null
 
 [node name="inventory" type="Node3D" parent="player"]
 script = ExtResource("3_tbgi4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="postFX" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_yc10j")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0ld40")
