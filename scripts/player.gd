@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 func add_to_inventory(item):
 	return inventorymanager.add_to_inventory(item)
 
+
 func pcEnter():
 	mode = "surfing"
 	canMove = false

@@ -10,14 +10,16 @@ var ammo =  6
 var stock = 1
 var loadedBullets = 0
 
+
+
 @onready var muzzle = $Muzzle
 
+##all sounds
+@export var dryShoot_node: AudioStreamPlayer
 
-
-
-
-
-
+var sounds = {
+	"dryShoot": dryShoot_node
+}
 func shoot():
 	if not can_shoot:
 		return
@@ -28,6 +30,7 @@ func shoot():
 		muzzle.shoot()
 		print("muzzle activated")
 	
+	
 	print("BANG! %d Damage Done!" %damage)
 	
 	
@@ -37,6 +40,7 @@ func shoot():
 func _physics_process(delta):
 	if ammo <=0:
 		can_shoot = false
+	
 	
 func reload():
 	if can_shoot:

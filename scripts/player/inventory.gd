@@ -31,10 +31,18 @@ func add_to_inventory(item: Dictionary) -> bool:
 	if itemAmount < inventory_space:
 		main_inventory.insert(0, item)
 		itemAmount += 1
-		emit_signal("addSound", "inventory")
+		
 		checkActive()
+		if item.pickup != "":
+			emit_signal("addSound", item["pickup"])
+			return true
+		
+		emit_signal("addSound", "inventoryDef")
+		
 		return true
 	return false
+
+
 
 func remove_item(item: Dictionary) -> void:
 	if item in main_inventory:

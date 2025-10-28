@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c52nhb31lwh6c"]
+
+[ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_aawbd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qolc1"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p3mhk"]
+radius = 0.277074
+
+[node name="spark2" type="Area3D"]
+collision_layer = 4
+script = ExtResource("1_aawbd")
+item_name = "Spark"
+item_description = "test obj"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qolc1")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_p3mhk")
