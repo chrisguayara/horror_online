@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=35 format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -19,6 +19,11 @@
 [ext_resource type="Script" uid="uid://dd07vjbqihybk" path="res://scripts/killer/killerlogic.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://3qjusuvf012g" path="res://assets/models/environment/axekillerhouse.glb" id="19_gqmmt"]
+[ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -118,9 +123,14 @@ environment = SubResource("Environment_tbgi4")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
+<<<<<<< Updated upstream
 [node name="player" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("floor_marker") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 5.74523)
 floor_marker = NodePath("../House/setup/PC/FloorMarker")
+=======
+[node name="House" type="Node3D" parent="."]
+visible = false
+>>>>>>> Stashed changes
 
 [node name="hand" parent="SubViewportContainer/SubViewport/player/head/camera" index="1"]
 script = null
@@ -205,7 +215,35 @@ use_collision = true
 collision_layer = 2
 size = Vector3(6.9, 0.495117, 5.09941)
 
+<<<<<<< Updated upstream
 [node name="floorLiving4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/House"]
+=======
+[node name="outsidefloor2" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.9167, -0.545485, 2.12191)
+use_collision = true
+collision_layer = 2
+size = Vector3(11, 0.495117, 5.5)
+
+[node name="outsidefloor4" type="CSGBox3D" parent="House"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.58331, -0.445485, 2.12191)
+use_collision = true
+collision_layer = 2
+size = Vector3(11, 0.495117, 5.5)
+
+[node name="outsidefloor3" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6776, -0.49699, 8.6146)
+use_collision = true
+collision_layer = 2
+size = Vector3(26, 0.495117, 5.09941)
+
+[node name="outsidefloor" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6388, -0.448495, -4.3927)
+use_collision = true
+collision_layer = 2
+size = Vector3(26, 0.495117, 5.09941)
+
+[node name="floorLiving4" type="CSGBox3D" parent="House"]
+>>>>>>> Stashed changes
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7388, 3.16266, 0.607302)
 visible = false
 use_collision = true
@@ -445,6 +483,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
 [connection signal="timeout" from="SubViewportContainer/SubViewport/axekiller/Timer" to="SubViewportContainer/SubViewport/axekiller" method="_on_Timer_timeout"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/axekiller/Timer" to="SubViewportContainer/SubViewport/axekiller" method="_on_timer_timeout"]
 
+<<<<<<< Updated upstream
 [editable path="SubViewportContainer/SubViewport/player"]
 [editable path="SubViewportContainer/SubViewport/House/setup"]
 [editable path="SubViewportContainer/SubViewport/House/setup/PC/ivorypc"]
+=======
+[node name="camera" parent="player/head" index="0"]
+keep_aspect = 0
+
+[node name="hand" parent="player/head/camera" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
+
+[node name="inventory" type="Node3D" parent="player"]
+script = ExtResource("3_tbgi4")
+
+[node name="postFX" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_yc10j")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0ld40")
+
+[node name="SETTING" type="Node3D" parent="."]
+
+[node name="axekillerhouse" parent="SETTING" instance=ExtResource("19_gqmmt")]
+
+[connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
+[connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
+[connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
+[connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
+[connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
+
+[editable path="House/setup"]
+[editable path="House/setup/PC/ivorypc"]
+[editable path="player"]
+>>>>>>> Stashed changes
