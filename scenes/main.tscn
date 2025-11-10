@@ -433,8 +433,8 @@ mesh = SubResource("QuadMesh_0ld40")
 [connection signal="exit" from="House/setup/PC" to="player/head" method="_on_pc_exit"]
 [connection signal="transition" from="House/setup/PC" to="player/head" method="_on_pc_transition"]
 [connection signal="playsound" from="alarmclock" to="Soundmanager" method="_on_alarmclock_playsound"]
-[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
 [connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_timer_timeout"]
+[connection signal="timeout" from="axekiller/Timer" to="axekiller" method="_on_Timer_timeout"]
 [connection signal="activeInHand" from="player/inventory" to="player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="player/inventory" to="Soundmanager" method="_on_inventory_add_sound"]
 
