@@ -17,6 +17,7 @@ var scoped = false
 @onready var sound_manager = $soundManager
 @onready var fire_timer = Timer.new()
 @onready var reload_timer = Timer.new()
+@onready var graphics = $Graphics
 
 func _ready():
 	add_child(fire_timer)
@@ -78,6 +79,7 @@ func scope():
 		return
 	scoped = not scoped
 	uimanager.scope(scoped)
+	graphics.visible = not scoped
 	return scoped
 	
 

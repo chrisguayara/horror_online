@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=33 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://bj4k8ck2wshw3" path="res://scenes/inWorld/animals/bunny.tscn" id="16_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bn5eogv0c0lq8" path="res://assets/models/pickups/huntingRifle.tscn" id="16_muem4"]
 [ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
 [ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
@@ -121,8 +122,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
 [node name="camera" parent="SubViewport/player/head" index="0"]
 keep_aspect = 0
 
-[node name="hand" parent="SubViewport/player/head/camera" index="1"]
+[node name="shootingRay" parent="SubViewport/player/head/camera" index="0" node_paths=PackedStringArray("label")]
+target_position = Vector3(0, 0, -30)
+collision_mask = 8
+debug_shape_custom_color = Color(0.407005, 0.607597, 0.120738, 1)
+label = NodePath("../Label")
+
+[node name="InteractRay" parent="SubViewport/player/head/camera" index="1"]
+collision_mask = 4
+debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
+
+[node name="hand" parent="SubViewport/player/head/camera" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
+
+[node name="Label" type="Label" parent="SubViewport/player/head/camera" index="3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="postFX" type="MeshInstance3D" parent="SubViewport/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
@@ -171,6 +189,11 @@ volume_db = 2.734
 [node name="shotGun_Pickup" type="AudioStreamPlayer" parent="SubViewport/Soundmanager"]
 stream = ExtResource("14_gqmmt")
 volume_db = -6.09
+
+[node name="Enemies" type="Node3D" parent="SubViewport"]
+
+[node name="bunny" parent="SubViewport/Enemies" instance=ExtResource("16_gqmmt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

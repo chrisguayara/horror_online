@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bohs6vfsil5ho"]
+[gd_scene load_steps=7 format=3 uid="uid://bohs6vfsil5ho"]
 
 [ext_resource type="Script" uid="uid://blmy0yy26ub0d" path="res://scripts/camera.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bdi8pev0qd8kc" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://d25ipp1mljpju" path="res://scripts/interactRay.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
@@ -23,7 +24,16 @@ script = ExtResource("1_3vyb7")
 
 [node name="camera" type="Camera3D" parent="head"]
 
+[node name="shootingRay" type="RayCast3D" parent="head/camera"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 7
+collide_with_areas = true
+script = ExtResource("3_dqkch")
+
 [node name="InteractRay" parent="head/camera" instance=ExtResource("3_qhqgy")]
+target_position = Vector3(0, 0, -30)
+debug_shape_custom_color = Color(0.170856, 0.632033, 0.495872, 1)
+debug_shape_thickness = 4
 
 [node name="hand" type="Marker3D" parent="head/camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -0.5)

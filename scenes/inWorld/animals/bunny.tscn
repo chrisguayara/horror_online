@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj4k8ck2wshw3"]
+
+[ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="1_m7ck4"]
+[ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="2_ifp3e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4yh5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgst0"]
+albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hdxuh"]
+
+[node name="bunny" type="CharacterBody3D"]
+collision_layer = 8
+script = ExtResource("1_m7ck4")
+
+[node name="graphics" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="graphics"]
+mesh = SubResource("BoxMesh_4yh5g")
+material = SubResource("StandardMaterial3D_dgst0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hdxuh")
+debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
+
+[node name="shootable" type="Node3D" parent="."]
+script = ExtResource("2_ifp3e")

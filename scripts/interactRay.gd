@@ -1,23 +1,21 @@
 extends RayCast3D
 
 
-@onready var prompt = $Prompt
 
+var gunActive = true
 
+@export var label : Label
 
-
+var dmg = 45
 func _process(delta):
-	prompt.text = ""
+	if not gunActive: return
+	
 	if is_colliding():
+		#label.text = "Colliding"
 		var collider = get_collider()
-		
 		if collider is Interactable:
-			
-			prompt.text = collider.prompt_msg
 			if Input.is_action_just_pressed("interact"):
-
-				collider.prompt_msg = ""
-				#var p = get_tree().current_scene.get_node("Main/Player")
-				#collider.interact(p)
-				#print("working ")
+				collider.interact()
+				print("SHOTTTT")
+				
 		

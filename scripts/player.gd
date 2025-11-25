@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		inventorymanager.current_item.reload()
 	if Input.is_action_just_pressed("scope") and inventorymanager.current_item:
 		isscoped = inventorymanager.current_item.scope()
+		
 		head.scoped(isscoped)
 	if Input.is_action_just_pressed("settings"):
 		head.settingsToggle()
