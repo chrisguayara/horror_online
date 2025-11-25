@@ -13,7 +13,7 @@ void vertex() {
 	vec2 snapping = resolution * vertex_wobble;
 	vec2 screen_pos = round(pos.xy * snapping) / snapping;
 	POSITION = vec4(screen_pos, pos.zw);
-	
+
 	original_uv = UV;
 	UV *= (VIEW_MATRIX *vec4(VERTEX, 1.0)).z;
 	// Called for every vertex the material is visible on.

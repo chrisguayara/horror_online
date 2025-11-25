@@ -1,16 +1,20 @@
 extends CharacterBody3D
 
 @export var speed := 4.2
-@export var jump_velocity := 2.5
+@export var jump_velocity := 4.5
 @export var gravity := 9.8
 var canMove = true
 @onready var interact_ray = $head/camera/InteractRay
 @onready var head = $head
 var mode = "idle"
 @onready var inventorymanager = $inventory
+
+
 @export var floor_marker : Marker3D
 
 var prevLocation : Vector3
+var isscoped = false
+
 
 
 func _physics_process(delta: float) -> void:
@@ -45,11 +49,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 		
 	if Input.is_action_just_pressed("shoot"):
-		if inventorymanager.current_item and inventorymanager.current_item.has_method("shoot"):
+		if inventorymanager.current_item:
 			inventorymanager.current_item.shoot()
+			
 	if Input.is_action_just_pressed("reload"):
-		if inventorymanager.current_item and inventorymanager.current_item.has_method("reload"):
+		if inventorymanager.current_item:
 			inventorymanager.current_item.reload()
+	if Input.is_action_just_pressed("scope"):
+		if inventorymanager.current_item:
+			isscoped = inventorymanager.current_item.scope()
+			
+
 	
 	move_and_slide()
 

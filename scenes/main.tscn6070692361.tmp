@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=33 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -11,9 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bn5eogv0c0lq8" path="res://assets/models/pickups/huntingRifle.tscn" id="16_muem4"]
-[ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
 [ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
-[ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
+[ext_resource type="Script" uid="uid://dd07vjbqihybk" path="res://scripts/killer/killerlogic.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
@@ -52,6 +51,15 @@ size = Vector2(2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(0.41037, 0.249512, 0.577576)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_toumy"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7jvd"]
+radius = 0.539474
+height = 2.52312
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_muem4"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
 shader = ExtResource("20_yc10j")
 shader_parameter/vignette_strength = 0.43
@@ -70,8 +78,6 @@ script = ExtResource("1_sugp2")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 use_occlusion_culling = true
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
@@ -171,6 +177,25 @@ volume_db = 2.734
 stream = ExtResource("14_gqmmt")
 volume_db = -6.09
 
+[node name="axekiller" type="CharacterBody3D" parent="SubViewport" node_paths=PackedStringArray("player")]
+script = ExtResource("17_muem4")
+player = NodePath("../player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/axekiller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
+mesh = SubResource("CapsuleMesh_toumy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/axekiller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2105, 0)
+shape = SubResource("CapsuleShape3D_t7jvd")
+
+[node name="Timer" type="Timer" parent="SubViewport/axekiller"]
+wait_time = 5.964
+one_shot = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewport/axekiller"]
+navigation_mesh = SubResource("NavigationMesh_muem4")
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer2"]
@@ -187,26 +212,10 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_muem4")
 stretch_mode = 4
 
-[node name="UILayers" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("17_0ld40")
-
-[node name="TextureRect" type="TextureRect" parent="UILayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_muem4")
-
 [connection signal="activeInHand" from="SubViewport/player/inventory" to="SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="SubViewport/player/inventory" to="SubViewport/Soundmanager" method="_on_inventory_add_sound"]
 [connection signal="playsound" from="SubViewport/alarmclock" to="SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
+[connection signal="timeout" from="SubViewport/axekiller/Timer" to="SubViewport/axekiller" method="_on_timer_timeout"]
+[connection signal="timeout" from="SubViewport/axekiller/Timer" to="SubViewport/axekiller" method="_on_Timer_timeout"]
 
 [editable path="SubViewport/player"]

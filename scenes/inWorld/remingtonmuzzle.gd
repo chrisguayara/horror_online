@@ -1,5 +1,5 @@
 extends Node3D
-@onready var muzzle_1 = $Muzzle1
+@onready var muzzle_1 = $Muzzle
 @onready var muzzle_2 = $Muzzle2
 @export var flashModel : PackedScene 
 @onready var timer = $Timer

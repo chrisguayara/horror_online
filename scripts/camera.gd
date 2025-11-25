@@ -8,12 +8,12 @@ var using_pc = false
 var isMovng = false
 var speed = 5.0
 @onready var camera: Camera3D = $camera
+
 var oldPos : Vector3
 
 
 func _ready():
-	if not camera:
-		push_warning("Camera not assigned in inspector!")
+	camera.current = true   # ensures this camera renders inside the viewport
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -28,16 +28,3 @@ func _input(event: InputEvent) -> void:
 			pitch -= event.relative.y * mouse_sensitivity
 			pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 			rotation.x = pitch
-
-
-#func _on_pc_transition(pos: `Vector3, rota: Vector3):
-	#
-	#isMovng = true
-	#oldPos = camera.global_position
-	#camera.global_position = camera.global_position.lerp(pos, 0.3)
-	#camera.global_rotation = camera.global_rotation.lerp(rota, 0.3)
-	#canLook = false
-#
-#func _on_pc_exit():
-	#camera.global_position = camera.global_position.lerp(oldPos, 0.3)
-	#canLook = true

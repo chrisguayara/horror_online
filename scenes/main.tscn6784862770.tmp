@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=30 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://62it053kwa0i" path="res://scripts/viewport/sub_viewport.gd" id="2_muem4"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
@@ -11,9 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bn5eogv0c0lq8" path="res://assets/models/pickups/huntingRifle.tscn" id="16_muem4"]
-[ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
 [ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
-[ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
@@ -70,10 +69,9 @@ script = ExtResource("1_sugp2")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 use_occlusion_culling = true
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
 size = Vector2i(640, 480)
 render_target_update_mode = 4
+script = ExtResource("2_muem4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
 environment = SubResource("Environment_tbgi4")
@@ -186,24 +184,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_muem4")
 stretch_mode = 4
-
-[node name="UILayers" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("17_0ld40")
-
-[node name="TextureRect" type="TextureRect" parent="UILayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_muem4")
 
 [connection signal="activeInHand" from="SubViewport/player/inventory" to="SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="SubViewport/player/inventory" to="SubViewport/Soundmanager" method="_on_inventory_add_sound"]
