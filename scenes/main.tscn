@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=32 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="PackedScene" uid="uid://bohs6vfsil5ho" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
+[ext_resource type="Script" uid="uid://djtuux7xnlwus" path="res://scripts/UI/settings_menu.gd" id="19_gqmmt"]
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
 [ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
 
@@ -204,6 +205,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_muem4")
+
+[node name="SettingsMenu" type="Panel" parent="UILayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_gqmmt")
+
+[node name="Label" type="Label" parent="UILayers/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sensitivity:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="UILayers/SettingsMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 230.0
+offset_top = 514.0
+offset_right = -216.0
+offset_bottom = 552.0
+grow_horizontal = 2
+min_value = 0.02
+max_value = 10.0
+value = 0.02
+rounded = true
+scrollable = false
+tick_count = 11
+ticks_on_borders = true
 
 [connection signal="activeInHand" from="SubViewport/player/inventory" to="SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="SubViewport/player/inventory" to="SubViewport/Soundmanager" method="_on_inventory_add_sound"]
