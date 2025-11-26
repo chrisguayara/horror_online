@@ -122,14 +122,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
 [node name="camera" parent="SubViewport/player/head" index="0"]
 keep_aspect = 0
 
-[node name="shootingRay" parent="SubViewport/player/head/camera" index="0" node_paths=PackedStringArray("label")]
+[node name="shootingRay" parent="SubViewport/player/head/camera" index="0"]
 target_position = Vector3(0, 0, -30)
 collision_mask = 8
 debug_shape_custom_color = Color(0.407005, 0.607597, 0.120738, 1)
-label = NodePath("../Label")
 
 [node name="InteractRay" parent="SubViewport/player/head/camera" index="1"]
-collision_mask = 4
 debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
 
 [node name="hand" parent="SubViewport/player/head/camera" index="2"]
@@ -154,6 +152,7 @@ script = ExtResource("3_tbgi4")
 
 [node name="HuntingRifle" parent="SubViewport" instance=ExtResource("16_muem4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 1.1, 0)
+collision_layer = 4
 item_scene = ExtResource("17_dp3eg")
 
 [node name="Sketchfab_Scene" parent="SubViewport" instance=ExtResource("7_yc10j")]
