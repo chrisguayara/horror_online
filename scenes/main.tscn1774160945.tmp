@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=56 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -27,8 +27,6 @@
 [ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="20_vxglm"]
 [ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
 [ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="21_2f3dj"]
-[ext_resource type="Script" uid="uid://cljlmcwnkosrm" path="res://scenes/inWorld/animals/duckmovement.gd" id="27_2f3dj"]
-[ext_resource type="Script" uid="uid://dxqpghd2060m" path="res://scripts/managers/day_manager.gd" id="28_yq6so"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -154,12 +152,6 @@ radius = 4.0
 albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vxglm"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_cjhqa"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fnxnt"]
-radius = 0.569
-height = 2.66
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
 shader = ExtResource("20_yc10j")
@@ -490,35 +482,6 @@ debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
 
 [node name="shootable" type="Node3D" parent="SubViewport/Enemies/bunny"]
 script = ExtResource("20_vxglm")
-
-[node name="Duck" type="CharacterBody3D" parent="SubViewport/Enemies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
-collision_layer = 8
-collision_mask = 3
-motion_mode = 1
-script = ExtResource("19_2wyq8")
-enemy_name = "Duck"
-health = 30
-
-[node name="Graphics" type="Node3D" parent="SubViewport/Enemies/Duck"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Enemies/Duck/Graphics"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_cjhqa")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/Duck"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_fnxnt")
-
-[node name="MovementManager" type="Node3D" parent="SubViewport/Enemies/Duck"]
-script = ExtResource("27_2f3dj")
-
-[node name="shootable" type="Node3D" parent="SubViewport/Enemies/Duck"]
-script = ExtResource("20_vxglm")
-max_health = 46
-
-[node name="DayManager" type="Node3D" parent="SubViewport"]
-script = ExtResource("28_yq6so")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

@@ -1,6 +1,7 @@
 extends Node3D
 class_name MovementManager
 
+
 @export var move_speed: float = 2.0
 @export var turn_interval: float = 1.2
 @export var alert_speed: float = 10.0

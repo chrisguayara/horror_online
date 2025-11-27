@@ -1,7 +1,8 @@
 extends Node3D
 
 @onready var player = $SubViewport/player  # adjust path
-@onready var settings_menu = $UILayers/SettingsMenu
+@onready var settings_menu = $SubViewport/player/head/camera/UILayers/SettingsMenus
+
 var menu_active = false
 
 func _input(event):

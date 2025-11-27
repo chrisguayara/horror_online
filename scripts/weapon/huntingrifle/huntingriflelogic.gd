@@ -12,7 +12,7 @@ var stock = 10
 var scoped = false
 signal fired
 @onready var debug_label = $debug_label
-@onready var uimanager = get_tree().current_scene.get_node("UILayers")
+@onready var uimanager = get_tree().current_scene.get_node("SubViewport/player/head/camera/UILayers")
 
 
 @onready var muzzleNode = $MuzzleNode
