@@ -2,8 +2,8 @@ extends Node3D
 class_name MovementManager
 
 @export var move_speed: float = 2.0
-@export var turn_interval: float = 3.0
-@export var alert_speed: float = 4.0
+@export var turn_interval: float = 1.2
+@export var alert_speed: float = 10.0
 
 var state: String = "idle" # idle, moving, alert
 var timer: float = 0.0
@@ -16,7 +16,7 @@ func _ready():
 	state = "idle"
 
 func _physics_process(delta):
-	var enemy = owner as Enemy
+	var enemy = get_parent() as Enemy
 	if not enemy or enemy.state == "dead":
 		print("Justdead")
 		return
@@ -35,8 +35,10 @@ func _physics_process(delta):
 			pass
 		"moving":
 			move(enemy, move_direction, move_speed, delta)
+			print("Moved!")
 		"alert":
 			move(enemy, move_direction, alert_speed, delta)
+			print("Alert!")
 
 func move(enemy: Enemy, direction: Vector3, speed: float, delta: float):
 	if direction == Vector3.ZERO:

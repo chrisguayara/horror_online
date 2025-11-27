@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=53 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="9_jscy8"]
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
-[ext_resource type="PackedScene" uid="uid://bj4k8ck2wshw3" path="res://scenes/inWorld/animals/bunny.tscn" id="16_gqmmt"]
 [ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
 [ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
@@ -140,6 +139,16 @@ albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hdxuh"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_og1vs"]
+radius = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_og1vs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
+albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxglm"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
 shader = ExtResource("20_yc10j")
 shader_parameter/vignette_strength = 0.43
@@ -247,6 +256,7 @@ mesh = SubResource("CapsuleMesh_qhqgy")
 
 [node name="postFX" type="MeshInstance3D" parent="SubViewport/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
+visible = false
 material_override = SubResource("ShaderMaterial_yc10j")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0ld40")
@@ -344,13 +354,39 @@ debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
 script = ExtResource("20_vxglm")
 
 [node name="movementManager" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 script = ExtResource("21_2f3dj")
 
-[node name="bunny" parent="SubViewport/Enemies" instance=ExtResource("16_gqmmt")]
+[node name="Area3D" type="Area3D" parent="SubViewport/Enemies/bunny2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny2/Area3D"]
+shape = SubResource("SphereShape3D_og1vs")
+debug_color = Color(0.50398, 0.213834, 0.128029, 0.42)
+
+[node name="bunny" type="CharacterBody3D" parent="SubViewport/Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 8
 collision_mask = 3
+script = ExtResource("19_2wyq8")
 enemy_name = "Bunny"
 health = 40
+
+[node name="movementManager" type="Node3D" parent="SubViewport/Enemies/bunny"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+script = ExtResource("21_2f3dj")
+
+[node name="graphics" type="Node3D" parent="SubViewport/Enemies/bunny"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/Enemies/bunny/graphics"]
+mesh = SubResource("BoxMesh_og1vs")
+material = SubResource("StandardMaterial3D_2wyq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny"]
+shape = SubResource("BoxShape3D_vxglm")
+debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
+
+[node name="shootable" type="Node3D" parent="SubViewport/Enemies/bunny"]
+script = ExtResource("20_vxglm")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
