@@ -1,4 +1,5 @@
 extends Node3D
+class_name HuntingRifle
 
 var damage = 45
 var spread = 1.0
@@ -9,6 +10,7 @@ var reloading = false
 var loadedBullets = 0
 var stock = 10
 var scoped = false
+signal fired
 @onready var debug_label = $debug_label
 @onready var uimanager = get_tree().current_scene.get_node("UILayers")
 
@@ -42,6 +44,7 @@ func shoot():
 	loadedBullets -= 1
 	can_shoot = false
 	fire_timer.start()
+	emit_signal("fired")
 
 func _on_fire_rate_timeout():
 	can_shoot = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=50 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="6_y6deb"]
+[ext_resource type="Script" uid="uid://e7b18qm8nw4x" path="res://scripts/weapon/huntingrifle/huntingray.gd" id="7_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://dr5qqbe8x18vn" path="res://assets/models/environment/testmodels/psx_abandoned_house.glb" id="7_yc10j"]
 [ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
@@ -19,9 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
+[ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="19_2wyq8"]
 [ext_resource type="Script" uid="uid://djtuux7xnlwus" path="res://scripts/UI/settings_menu.gd" id="19_gqmmt"]
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
+[ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="20_vxglm"]
 [ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
+[ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="21_2f3dj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -129,6 +133,13 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(0.41037, 0.249512, 0.577576)
 
+[sub_resource type="BoxMesh" id="BoxMesh_4yh5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgst0"]
+albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hdxuh"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
 shader = ExtResource("20_yc10j")
 shader_parameter/vignette_strength = 0.43
@@ -208,20 +219,28 @@ script = ExtResource("5_pm3ni")
 keep_aspect = 0
 
 [node name="InteractRay" parent="SubViewport/player/head/camera" instance=ExtResource("6_y6deb")]
-visible = false
-target_position = Vector3(0, 0, -30)
+target_position = Vector3(0, 0, -2.5)
 debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
 debug_shape_thickness = 4
 
 [node name="hand" type="Marker3D" parent="SubViewport/player/head/camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
 
-[node name="Label" type="Label" parent="SubViewport/player/head/camera"]
+[node name="aimlabel" type="Label" parent="SubViewport/player/head/camera"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HuntingRay" type="RayCast3D" parent="SubViewport/player/head/camera" node_paths=PackedStringArray("player")]
+target_position = Vector3(0, 0, -30)
+collision_mask = 8
+debug_shape_custom_color = Color(0.730773, 0.0889113, 0.369955, 1)
+script = ExtResource("7_pm3ni")
+player = NodePath("../../..")
 
 [node name="visual" type="MeshInstance3D" parent="SubViewport/player"]
 mesh = SubResource("CapsuleMesh_qhqgy")
@@ -303,8 +322,35 @@ volume_db = -6.09
 
 [node name="Enemies" type="Node3D" parent="SubViewport"]
 
+[node name="bunny2" type="CharacterBody3D" parent="SubViewport/Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.4, -4)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("19_2wyq8")
+enemy_name = "Bunny"
+health = 40
+
+[node name="graphics" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/Enemies/bunny2/graphics"]
+mesh = SubResource("BoxMesh_4yh5g")
+material = SubResource("StandardMaterial3D_dgst0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny2"]
+shape = SubResource("BoxShape3D_hdxuh")
+debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
+
+[node name="shootable" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+script = ExtResource("20_vxglm")
+
+[node name="movementManager" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+script = ExtResource("21_2f3dj")
+
 [node name="bunny" parent="SubViewport/Enemies" instance=ExtResource("16_gqmmt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_mask = 3
+enemy_name = "Bunny"
+health = 40
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
