@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=61 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="20_vxglm"]
 [ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
 [ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="21_2f3dj"]
+[ext_resource type="Script" uid="uid://c4dndxcy24y2p" path="res://scripts/enemies/enemy_manager.gd" id="24_fv21b"]
 [ext_resource type="Script" uid="uid://cljlmcwnkosrm" path="res://scenes/inWorld/animals/duckmovement.gd" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://dxqpghd2060m" path="res://scripts/managers/day_manager.gd" id="28_yq6so"]
 
@@ -433,89 +434,103 @@ volume_db = 2.734
 stream = ExtResource("14_gqmmt")
 volume_db = -6.09
 
-[node name="Enemies" type="Node3D" parent="SubViewport"]
+[node name="EnemyManager" type="Node3D" parent="SubViewport"]
+script = ExtResource("24_fv21b")
 
-[node name="bunny2" type="CharacterBody3D" parent="SubViewport/Enemies"]
+[node name="bunny2" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.4, -4)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("19_2wyq8")
-enemy_name = "Bunny"
+enemy_name = "bunny"
 health = 40
 
-[node name="graphics" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+[node name="graphics" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/Enemies/bunny2/graphics"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/EnemyManager/bunny2/graphics"]
 mesh = SubResource("BoxMesh_4yh5g")
 material = SubResource("StandardMaterial3D_dgst0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny2"]
 shape = SubResource("BoxShape3D_hdxuh")
 debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
 
-[node name="shootable" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
 script = ExtResource("20_vxglm")
 
-[node name="movementManager" type="Node3D" parent="SubViewport/Enemies/bunny2"]
+[node name="movementManager" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 script = ExtResource("21_2f3dj")
 
-[node name="Area3D" type="Area3D" parent="SubViewport/Enemies/bunny2"]
+[node name="Area3D" type="Area3D" parent="SubViewport/EnemyManager/bunny2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny2/Area3D"]
 shape = SubResource("SphereShape3D_og1vs")
 debug_color = Color(0.50398, 0.213834, 0.128029, 0.42)
 
-[node name="bunny" type="CharacterBody3D" parent="SubViewport/Enemies"]
+[node name="bunny" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("19_2wyq8")
-enemy_name = "Bunny"
+enemy_name = "bunny"
 health = 40
 
-[node name="movementManager" type="Node3D" parent="SubViewport/Enemies/bunny"]
+[node name="movementManager" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 script = ExtResource("21_2f3dj")
 
-[node name="graphics" type="Node3D" parent="SubViewport/Enemies/bunny"]
+[node name="graphics" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/Enemies/bunny/graphics"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/EnemyManager/bunny/graphics"]
 mesh = SubResource("BoxMesh_og1vs")
 material = SubResource("StandardMaterial3D_2wyq8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/bunny"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny"]
 shape = SubResource("BoxShape3D_vxglm")
 debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
 
-[node name="shootable" type="Node3D" parent="SubViewport/Enemies/bunny"]
+[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
 script = ExtResource("20_vxglm")
 
-[node name="Duck" type="CharacterBody3D" parent="SubViewport/Enemies"]
+[node name="Duck" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
 collision_layer = 8
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("19_2wyq8")
-enemy_name = "Duck"
+enemy_name = "duck"
 health = 30
 
-[node name="Graphics" type="Node3D" parent="SubViewport/Enemies/Duck"]
+[node name="Graphics" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Enemies/Duck/Graphics"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/EnemyManager/Duck/Graphics"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_cjhqa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Enemies/Duck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/Duck"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_fnxnt")
 
-[node name="MovementManager" type="Node3D" parent="SubViewport/Enemies/Duck"]
+[node name="MovementManager" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
 script = ExtResource("27_2f3dj")
 
-[node name="shootable" type="Node3D" parent="SubViewport/Enemies/Duck"]
+[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
 script = ExtResource("20_vxglm")
 max_health = 46
+
+[node name="spawnpoints" type="Node3D" parent="SubViewport/EnemyManager"]
+
+[node name="sp1" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, -4.5)
+
+[node name="sp2" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8.6)
+
+[node name="sp3" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6)
+
+[node name="sp4" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
 
 [node name="DayManager" type="Node3D" parent="SubViewport"]
 script = ExtResource("28_yq6so")

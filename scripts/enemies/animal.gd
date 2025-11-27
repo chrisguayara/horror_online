@@ -6,6 +6,7 @@ class_name Enemy
 @export var speed: int = 5
 
 var state: String = "idle" # current state: idle, alert, dead
+signal death(enemy_name: String)
 
 func _physics_process(delta):
 	if state == "dead":
@@ -29,7 +30,8 @@ func die() -> void:
 		return
 	state = "dead"
 	print("%s: I died" % enemy_name)
-	
+	print("EMITTING:", enemy_name)
+	emit_signal("enemydeath",enemy_name)
 	
 	
 	
