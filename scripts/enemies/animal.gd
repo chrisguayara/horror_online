@@ -4,10 +4,15 @@ class_name Enemy
 @export var enemy_name: String = "Placeholder"
 @export var health: int = 100
 @export var speed: int = 5
+@onready var hitbox = $"../bunny2/hitbox"
+@export var deadBody : PackedScene
 
 var state: String = "idle" # current state: idle, alert, dead
-signal death(enemy_name: String)
+signal enemydeath(enemy_name: String)
 
+func _ready():
+	add_to_group("enemies")
+	
 func _physics_process(delta):
 	if state == "dead":
 		return 
@@ -32,7 +37,15 @@ func die() -> void:
 	print("%s: I died" % enemy_name)
 	print("EMITTING:", enemy_name)
 	emit_signal("enemydeath",enemy_name)
+	var p = get_parent()
+	var pos = position
+	var rot = rotation
 	
 	
+	if deadBody:
+		var corpse = deadBody.instantiate()
+		corpse.global_transform = global_transform
+		get_parent().add_child(corpse)
+
 	
 	queue_free()

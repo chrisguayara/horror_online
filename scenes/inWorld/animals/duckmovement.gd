@@ -10,8 +10,10 @@ class_name DuckMovement
 
 var rng = RandomNumberGenerator.new()
 var angle: float = 0.0
+var state = "idle"
 
 func _ready():
+	state = "idle"
 	rng.randomize()
 	center = get_parent().global_transform.origin
 

@@ -1,23 +1,36 @@
 extends Node3D
 
 @onready var player = $SubViewport/player  # adjust path
-@onready var settings_menu = $SubViewport/player/head/camera/UILayers/SettingsMenus
-
+@onready var escape = $SubViewport/player/head/camera/UILayers/Escape
+@onready var inventory_menu = $SubViewport/player/head/camera/UILayers/InventoryMenu
+var inInventory = false
 var menu_active = false
 
-func _input(event):
-	if event.is_action_pressed("quit"):
+func _ready():
+	pass
+
+
+	
+func _process(delta):
+	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-	if event.is_action_pressed("fullscreen"):
+	if Input.is_action_just_pressed("fullscreen"):
 		toggle_fullscreen()
-	if event.is_action_pressed("settings"):
-		settings_menu.toggle()
+	if Input.is_action_just_pressed("settings"):
+		escape.toggleVisibility()
+		player.toggleInput()
+	if Input.is_action_just_pressed("inventory"):
+		if inInventory:
+			inInventory = false
+			
+		else: 
+			inInventory = true
+		inventory_menu.visible = inInventory
+		
 
-	
-	if not player.head.settingsOn and event is InputEventMouseMotion:
+func _input(event):
+	if event is InputEventMouseMotion and player.canInput:
 		player.head._input(event)
-	
-
 
 func toggle_fullscreen():
 	var mode := DisplayServer.window_get_mode()

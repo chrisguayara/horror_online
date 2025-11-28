@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://8t6ksqj6eq5"]
+
+[ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="1_53gjf"]
+[ext_resource type="PackedScene" uid="uid://dh4hto8dev4x1" path="res://scenes/inWorld/animals/bunny/bunnydead.tscn" id="2_ek8yr"]
+[ext_resource type="PackedScene" uid="uid://c14mtjfbofa72" path="res://assets/models/enemies/rabbit/rabbitv1.glb" id="2_tk7p2"]
+[ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="3_ek8yr"]
+[ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="4_vmtyb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tel4y"]
+radius = 0.316
+height = 0.632
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qkpxi"]
+radius = 1.0
+
+[node name="bunny2" type="CharacterBody3D" groups=["enemies"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_53gjf")
+enemy_name = "bunny"
+health = 40
+deadBody = ExtResource("2_ek8yr")
+
+[node name="graphics" type="Node3D" parent="."]
+
+[node name="rabbitv1" parent="graphics" instance=ExtResource("2_tk7p2")]
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, -0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0609786, 0)
+shape = SubResource("CapsuleShape3D_tel4y")
+debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
+
+[node name="shootable" type="Node3D" parent="."]
+script = ExtResource("3_ek8yr")
+
+[node name="movementManager" type="Node3D" parent="."]
+script = ExtResource("4_vmtyb")
+
+[node name="hitbox" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="collisionshape" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_qkpxi")
+
+[editable path="graphics/rabbitv1"]

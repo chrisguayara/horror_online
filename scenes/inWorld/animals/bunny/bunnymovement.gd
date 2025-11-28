@@ -36,10 +36,10 @@ func _physics_process(delta):
 			pass
 		"moving":
 			move(enemy, move_direction, move_speed, delta)
-			print("Moved!")
+			
 		"alert":
 			move(enemy, move_direction, alert_speed, delta)
-			print("Alert!")
+			
 
 func move(enemy: Enemy, direction: Vector3, speed: float, delta: float):
 	if direction == Vector3.ZERO:

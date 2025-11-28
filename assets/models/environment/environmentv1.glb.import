@@ -1,0 +1,48 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://djnsc6g3gifyl"
+path="res://.godot/imported/environmentv1.glb-3a2d588d4607af89f3ce9270fb88a4b1.scn"
+
+[deps]
+
+source_file="res://assets/models/environment/environmentv1.glb"
+dest_files=["res://.godot/imported/environmentv1.glb-3a2d588d4607af89f3ce9270fb88a4b1.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"fall2": {
+"use_external/enabled": true,
+"use_external/path": "uid://cf6cxj8qqk62f"
+},
+"tree": {
+"use_external/enabled": true,
+"use_external/path": "uid://bpdy17xvqn0gj"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

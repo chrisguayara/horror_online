@@ -8,25 +8,28 @@ var canMove = true
 @onready var inventorymanager = $inventory
 @onready var interact_ray = $head/camera/InteractRay
 @export var floor_marker : Marker3D
+var canInput = true
 
 var prevLocation : Vector3
 var isscoped = false
 var mode = "idle"
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
-		var target = interact_ray.get_collider()
-		while target and not (target is Interactable):
-			target = target.get_parent()
-		if target and target is Interactable:
-			target.interact(self)
+	if canInput:
+		
+		if Input.is_action_just_pressed("interact") and interact_ray.is_colliding() :
+			var target = interact_ray.get_collider()
+			while target and not (target is Interactable):
+				target = target.get_parent()
+			if target and target is Interactable:
+				target.interact(self)
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0
 
-	if canMove:
+	if canInput and canMove:
 		var input_dir := Vector2(
 			Input.get_action_strength("right") - Input.get_action_strength("left"),
 			Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -41,35 +44,27 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 
-	if Input.is_action_just_pressed("shoot") and inventorymanager.current_item:
-		inventorymanager.current_item.shoot()
-	if Input.is_action_just_pressed("reload") and inventorymanager.current_item:
-		inventorymanager.current_item.reload()
-	if Input.is_action_just_pressed("scope") and inventorymanager.current_item:
-		var result = inventorymanager.current_item.scope()
-		isscoped = result if result is bool else false
-		head.scoped(isscoped)
-		
-		
-	if Input.is_action_just_pressed("settings"):
-		head.settingsToggle()
-	if Input.is_action_just_pressed("inventory"):
-		pass
+	if canInput:
+		if Input.is_action_just_pressed("shoot") and inventorymanager.current_item:
+			inventorymanager.current_item.shoot()
+		if Input.is_action_just_pressed("reload") and inventorymanager.current_item:
+			inventorymanager.current_item.reload()
+		if Input.is_action_just_pressed("scope") and inventorymanager.current_item:
+			if inventorymanager.current_item.has_method("scope") and inventorymanager.current_item.item_name == "Hunting Rifle":
+				var result = inventorymanager.current_item.scope()
+				isscoped = result if result is bool else false
+				head.scoped(isscoped)
+			
+			
+		if Input.is_action_just_pressed("inventory"):
+			
+			pass
 
 	move_and_slide()
 
 func add_to_inventory(item):
 	return inventorymanager.add_to_inventory(item)
 
-func pcEnter():
-	mode = "surfing"
-	canMove = false
-	head.canLook = false
-	prevLocation = global_position
-	global_position = global_position.lerp(floor_marker.global_position, 0.5)
-
-func pcExit():
-	mode = "idle"
-	canMove = true
-	head.canLook = true
-	global_position = global_position.lerp(prevLocation, 0.5)
+func toggleInput():
+	canInput = !canInput
+	head.setCanLook(canInput)  # now consistent

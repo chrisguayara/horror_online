@@ -1,11 +1,12 @@
 extends Node3D
 
-@export var mouse_sensitivity := 0.002
-var default = 0.002
-var scopedSens = default * .50
+@export var default_sensitivity := 0.002
+var scoped_sensitivity := default_sensitivity * 0.5
+var current_sensitivity := default_sensitivity
+
 var pitch := 0.0
-var canLook = true
-var settingsOn = false
+var canLook := true
+
 @onready var camera: Camera3D = $camera
 
 func _ready():
@@ -13,27 +14,20 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
-	if not canLook or settingsOn:
-		return
-	if event is InputEventMouseMotion:
-		get_parent().rotate_y(-event.relative.x * mouse_sensitivity)
-		pitch -= event.relative.y * mouse_sensitivity
+	if event is InputEventMouseMotion and canLook:
+		get_parent().rotate_y(-event.relative.x * current_sensitivity)
+		pitch -= event.relative.y * current_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 		rotation.x = pitch
 
-func settingsToggle() -> void:
-	settingsOn = not settingsOn
-	Input.set_mouse_mode(
-		Input.MOUSE_MODE_VISIBLE if settingsOn else Input.MOUSE_MODE_CAPTURED
-	)
-
-func set_sensitivity(value: float) -> void:
-	mouse_sensitivity = value
+func setCanLook(enabled: bool):
+	canLook = enabled
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if enabled else Input.MOUSE_MODE_VISIBLE)
 
 func scoped(isScoped: bool):
-	if not isScoped:
-		mouse_sensitivity = default
+	if isScoped:
+		current_sensitivity = scoped_sensitivity
+		camera.fov = 55.0
+	else:
+		current_sensitivity = default_sensitivity
 		camera.fov = 75.0
-		return
-	mouse_sensitivity = scopedSens
-	camera.fov = 55.0

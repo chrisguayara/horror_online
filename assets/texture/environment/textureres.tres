@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cf6cxj8qqk62f"]
+
+[ext_resource type="Texture2D" uid="uid://c36itc4n7wmux" path="res://assets/texture/environment/huntinggroundsv1.png" id="1_hln8x"]
+
+[resource]
+shading_mode = 2
+albedo_texture = ExtResource("1_hln8x")
+texture_filter = 0

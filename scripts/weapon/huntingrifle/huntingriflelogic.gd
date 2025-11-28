@@ -10,6 +10,7 @@ var reloading = false
 var loadedBullets = 0
 var stock = 10
 var scoped = false
+var item_name = "Hunting Rifle"
 signal fired
 @onready var debug_label = $debug_label
 @onready var uimanager = get_tree().current_scene.get_node("SubViewport/player/head/camera/UILayers")
@@ -20,6 +21,7 @@ signal fired
 @onready var fire_timer = Timer.new()
 @onready var reload_timer = Timer.new()
 @onready var graphics = $Graphics
+@onready var inventory = get_tree().current_scene.get_node("SubViewport/player/inventory")
 
 func _ready():
 	add_child(fire_timer)
@@ -45,6 +47,7 @@ func shoot():
 	can_shoot = false
 	fire_timer.start()
 	emit_signal("fired")
+	update_inventory_ammo()  # Added: Update inventory after shooting
 
 func _on_fire_rate_timeout():
 	can_shoot = true
@@ -64,12 +67,14 @@ func _on_reload_tick():
 	if loadedBullets >= mag_capacity or stock <= 0:
 		reloading = false
 		can_shoot = true
+		update_inventory_ammo()  # Added: Update inventory when reload finishes
 		return
 	if sound_manager:
 		sound_manager.play("reload")
 	loadedBullets += 1
 	stock -= 1
 	reload_timer.start()
+	update_inventory_ammo()  # Added: Update inventory after each reload tick
 
 func get_ammoCount():
 	return stock + loadedBullets
@@ -84,8 +89,15 @@ func scope():
 	uimanager.scope(scoped)
 	graphics.visible = not scoped
 	return scoped
-	
 
+# New function to update ammo in inventory
+func update_inventory_ammo():
+	   # Adjust path if needed
+	# Alternative: If inventory is in a group, use:
+	# var inventory = get_tree().get_first_node_in_group("inventory")
+	
+	if inventory and inventory.has_method("update_rifle_ammo"):
+		inventory.update_rifle_ammo(loadedBullets, stock)
 
 func _process(delta):
 	if debug_label:

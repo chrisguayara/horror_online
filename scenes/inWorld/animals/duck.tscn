@@ -9,7 +9,7 @@
 radius = 0.569
 height = 2.66
 
-[node name="Duck" type="CharacterBody3D"]
+[node name="Duck" type="CharacterBody3D" groups=["enemies"]]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_q4g7g")

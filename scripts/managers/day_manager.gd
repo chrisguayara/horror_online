@@ -1,6 +1,7 @@
 extends Node3D
 
 var currentDay := 0
+@onready var soundmanager = $"../Soundmanager"
 
 var currGoal := {
 	"rabbit": 2,
@@ -18,6 +19,11 @@ var currKills := {
 
 func _ready():
 	currentDay = 1
+	
+	# For each enemy that already exists in the scene
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.connect("enemydeath", Callable(self, "_on_enemy_death"))
+
 
 
 func startDay(day: int):
@@ -48,5 +54,8 @@ func addTrophy(enemy: String):
 
 func _on_enemy_death(enemy_name: String):
 	addTrophy(enemy_name)
+	soundmanager.playDeath(enemy_name)
+	print("Sound manager activated")
 	if checkStats():
 		print("Goal met! Return to the cabin.")
+	

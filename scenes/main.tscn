@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ce44wurxmtn8p"]
+[gd_scene load_steps=58 format=3 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -8,39 +8,55 @@
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="6_y6deb"]
 [ext_resource type="Script" uid="uid://e7b18qm8nw4x" path="res://scripts/weapon/huntingrifle/huntingray.gd" id="7_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://dr5qqbe8x18vn" path="res://assets/models/environment/testmodels/psx_abandoned_house.glb" id="7_yc10j"]
 [ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
 [ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="9_jscy8"]
 [ext_resource type="Script" uid="uid://bpsyd3ilh0efi" path="res://scripts/UI/inventory_menu.gd" id="9_vxglm"]
 [ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://ct1v6cwjs0vdi" path="res://scripts/UI/camera_ui_manager.gd" id="11_2wyq8"]
+[ext_resource type="AudioStream" uid="uid://3lo337b7pxxs" path="res://assets/sound/soundfx/enemies/bunnydeath.mp3" id="13_tel4y"]
 [ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
 [ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
 [ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://djnsc6g3gifyl" path="res://assets/models/environment/environmentv1.glb" id="18_tel4y"]
 [ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
 [ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="19_2wyq8"]
-[ext_resource type="Script" uid="uid://djtuux7xnlwus" path="res://scripts/UI/settings_menu.gd" id="19_gqmmt"]
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
 [ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="20_vxglm"]
 [ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
-[ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="21_2f3dj"]
 [ext_resource type="Script" uid="uid://c4dndxcy24y2p" path="res://scripts/enemies/enemy_manager.gd" id="24_fv21b"]
+[ext_resource type="PackedScene" uid="uid://8t6ksqj6eq5" path="res://scenes/inWorld/animals/bunnyfixed.tscn" id="25_fv21b"]
+[ext_resource type="Texture2D" uid="uid://cju4saadgrgu2" path="res://assets/texture/ui/inventorybox.png" id="25_qkpxi"]
+[ext_resource type="Script" uid="uid://bknscsovjgv2d" path="res://scripts/UI/escapeButton.gd" id="26_qkpxi"]
 [ext_resource type="Script" uid="uid://cljlmcwnkosrm" path="res://scenes/inWorld/animals/duckmovement.gd" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://dxqpghd2060m" path="res://scripts/managers/day_manager.gd" id="28_yq6so"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="Gradient" id="Gradient_fv21b"]
+colors = PackedColorArray(0.944063, 0.122779, 0.306325, 1, 0.750117, 0.653806, 0.13653, 1)
 
-[sub_resource type="Sky" id="Sky_jyhfs"]
-sky_material = SubResource("ProceduralSkyMaterial_sugp2")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tel4y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qkpxi"]
+color_ramp = SubResource("Gradient_fv21b")
+noise = SubResource("FastNoiseLite_tel4y")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fv21b"]
+sky_top_color = Color(0.658663, 0.172173, 0.138128, 1)
+sky_horizon_color = Color(0.825768, 0.441147, 0.0853339, 1)
+sky_cover = SubResource("NoiseTexture2D_qkpxi")
+sky_cover_modulate = Color(0.691357, 0.691357, 0.691357, 1)
+ground_bottom_color = Color(0.777095, 0.350879, 0.0461421, 1)
+ground_horizon_color = Color(0.983955, 0.498357, 0.266809, 1)
+ground_curve = 0.0207053
+
+[sub_resource type="Sky" id="Sky_5q0nq"]
+sky_material = SubResource("ProceduralSkyMaterial_fv21b")
 
 [sub_resource type="Environment" id="Environment_tbgi4"]
 background_mode = 2
-sky = SubResource("Sky_jyhfs")
+sky = SubResource("Sky_5q0nq")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -49,22 +65,6 @@ size = Vector2(40, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jkv2x"]
 size = Vector3(32, 1, 38)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
-height = 1.9265
-
-[sub_resource type="ImageTexture" id="ImageTexture_2f3dj"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc10j"]
-render_priority = 0
-shader = ExtResource("20_gqmmt")
-shader_parameter/dither_amount = 0.25
-
-[sub_resource type="QuadMesh" id="QuadMesh_0ld40"]
-flip_faces = true
-size = Vector2(2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ov11"]
 
@@ -139,28 +139,25 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(0.41037, 0.249512, 0.577576)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4yh5g"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgst0"]
-albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hdxuh"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_og1vs"]
-radius = 4.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_og1vs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
-albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vxglm"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cjhqa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fnxnt"]
 radius = 0.569
 height = 2.66
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+height = 1.9265
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc10j"]
+render_priority = 0
+shader = ExtResource("20_gqmmt")
+shader_parameter/dither_amount = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_0ld40"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
 shader = ExtResource("20_yc10j")
@@ -202,11 +199,12 @@ grow_horizontal = 2
 text = "MODE: "
 
 [node name="floor" type="StaticBody3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.481361, 0)
 collision_layer = 6
 collision_mask = 7
 
 [node name="floor" type="MeshInstance3D" parent="SubViewport/floor"]
+visible = false
 mesh = SubResource("PlaneMesh_jkv2x")
 skeleton = NodePath("../../..")
 
@@ -219,164 +217,26 @@ debug_color = Color(0.796758, 0.561828, 0.0723352, 0.42)
 
 [node name="RemingtonPickup" parent="SubViewport/Items" instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1, 3.8)
-item_pickup = "shotGun_Pickup"
+item_name = ""
+item_description = ""
+item_scene = null
+prompt_msg = "Interact"
 
 [node name="Area3D" parent="SubViewport/Items" instance=ExtResource("19_0ld40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
-
-[node name="player" type="CharacterBody3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
-collision_mask = 6
-script = ExtResource("4_jscy8")
-
-[node name="hitbox" type="CollisionShape3D" parent="SubViewport/player"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_u8vuu")
-
-[node name="head" type="Node3D" parent="SubViewport/player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("5_pm3ni")
-
-[node name="camera" type="Camera3D" parent="SubViewport/player/head"]
-keep_aspect = 0
-
-[node name="UILayers" type="Control" parent="SubViewport/player/head/camera"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("17_0ld40")
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/player/head/camera/UILayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_muem4")
-
-[node name="SettingsMenu" type="Panel" parent="SubViewport/player/head/camera/UILayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("19_gqmmt")
-
-[node name="Label" type="Label" parent="SubViewport/player/head/camera/UILayers/SettingsMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Sensitivity:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MouseSensitivitySlider" type="HSlider" parent="SubViewport/player/head/camera/UILayers/SettingsMenu"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 230.0
-offset_top = 514.0
-offset_right = -216.0
-offset_bottom = 552.0
-grow_horizontal = 2
-min_value = 0.02
-max_value = 10.0
-value = 0.02
-rounded = true
-scrollable = false
-tick_count = 11
-ticks_on_borders = true
-
-[node name="InventoryMenu" type="Control" parent="SubViewport/player/head/camera/UILayers"]
-anchors_preset = 0
-script = ExtResource("9_vxglm")
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ImageTexture_2f3dj")
-
-[node name="Panel" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
-layout_mode = 2
-
-[node name="InteractRay" parent="SubViewport/player/head/camera" instance=ExtResource("6_y6deb")]
-target_position = Vector3(0, 0, -2.5)
-debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
-debug_shape_thickness = 4
-
-[node name="hand" type="Marker3D" parent="SubViewport/player/head/camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
-
-[node name="aimlabel" type="Label" parent="SubViewport/player/head/camera"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="HuntingRay" type="RayCast3D" parent="SubViewport/player/head/camera" node_paths=PackedStringArray("player")]
-target_position = Vector3(0, 0, -30)
-collision_mask = 8
-debug_shape_custom_color = Color(0.730773, 0.0889113, 0.369955, 1)
-script = ExtResource("7_pm3ni")
-player = NodePath("../../..")
-
-[node name="UIManager" type="Node3D" parent="SubViewport/player/head/camera"]
-script = ExtResource("11_2wyq8")
-
-[node name="visual" type="MeshInstance3D" parent="SubViewport/player"]
-mesh = SubResource("CapsuleMesh_qhqgy")
-
-[node name="postFX" type="MeshInstance3D" parent="SubViewport/player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
-visible = false
-material_override = SubResource("ShaderMaterial_yc10j")
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_0ld40")
-skeleton = NodePath("../../..")
-
-[node name="inventory" type="Node3D" parent="SubViewport/player"]
-script = ExtResource("3_tbgi4")
+item_name = ""
+item_description = ""
+item_scene = null
+prompt_msg = "Interact"
 
 [node name="HuntingRifle" type="Area3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 1.1, 0)
 collision_layer = 4
 script = ExtResource("9_jscy8")
 item_name = "Hunting Rifle"
-item_description = "Scoped Long Range All purpose. Great for smaller to mid sized animals"
+item_description = "Hunting gun"
 item_scene = ExtResource("17_dp3eg")
-prompt_msg = "Pick Up [E]"
+prompt_msg = "Pickup Rifle [E]"
 
 [node name="Graphics" type="Node3D" parent="SubViewport/HuntingRifle"]
 
@@ -400,8 +260,31 @@ libraries = {
 }
 autoplay = "rotateidle"
 
-[node name="Sketchfab_Scene" parent="SubViewport" instance=ExtResource("7_yc10j")]
+[node name="Environment" type="Node3D" parent="SubViewport"]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 4, 0, -2)
+
+[node name="environmentv1" parent="SubViewport/Environment" instance=ExtResource("18_tel4y")]
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/Plane_002" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_002" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_003" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_004" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_005" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/Cube_003" index="0"]
+collision_layer = 2
 
 [node name="alarmclock" type="StaticBody3D" parent="SubViewport"]
 transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
@@ -434,64 +317,23 @@ volume_db = 2.734
 stream = ExtResource("14_gqmmt")
 volume_db = -6.09
 
+[node name="deathSounds" type="Node3D" parent="SubViewport/Soundmanager"]
+
+[node name="bunny" type="AudioStreamPlayer" parent="SubViewport/Soundmanager/deathSounds"]
+stream = ExtResource("13_tel4y")
+volume_db = -3.21
+
 [node name="EnemyManager" type="Node3D" parent="SubViewport"]
 script = ExtResource("24_fv21b")
 
-[node name="bunny2" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.4, -4)
-collision_layer = 8
-collision_mask = 3
-script = ExtResource("19_2wyq8")
-enemy_name = "bunny"
-health = 40
+[node name="bunny2" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -6.209)
 
-[node name="graphics" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
+[node name="bunny1" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0.15, -3.3)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/EnemyManager/bunny2/graphics"]
-mesh = SubResource("BoxMesh_4yh5g")
-material = SubResource("StandardMaterial3D_dgst0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny2"]
-shape = SubResource("BoxShape3D_hdxuh")
-debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
-
-[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
-script = ExtResource("20_vxglm")
-
-[node name="movementManager" type="Node3D" parent="SubViewport/EnemyManager/bunny2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
-script = ExtResource("21_2f3dj")
-
-[node name="Area3D" type="Area3D" parent="SubViewport/EnemyManager/bunny2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny2/Area3D"]
-shape = SubResource("SphereShape3D_og1vs")
-debug_color = Color(0.50398, 0.213834, 0.128029, 0.42)
-
-[node name="bunny" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-collision_layer = 8
-collision_mask = 3
-script = ExtResource("19_2wyq8")
-enemy_name = "bunny"
-health = 40
-
-[node name="movementManager" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
-script = ExtResource("21_2f3dj")
-
-[node name="graphics" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/EnemyManager/bunny/graphics"]
-mesh = SubResource("BoxMesh_og1vs")
-material = SubResource("StandardMaterial3D_2wyq8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/bunny"]
-shape = SubResource("BoxShape3D_vxglm")
-debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
-
-[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/bunny"]
-script = ExtResource("20_vxglm")
+[node name="bunny4" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0.15, 4.4)
 
 [node name="Duck" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
@@ -535,6 +377,141 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6)
 [node name="DayManager" type="Node3D" parent="SubViewport"]
 script = ExtResource("28_yq6so")
 
+[node name="player" type="CharacterBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
+collision_mask = 6
+script = ExtResource("4_jscy8")
+
+[node name="hitbox" type="CollisionShape3D" parent="SubViewport/player"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="head" type="Node3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("5_pm3ni")
+
+[node name="camera" type="Camera3D" parent="SubViewport/player/head"]
+keep_aspect = 0
+
+[node name="UILayers" type="Control" parent="SubViewport/player/head/camera"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_0ld40")
+
+[node name="scopeset" type="TextureRect" parent="SubViewport/player/head/camera/UILayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_muem4")
+
+[node name="InventoryMenu" type="Control" parent="SubViewport/player/head/camera/UILayers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_vxglm")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_qkpxi")
+
+[node name="Escape" type="MarginContainer" parent="SubViewport/player/head/camera/UILayers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("26_qkpxi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/player/head/camera/UILayers/Escape"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Sensitivity"
+
+[node name="Button2" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="button_crt" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "CRT TOGGLE"
+
+[node name="button_quit" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="InteractRay" parent="SubViewport/player/head/camera" instance=ExtResource("6_y6deb")]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4
+debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
+debug_shape_thickness = 4
+
+[node name="hand" type="Marker3D" parent="SubViewport/player/head/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
+
+[node name="aimlabel" type="Label" parent="SubViewport/player/head/camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HuntingRay" type="RayCast3D" parent="SubViewport/player/head/camera" node_paths=PackedStringArray("player")]
+target_position = Vector3(0, 0, -30)
+collision_mask = 8
+debug_shape_custom_color = Color(0.730773, 0.0889113, 0.369955, 1)
+script = ExtResource("7_pm3ni")
+player = NodePath("../../..")
+
+[node name="UIManager" type="Node3D" parent="SubViewport/player/head/camera"]
+script = ExtResource("11_2wyq8")
+
+[node name="visual" type="MeshInstance3D" parent="SubViewport/player"]
+mesh = SubResource("CapsuleMesh_qhqgy")
+
+[node name="postFX" type="MeshInstance3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
+material_override = SubResource("ShaderMaterial_yc10j")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0ld40")
+skeleton = NodePath("../../..")
+
+[node name="inventory" type="Node3D" parent="SubViewport/player"]
+script = ExtResource("3_tbgi4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 2.69638, -0.987268)
+light_color = Color(0.872584, 0.88047, 0.871289, 1)
+light_energy = 12.73
+omni_range = 4.32
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer2"]
@@ -551,6 +528,8 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_muem4")
 stretch_mode = 4
 
+[connection signal="playsound" from="SubViewport/alarmclock" to="SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
 [connection signal="activeInHand" from="SubViewport/player/inventory" to="SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="SubViewport/player/inventory" to="SubViewport/Soundmanager" method="_on_inventory_add_sound"]
-[connection signal="playsound" from="SubViewport/alarmclock" to="SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
+
+[editable path="SubViewport/Environment/environmentv1"]

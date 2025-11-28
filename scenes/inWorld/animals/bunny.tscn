@@ -1,28 +1,31 @@
 [gd_scene load_steps=6 format=3 uid="uid://bj4k8ck2wshw3"]
 
 [ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="1_m7ck4"]
+[ext_resource type="PackedScene" uid="uid://c14mtjfbofa72" path="res://assets/models/enemies/rabbit/rabbitv1.glb" id="2_4yh5g"]
 [ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="2_ifp3e"]
+[ext_resource type="Script" uid="uid://b7gkkxck22eed" path="res://scenes/inWorld/animals/bunny/bunnymovement.gd" id="3_ifp3e"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4yh5g"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgst0"]
-albedo_color = Color(0.908695, 0.60458, 0.351783, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hdxuh"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_4yh5g"]
+radius = 0.845033
 
 [node name="bunny" type="CharacterBody3D"]
 collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_m7ck4")
+enemy_name = "bunny"
 
 [node name="graphics" type="Node3D" parent="."]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="graphics"]
-mesh = SubResource("BoxMesh_4yh5g")
-material = SubResource("StandardMaterial3D_dgst0")
+[node name="rabbitv1" parent="graphics" instance=ExtResource("2_4yh5g")]
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, -0.25, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_hdxuh")
-debug_color = Color(0.272222, 0.150767, 0.520937, 0.42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("SphereShape3D_4yh5g")
+debug_color = Color(0.431226, 0.68629, 0.729205, 0.42)
 
 [node name="shootable" type="Node3D" parent="."]
 script = ExtResource("2_ifp3e")
+
+[node name="movementManager" type="Node3D" parent="."]
+script = ExtResource("3_ifp3e")

@@ -1,0 +1,610 @@
+[gd_scene load_steps=61 format=3 uid="uid://ce44wurxmtn8p"]
+
+[ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://bdi8pev0qd8kc" path="res://scripts/player.gd" id="4_jscy8"]
+[ext_resource type="Script" uid="uid://blmy0yy26ub0d" path="res://scripts/camera.gd" id="5_pm3ni"]
+[ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="6_y6deb"]
+[ext_resource type="Script" uid="uid://e7b18qm8nw4x" path="res://scripts/weapon/huntingrifle/huntingray.gd" id="7_pm3ni"]
+[ext_resource type="Script" uid="uid://c41nf80eu7g68" path="res://scripts/managers/soundmanager.gd" id="8_tipki"]
+[ext_resource type="AudioStream" uid="uid://c72ym56mc7plj" path="res://assets/sound/soundfx/pickup.mp3" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="9_jscy8"]
+[ext_resource type="Script" uid="uid://bpsyd3ilh0efi" path="res://scripts/UI/inventory_menu.gd" id="9_vxglm"]
+[ext_resource type="AudioStream" uid="uid://b3a350oki6al1" path="res://assets/sound/soundfx/playtest.mp3" id="9_ya4ey"]
+[ext_resource type="Script" uid="uid://ct1v6cwjs0vdi" path="res://scripts/UI/camera_ui_manager.gd" id="11_2wyq8"]
+[ext_resource type="AudioStream" uid="uid://3lo337b7pxxs" path="res://assets/sound/soundfx/enemies/bunnydeath.mp3" id="13_tel4y"]
+[ext_resource type="AudioStream" uid="uid://bqobru71kjwc4" path="res://assets/sound/soundfx/objSounds/shotgun/shotgun_dryfire.wav" id="14_gqmmt"]
+[ext_resource type="Script" uid="uid://dqgomm8ubl6xi" path="res://scripts/UI/uimanager.gd" id="17_0ld40"]
+[ext_resource type="PackedScene" uid="uid://tv8a6n2q7r0q" path="res://scenes/inWorld/hunting_rifle_inhand.tscn" id="17_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://85305r3775a7" path="res://assets/texture/scopeImg.png" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://cue3ni070rfje" path="res://scenes/pickups/remington_pickup.tscn" id="18_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://djnsc6g3gifyl" path="res://assets/models/environment/environmentv1.glb" id="18_tel4y"]
+[ext_resource type="PackedScene" uid="uid://tdkn6oewacsk" path="res://scenes/pickups/tincantrap.tscn" id="19_0ld40"]
+[ext_resource type="Script" uid="uid://c5u7ojxko1q7y" path="res://scripts/enemies/animal.gd" id="19_2wyq8"]
+[ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="20_gqmmt"]
+[ext_resource type="Script" uid="uid://d8y7vmxfvj7x" path="res://scripts/enemies/shootable.gd" id="20_vxglm"]
+[ext_resource type="Shader" uid="uid://14n5mtypncl5" path="res://shaders/crtscreen.gdshader" id="20_yc10j"]
+[ext_resource type="Script" uid="uid://c4dndxcy24y2p" path="res://scripts/enemies/enemy_manager.gd" id="24_fv21b"]
+[ext_resource type="PackedScene" uid="uid://8t6ksqj6eq5" path="res://scenes/inWorld/animals/bunnyfixed.tscn" id="25_fv21b"]
+[ext_resource type="Texture2D" uid="uid://cju4saadgrgu2" path="res://assets/texture/ui/inventorybox.png" id="25_qkpxi"]
+[ext_resource type="Script" uid="uid://bknscsovjgv2d" path="res://scripts/UI/escapeButton.gd" id="26_qkpxi"]
+[ext_resource type="Script" uid="uid://cljlmcwnkosrm" path="res://scenes/inWorld/animals/duckmovement.gd" id="27_2f3dj"]
+[ext_resource type="Script" uid="uid://dxqpghd2060m" path="res://scripts/managers/day_manager.gd" id="28_yq6so"]
+
+[sub_resource type="Gradient" id="Gradient_fv21b"]
+colors = PackedColorArray(0.944063, 0.122779, 0.306325, 1, 0.750117, 0.653806, 0.13653, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tel4y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qkpxi"]
+color_ramp = SubResource("Gradient_fv21b")
+noise = SubResource("FastNoiseLite_tel4y")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fv21b"]
+sky_top_color = Color(0.658663, 0.172173, 0.138128, 1)
+sky_horizon_color = Color(0.825768, 0.441147, 0.0853339, 1)
+sky_cover = SubResource("NoiseTexture2D_qkpxi")
+sky_cover_modulate = Color(0.691357, 0.691357, 0.691357, 1)
+ground_bottom_color = Color(0.777095, 0.350879, 0.0461421, 1)
+ground_horizon_color = Color(0.983955, 0.498357, 0.266809, 1)
+ground_curve = 0.0207053
+
+[sub_resource type="Sky" id="Sky_5q0nq"]
+sky_material = SubResource("ProceduralSkyMaterial_fv21b")
+
+[sub_resource type="Environment" id="Environment_tbgi4"]
+background_mode = 2
+sky = SubResource("Sky_5q0nq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jkv2x"]
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkv2x"]
+size = Vector3(32, 1, 38)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ov11"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqqf6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jngjb"]
+size = Vector3(2.4, 0.7, 0.6)
+
+[sub_resource type="Animation" id="Animation_jngjb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqqf6"]
+resource_name = "rotateidle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apvuv"]
+_data = {
+&"RESET": SubResource("Animation_jngjb"),
+&"rotateidle": SubResource("Animation_kqqf6")
+}
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o6xl0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
+size = Vector3(0.41037, 0.249512, 0.577576)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cjhqa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fnxnt"]
+radius = 0.569
+height = 2.66
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+height = 1.9265
+
+[sub_resource type="LabelSettings" id="LabelSettings_qkpxi"]
+outline_size = 8
+outline_color = Color(0.0752066, 0.0785959, 0.0684714, 1)
+shadow_offset = Vector2(-8.805, -17.13)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5q0nq"]
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgi5k"]
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc10j"]
+render_priority = 0
+shader = ExtResource("20_gqmmt")
+shader_parameter/dither_amount = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_0ld40"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jscy8"]
+shader = ExtResource("20_yc10j")
+shader_parameter/vignette_strength = 0.43
+shader_parameter/saturation_boost = 1.48
+shader_parameter/scanline_strength = 0.34
+
+[sub_resource type="QuadMesh" id="QuadMesh_pm3ni"]
+size = Vector2(1280, 960)
+center_offset = Vector3(640, 480, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_muem4"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_sugp2")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+use_occlusion_culling = true
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_tbgi4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "MODE: "
+
+[node name="floor" type="StaticBody3D" parent="SubViewport"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.481361, 0)
+collision_layer = 6
+collision_mask = 7
+
+[node name="floor" type="MeshInstance3D" parent="SubViewport/floor"]
+visible = false
+mesh = SubResource("PlaneMesh_jkv2x")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.5, 0.5)
+shape = SubResource("BoxShape3D_jkv2x")
+debug_color = Color(0.796758, 0.561828, 0.0723352, 0.42)
+
+[node name="Items" type="Node3D" parent="SubViewport"]
+
+[node name="RemingtonPickup" parent="SubViewport/Items" instance=ExtResource("18_dp3eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1, 3.8)
+item_pickup = "shotGun_Pickup"
+
+[node name="Area3D" parent="SubViewport/Items" instance=ExtResource("19_0ld40")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
+
+[node name="HuntingRifle" type="Area3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 1.1, 0)
+collision_layer = 4
+script = ExtResource("9_jscy8")
+item_name = "Hunting Rifle"
+item_description = "Scoped Long Range All purpose. Great for smaller to mid sized animals"
+item_scene = ExtResource("17_dp3eg")
+prompt_msg = "Pick Up [E]"
+
+[node name="Graphics" type="Node3D" parent="SubViewport/HuntingRifle"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewport/HuntingRifle/Graphics"]
+transform = Transform3D(2.1, 0, 0, 0, 0.15, 0, 0, 0, 0.162, 0, 0, 0)
+mesh = SubResource("BoxMesh_6ov11")
+material = SubResource("StandardMaterial3D_kqqf6")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewport/HuntingRifle/Graphics"]
+transform = Transform3D(0.294, 0, 0, 0, 0.5301, 0, 0, 0, 0.162, -0.585617, -0.3, -0.00135899)
+mesh = SubResource("BoxMesh_6ov11")
+material = SubResource("StandardMaterial3D_kqqf6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/HuntingRifle"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0.0302734, -0.15, -2.23517e-08)
+shape = SubResource("BoxShape3D_jngjb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/HuntingRifle"]
+libraries = {
+&"": SubResource("AnimationLibrary_apvuv")
+}
+autoplay = "rotateidle"
+
+[node name="Environment" type="Node3D" parent="SubViewport"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 4, 0, -2)
+
+[node name="environmentv1" parent="SubViewport/Environment" instance=ExtResource("18_tel4y")]
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/Plane_002" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_002" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_003" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_004" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/tree1_005" index="0"]
+collision_layer = 2
+
+[node name="StaticBody3D" parent="SubViewport/Environment/environmentv1/Cube_003" index="0"]
+collision_layer = 2
+
+[node name="alarmclock" type="StaticBody3D" parent="SubViewport"]
+transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
+physics_material_override = SubResource("PhysicsMaterial_o6xl0")
+script = ExtResource("6_o6xl0")
+prompt_msg = "Set Alarm"
+
+[node name="alarmclock" parent="SubViewport/alarmclock" instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 3.51928, 1, -3.08577)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/alarmclock"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.77916, 1.14826, -1.50337)
+shape = SubResource("BoxShape3D_tipki")
+
+[node name="Soundmanager" type="Node3D" parent="SubViewport" node_paths=PackedStringArray("alarm_node", "inventory_node", "shotGun_PU_node")]
+script = ExtResource("8_tipki")
+alarm_node = NodePath("alarm")
+inventory_node = NodePath("Pickup")
+shotGun_PU_node = NodePath("shotGun_Pickup")
+
+[node name="Pickup" type="AudioStreamPlayer" parent="SubViewport/Soundmanager"]
+stream = ExtResource("9_eb6dy")
+volume_db = 8.0
+
+[node name="alarm" type="AudioStreamPlayer" parent="SubViewport/Soundmanager"]
+stream = ExtResource("9_ya4ey")
+volume_db = 2.734
+
+[node name="shotGun_Pickup" type="AudioStreamPlayer" parent="SubViewport/Soundmanager"]
+stream = ExtResource("14_gqmmt")
+volume_db = -6.09
+
+[node name="deathSounds" type="Node3D" parent="SubViewport/Soundmanager"]
+
+[node name="bunny" type="AudioStreamPlayer" parent="SubViewport/Soundmanager/deathSounds"]
+stream = ExtResource("13_tel4y")
+volume_db = -3.21
+
+[node name="EnemyManager" type="Node3D" parent="SubViewport"]
+script = ExtResource("24_fv21b")
+
+[node name="bunny2" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -6.209)
+
+[node name="bunny1" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0.15, -3.3)
+
+[node name="bunny4" parent="SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0.15, 4.4)
+
+[node name="Duck" type="CharacterBody3D" parent="SubViewport/EnemyManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("19_2wyq8")
+enemy_name = "duck"
+health = 30
+
+[node name="Graphics" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/EnemyManager/Duck/Graphics"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_cjhqa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/EnemyManager/Duck"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_fnxnt")
+
+[node name="MovementManager" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
+script = ExtResource("27_2f3dj")
+
+[node name="shootable" type="Node3D" parent="SubViewport/EnemyManager/Duck"]
+script = ExtResource("20_vxglm")
+max_health = 46
+
+[node name="spawnpoints" type="Node3D" parent="SubViewport/EnemyManager"]
+
+[node name="sp1" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 0, -4.5)
+
+[node name="sp2" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8.6)
+
+[node name="sp3" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6)
+
+[node name="sp4" type="Marker3D" parent="SubViewport/EnemyManager/spawnpoints"]
+
+[node name="DayManager" type="Node3D" parent="SubViewport"]
+script = ExtResource("28_yq6so")
+
+[node name="player" type="CharacterBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
+collision_mask = 6
+script = ExtResource("4_jscy8")
+
+[node name="hitbox" type="CollisionShape3D" parent="SubViewport/player"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="head" type="Node3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("5_pm3ni")
+
+[node name="camera" type="Camera3D" parent="SubViewport/player/head"]
+keep_aspect = 0
+
+[node name="UILayers" type="Control" parent="SubViewport/player/head/camera"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_0ld40")
+
+[node name="scopeset" type="TextureRect" parent="SubViewport/player/head/camera/UILayers"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_muem4")
+
+[node name="InventoryMenu" type="Control" parent="SubViewport/player/head/camera/UILayers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_vxglm")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_qkpxi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/player/head/camera/UILayers/InventoryMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 100.0
+offset_right = -90.0
+offset_bottom = 234.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="item1" type="Label" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer/Panel"]
+layout_mode = 2
+offset_top = -219.0
+offset_right = 50.0
+offset_bottom = -179.0
+text = "Item 1"
+label_settings = SubResource("LabelSettings_qkpxi")
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="item2" type="Label" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer/Panel2"]
+layout_mode = 2
+offset_top = -171.0
+offset_right = 50.0
+offset_bottom = -131.0
+text = "Item 2"
+label_settings = SubResource("LabelSettings_5q0nq")
+
+[node name="Panel3" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="item3" type="Label" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer/Panel3"]
+layout_mode = 2
+offset_top = -119.0
+offset_right = 50.0
+offset_bottom = -79.0
+text = "Item 3"
+label_settings = SubResource("LabelSettings_dgi5k")
+
+[node name="Panel4" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="item4" type="Label" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer/Panel4"]
+layout_mode = 2
+offset_top = -71.0
+offset_right = 50.0
+offset_bottom = -31.0
+text = "Item 4"
+
+[node name="Panel5" type="Panel" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="item5" type="Label" parent="SubViewport/player/head/camera/UILayers/InventoryMenu/VBoxContainer/Panel5"]
+layout_mode = 2
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = -12.0
+text = "Item 5"
+
+[node name="Escape" type="MarginContainer" parent="SubViewport/player/head/camera/UILayers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("26_qkpxi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/player/head/camera/UILayers/Escape"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Sensitivity"
+
+[node name="Button2" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="button_crt" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "CRT TOGGLE"
+
+[node name="button_quit" type="Button" parent="SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="InteractRay" parent="SubViewport/player/head/camera" instance=ExtResource("6_y6deb")]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4
+debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
+debug_shape_thickness = 4
+
+[node name="hand" type="Marker3D" parent="SubViewport/player/head/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
+
+[node name="aimlabel" type="Label" parent="SubViewport/player/head/camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HuntingRay" type="RayCast3D" parent="SubViewport/player/head/camera" node_paths=PackedStringArray("player")]
+target_position = Vector3(0, 0, -30)
+collision_mask = 8
+debug_shape_custom_color = Color(0.730773, 0.0889113, 0.369955, 1)
+script = ExtResource("7_pm3ni")
+player = NodePath("../../..")
+
+[node name="UIManager" type="Node3D" parent="SubViewport/player/head/camera"]
+script = ExtResource("11_2wyq8")
+
+[node name="visual" type="MeshInstance3D" parent="SubViewport/player"]
+mesh = SubResource("CapsuleMesh_qhqgy")
+
+[node name="postFX" type="MeshInstance3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
+material_override = SubResource("ShaderMaterial_yc10j")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0ld40")
+skeleton = NodePath("../../..")
+
+[node name="inventory" type="Node3D" parent="SubViewport/player"]
+script = ExtResource("3_tbgi4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 2.69638, -0.987268)
+light_color = Color(0.872584, 0.88047, 0.871289, 1)
+light_energy = 12.73
+omni_range = 4.32
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_jscy8")
+mesh = SubResource("QuadMesh_pm3ni")
+
+[node name="lowres" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_muem4")
+stretch_mode = 4
+
+[connection signal="playsound" from="SubViewport/alarmclock" to="SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
+[connection signal="activeInHand" from="SubViewport/player/inventory" to="SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
+[connection signal="addSound" from="SubViewport/player/inventory" to="SubViewport/Soundmanager" method="_on_inventory_add_sound"]
+
+[editable path="SubViewport/Environment/environmentv1"]
