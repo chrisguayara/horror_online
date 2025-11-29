@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://coowo742yi21x"]
+
+[ext_resource type="PackedScene" uid="uid://cumx3cuyn3q78" path="res://assets/models/inhands/bunnymeat.glb" id="1_d0br2"]
+
+[node name="bunnyMeat" type="Node3D"]
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="bunnymeat2" parent="Graphics" instance=ExtResource("1_d0br2")]

@@ -6,28 +6,20 @@ extends Control
 var canvas_height = -35.0 - 220.0
 
 var selected_index: int = 0
+var labels: Array[Label] = []
 
 func _ready():
 	player_inventory.connect("inventory_updated", Callable(self, "refresh_inventory"))
 	refresh_inventory()
 
-func _unhandled_input(event):
-	if event.is_action_pressed("down"):
-		selected_index = min(selected_index + 1, player_inventory.main_inventory.size() - 1)
-		refresh_inventory()
-	elif event.is_action_pressed("up"):
-		selected_index = max(selected_index - 1, 0)
-		refresh_inventory()
-	elif event.is_action_pressed("interact"):
-		select_item()
-	elif event.is_action_pressed("ui_cancel"):
-		hide_inventory()
+# REMOVE the entire _input function - let Godot handle mouse events automatically
 
 func refresh_inventory():
-	for child in get_children():
-		if child is Label:
-			child.queue_free()
-
+	for label in labels:
+		if is_instance_valid(label):
+			label.queue_free()
+	labels.clear()
+	
 	var inv = player_inventory.main_inventory
 	var count = inv.size()
 	if count == 0:
@@ -44,11 +36,15 @@ func refresh_inventory():
 		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		lbl.position = Vector2(-160, start_y + i * spacing)
+		lbl.size = Vector2(200, 30)
+		
 		if i == selected_index:
 			lbl.add_theme_color_override("font_color", Color.BLACK)
 		else:
 			lbl.add_theme_color_override("font_color", Color.WHITE)
+		
 		add_child(lbl)
+		labels.append(lbl)
 
 	selected_index = clamp(selected_index, 0, count - 1)
 

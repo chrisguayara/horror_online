@@ -1,37 +1,40 @@
 extends Node3D
 
-@onready var player = $SubViewport/player  # adjust path
-@onready var ui_layers = $SubViewport/player/head/camera/UILayers
-@onready var escape = $SubViewport/player/head/camera/UILayers/Escape
-@onready var inventory_menu = $SubViewport/player/head/camera/UILayers/InventoryMenu
+@onready var player = $SubViewportContainer/SubViewport/player
+@onready var ui_layers = $SubViewportContainer/SubViewport/player/head/camera/UILayers
+@onready var escape = $SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape
+@onready var inventory_menu = $SubViewportContainer/SubViewport/player/head/camera/UILayers/InventoryMenu
 var inInventory = false
-var menu_active = false
+@onready var crteffect = $CRT
+var crtOn = true
 
 func _ready():
-	pass
+	crteffect.visible = true
 
-
-	
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("fullscreen"):
 		toggle_fullscreen()
 	if Input.is_action_just_pressed("settings"):
-		escape.toggleVisibility()
+		var menu_visible = escape.toggleVisibility()
 		player.toggleInput()
-	if Input.is_action_just_pressed("inventory"):
-		
-		if ui_layers.can_open_inventory():
-			if inInventory:
-				inInventory = false
-			else: 
-				inInventory = true
-			inventory_menu.visible = inInventory
+		if menu_visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
-			# Optional: Play a sound or show message that inventory can't be opened while scoped
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if Input.is_action_just_pressed("inventory"):
+		if ui_layers.can_open_inventory():
+			inInventory = not inInventory
+			inventory_menu.visible = inInventory
+			if inInventory:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				player.canInput = false  # Add this
+			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				player.canInput = true   # Add this
+		else:
 			print("Cannot open inventory while scoped")
-
 
 func _input(event):
 	if event is InputEventMouseMotion and player.canInput:
@@ -43,4 +46,11 @@ func toggle_fullscreen():
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
 	elif mode == DisplayServer.WindowMode.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
-		
+
+func toggleCRT():
+	if crtOn:
+		crteffect.visible = false
+		crtOn = false
+	else:
+		crteffect.visible = true
+		crtOn = true

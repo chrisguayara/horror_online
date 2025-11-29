@@ -14,7 +14,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and canLook:
+	if event is InputEventMouseMotion and canLook and get_parent().canInput:  # Add get_parent().canInput check
 		get_parent().rotate_y(-event.relative.x * current_sensitivity)
 		pitch -= event.relative.y * current_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))

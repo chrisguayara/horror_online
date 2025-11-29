@@ -15,18 +15,14 @@ func shoot():
 	var spawn = muzzle_1 if currMuzz == 1 else muzzle_2
 	
 	if flashModel:
-		if currFlash:
-			currFlash.queue_free()
 		
-		currFlash = flashModel.instantiate()
-		get_tree().current_scene.add_child(currFlash)
 		
 		# Match the muzzle's full transform (position + rotation)
-		currFlash.global_transform = spawn.global_transform
+		
 		
 		# Apply the 45° step rotation around the local forward axis (Z)
 		var angle = rotation_step * PI / 4
-		currFlash.rotate_object_local(Vector3(1,0,0), angle)
+		
 		
 		# Increment step for next spawn
 		rotation_step = (rotation_step + 1) % 8

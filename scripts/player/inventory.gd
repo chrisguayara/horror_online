@@ -8,6 +8,7 @@ signal activeInHand
 signal inventory_updated
 
 @onready var hand = $"../head/camera/hand"
+@onready var quantity_label = $"../quantitylabel"
 var current_item: Node3D = null
 var handIsShowing = true
 
@@ -27,33 +28,56 @@ func checkActive():
 		current_item.get_parent().remove_child(current_item)
 		current_item.queue_free()
 		current_item = null
+	
+	# Hide quantity label when no item or switching
+	hide_quantity_label()
 
 	if main_inventory.size() == 0:
 		return
 
 	var first_item = main_inventory[0]
-	if first_item.name == "Hunting Rifle" and "scene" in first_item and first_item.scene:
+	
+	if "scene" in first_item and first_item.scene:
 		current_item = first_item.scene.instantiate()
 		hand.add_child(current_item)
 		current_item.transform = Transform3D()
-		if "curr_loaded" in first_item:
-			current_item.loadedBullets = first_item.curr_loaded
-		if "curr_stock" in first_item:
-			current_item.stock = first_item.curr_stock
 		
+		if first_item.name == "Hunting Rifle":
+			if "curr_loaded" in first_item:
+				current_item.loadedBullets = first_item.curr_loaded
+			if "curr_stock" in first_item:
+				current_item.stock = first_item.curr_stock
+			
+			if current_item.has_signal("scope_toggled"):
+				current_item.scope_toggled.connect(get_parent()._on_rifle_scope_toggled)
 		
-		if current_item.has_signal("scope_toggled"):
-			current_item.scope_toggled.connect(get_parent()._on_rifle_scope_toggled)
+		# Show quantity for stackable items (not weapons)
+		update_quantity_label(first_item)
+
+func update_quantity_label(item: Dictionary):
+	if quantity_label:
+		# Show quantity for consumables/stackable items, but not for weapons
+		if item.name != "Hunting Rifle" and item.get("quantity", 1) > 1:
+			quantity_label.text = str(item.quantity)
+			quantity_label.visible = true
+		else:
+			hide_quantity_label()
+
+func hide_quantity_label():
+	if quantity_label:
+		quantity_label.visible = false
 
 func add_to_inventory(item: Dictionary) -> bool:
 	for inv_item in main_inventory:
 		if "name" in inv_item and inv_item.name == item.name:
-			# For Hunting Rifle, preserve existing ammo values
 			if inv_item.name == "Hunting Rifle":
-				# Keep current ammo values, only add to stock
 				inv_item.curr_stock = inv_item.get("curr_stock", 0) + item.get("curr_stock", 10)
 			else:
 				inv_item.quantity = inv_item.get("quantity", 1) + item.get("quantity", 1)
+			
+			# Update quantity label if this item is currently equipped
+			if current_item and main_inventory.size() > 0 and main_inventory[0].name == item.name:
+				update_quantity_label(inv_item)
 			
 			emit_signal("addSound", item.get("pickup", "inventoryDef"))
 			checkActive()
@@ -86,7 +110,6 @@ func activate_item(item: Dictionary) -> void:
 	if item in main_inventory:
 		print("Activating item:", item.name)
 
-# New function to update ammo in inventory for the equipped rifle
 func update_rifle_ammo(loaded: int, stock: int):
 	for inv_item in main_inventory:
 		if inv_item.name == "Hunting Rifle" and inv_item == main_inventory[0]:

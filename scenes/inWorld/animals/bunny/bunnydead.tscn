@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4kjhlvgagwuj" path="res://scenes/pickup.gd" id="1_7aooh"]
 [ext_resource type="PackedScene" uid="uid://dqhrumcppe154" path="res://assets/models/enemies/rabbit/rabbitDead.glb" id="1_ra1ms"]
-[ext_resource type="PackedScene" uid="uid://cumx3cuyn3q78" path="res://assets/models/inhands/bunnymeat.glb" id="2_befl4"]
+[ext_resource type="PackedScene" uid="uid://coowo742yi21x" path="res://scenes/inWorld/animals/bunny/bunny_meat.tscn" id="2_befl4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7aooh"]
 radius = 0.755
@@ -11,8 +11,7 @@ radius = 0.755
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_7aooh")
-item_name = "bunny"
-item_description = "dead bunny"
+item_name = "Bunny Meat"
 item_scene = ExtResource("2_befl4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
