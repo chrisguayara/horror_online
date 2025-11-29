@@ -1,12 +1,14 @@
 extends Control
 
-@onready var texture_rect = $scopeset
-@onready var inventory_menu = $InventoryMenu
+@onready var texture_rect = $"../scopeset"
 
-var scoped = false
+
 
 func _ready():
 	texture_rect.visible = false
-	inventory_menu.visible = false
-func scope(isScoped: bool):
-	texture_rect.visible = isScoped
+
+func set_scope_overlay(is_scoped: bool):
+	texture_rect.visible = is_scoped
+
+func can_open_inventory() -> bool:
+	return not texture_rect.visible  

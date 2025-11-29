@@ -11,13 +11,13 @@ var canMove = true
 var canInput = true
 
 var prevLocation : Vector3
-var isscoped = false
+var is_scoped = false
 var mode = "idle"
+
 
 func _physics_process(delta: float) -> void:
 	if canInput:
-		
-		if Input.is_action_just_pressed("interact") and interact_ray.is_colliding() :
+		if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
 			var target = interact_ray.get_collider()
 			while target and not (target is Interactable):
 				target = target.get_parent()
@@ -50,21 +50,20 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("reload") and inventorymanager.current_item:
 			inventorymanager.current_item.reload()
 		if Input.is_action_just_pressed("scope") and inventorymanager.current_item:
-			if inventorymanager.current_item.has_method("scope") and inventorymanager.current_item.item_name == "Hunting Rifle":
-				var result = inventorymanager.current_item.scope()
-				isscoped = result if result is bool else false
-				head.scoped(isscoped)
-			
-			
-		if Input.is_action_just_pressed("inventory"):
-			
-			pass
+			if inventorymanager.current_item.has_method("toggle_scope"):
+				inventorymanager.current_item.toggle_scope()
 
 	move_and_slide()
 
+func _on_rifle_scope_toggled(is_scoped: bool):
+	self.is_scoped = is_scoped
+	head.set_scope_state(is_scoped)
+	var ui_layers = get_node("head/camera/UILayers")
+	if ui_layers and ui_layers.has_method("set_scope_overlay"):
+		ui_layers.set_scope_overlay(is_scoped)
 func add_to_inventory(item):
 	return inventorymanager.add_to_inventory(item)
 
 func toggleInput():
 	canInput = !canInput
-	head.setCanLook(canInput)  # now consistent
+	head.setCanLook(canInput)

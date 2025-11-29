@@ -17,7 +17,6 @@ func hideHand():
 		handIsShowing = false
 
 func checkActive():
-	# Save current rifle ammo to inventory before swapping
 	if current_item and current_item.is_inside_tree():
 		if current_item.name == "HuntingRifle": 
 			for inv_item in main_inventory:
@@ -37,11 +36,14 @@ func checkActive():
 		current_item = first_item.scene.instantiate()
 		hand.add_child(current_item)
 		current_item.transform = Transform3D()
-		# Always use stored ammo values from inventory
 		if "curr_loaded" in first_item:
 			current_item.loadedBullets = first_item.curr_loaded
 		if "curr_stock" in first_item:
 			current_item.stock = first_item.curr_stock
+		
+		
+		if current_item.has_signal("scope_toggled"):
+			current_item.scope_toggled.connect(get_parent()._on_rifle_scope_toggled)
 
 func add_to_inventory(item: Dictionary) -> bool:
 	for inv_item in main_inventory:

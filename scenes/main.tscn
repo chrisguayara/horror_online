@@ -402,15 +402,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("17_0ld40")
 
-[node name="scopeset" type="TextureRect" parent="SubViewport/player/head/camera/UILayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_muem4")
-
 [node name="InventoryMenu" type="Control" parent="SubViewport/player/head/camera/UILayers"]
 layout_mode = 1
 anchors_preset = 8
@@ -492,6 +483,14 @@ player = NodePath("../../..")
 
 [node name="UIManager" type="Node3D" parent="SubViewport/player/head/camera"]
 script = ExtResource("11_2wyq8")
+
+[node name="scopeset" type="TextureRect" parent="SubViewport/player/head/camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_muem4")
 
 [node name="visual" type="MeshInstance3D" parent="SubViewport/player"]
 mesh = SubResource("CapsuleMesh_qhqgy")

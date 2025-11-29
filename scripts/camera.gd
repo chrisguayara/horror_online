@@ -24,8 +24,8 @@ func setCanLook(enabled: bool):
 	canLook = enabled
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if enabled else Input.MOUSE_MODE_VISIBLE)
 
-func scoped(isScoped: bool):
-	if isScoped:
+func set_scope_state(is_scoped: bool):
+	if is_scoped:
 		current_sensitivity = scoped_sensitivity
 		camera.fov = 55.0
 	else:
