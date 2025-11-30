@@ -7,10 +7,20 @@ extends Node3D
 var inInventory = false
 @onready var crteffect = $CRT
 var crtOn = true
+@onready var logoIntro = $AboveUI
+@onready var soundmanager = $SubViewportContainer/SubViewport/Soundmanager
+
 
 func _ready():
 	crteffect.visible = true
+	logoIntro.pre()
+	soundmanager.startup()
 
+func mmscreen():
+	soundmanager.loopIntro()
+	logoIntro.playmm()
+func endmmsounds():
+	soundmanager.endmm()
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -35,6 +45,8 @@ func _process(delta):
 				player.canInput = true   # Add this
 		else:
 			print("Cannot open inventory while scoped")
+
+
 
 func _input(event):
 	if event is InputEventMouseMotion and player.canInput:
