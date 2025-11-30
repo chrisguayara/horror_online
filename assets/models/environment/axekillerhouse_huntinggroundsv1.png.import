@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp3jr8od5sc7e"
-path.s3tc="res://.godot/imported/environmentv1_huntinggroundsv1.png-29eac65335915aa6991cd6667b9e1db8.s3tc.ctex"
+uid="uid://b32x423qpgo15"
+path.s3tc="res://.godot/imported/axekillerhouse_huntinggroundsv1.png-f8dd4a19f93380df8b82b1ce84f8d57a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/models/environment/environmentv1_huntinggroundsv1.png"
-dest_files=["res://.godot/imported/environmentv1_huntinggroundsv1.png-29eac65335915aa6991cd6667b9e1db8.s3tc.ctex"]
+source_file="res://assets/models/environment/axekillerhouse_huntinggroundsv1.png"
+dest_files=["res://.godot/imported/axekillerhouse_huntinggroundsv1.png-f8dd4a19f93380df8b82b1ce84f8d57a.s3tc.ctex"]
 
 [params]
 

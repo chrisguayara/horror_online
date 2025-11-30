@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp3jr8od5sc7e"
-path.s3tc="res://.godot/imported/environmentv1_huntinggroundsv1.png-29eac65335915aa6991cd6667b9e1db8.s3tc.ctex"
+uid="uid://cf2425u5dn78g"
+path.s3tc="res://.godot/imported/environmentv1_treebackgrounds.png-736b9e2a32ba47d89ad9231e44a503c3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "eed6566c968d51f971938c88c608fdf8"
+"md5": "be5a6e417d8782a4241883297e1f6f07"
 }
 
 [deps]
 
-source_file="res://assets/models/environment/environmentv1_huntinggroundsv1.png"
-dest_files=["res://.godot/imported/environmentv1_huntinggroundsv1.png-29eac65335915aa6991cd6667b9e1db8.s3tc.ctex"]
+source_file="res://assets/models/environment/environmentv1_treebackgrounds.png"
+dest_files=["res://.godot/imported/environmentv1_treebackgrounds.png-736b9e2a32ba47d89ad9231e44a503c3.s3tc.ctex"]
 
 [params]
 

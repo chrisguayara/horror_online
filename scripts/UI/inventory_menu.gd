@@ -9,6 +9,7 @@ var selected_index: int = 0
 var labels: Array[Label] = []
 
 func _ready():
+	visible = false
 	player_inventory.connect("inventory_updated", Callable(self, "refresh_inventory"))
 	refresh_inventory()
 

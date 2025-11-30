@@ -250,27 +250,6 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 4, 0, -2)
 
 [node name="environmentv1" parent="SubViewportContainer/SubViewport/Environment" instance=ExtResource("18_tel4y")]
 
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Plane_002" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_004" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_005" index="0"]
-collision_layer = 2
-
-[node name="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Cube_003" index="0"]
-collision_layer = 2
-
 [node name="alarmclock" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
@@ -358,9 +337,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6)
 
 [node name="sp4" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints"]
-
-[node name="DayManager" type="Node3D" parent="SubViewportContainer/SubViewport"]
-script = ExtResource("28_yq6so")
 
 [node name="player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
@@ -501,9 +477,13 @@ script = ExtResource("3_tbgi4")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 2.69638, -0.987268)
+visible = false
 light_color = Color(0.872584, 0.88047, 0.871289, 1)
 light_energy = 12.73
 omni_range = 4.32
+
+[node name="DayManager" type="Node3D" parent="."]
+script = ExtResource("28_yq6so")
 
 [node name="CRT" type="CanvasLayer" parent="."]
 offset = Vector2(-320, -240)
@@ -516,5 +496,3 @@ mesh = SubResource("QuadMesh_pm3ni")
 [connection signal="playsound" from="SubViewportContainer/SubViewport/alarmclock" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
 [connection signal="activeInHand" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
 [connection signal="addSound" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_inventory_add_sound"]
-
-[editable path="SubViewportContainer/SubViewport/Environment/environmentv1"]
