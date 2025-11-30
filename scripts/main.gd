@@ -9,19 +9,33 @@ var inInventory = false
 var crtOn = true
 @onready var logoIntro = $AboveUI
 @onready var soundmanager = $SubViewportContainer/SubViewport/Soundmanager
-
+var isInMenu = false
+var isInLogo = true
 
 func _ready():
 	crteffect.visible = true
 	logoIntro.pre()
 	soundmanager.startup()
+	player.canInput = false
+
 
 func mmscreen():
+	isInLogo = false
 	soundmanager.loopIntro()
 	logoIntro.playmm()
+	isInMenu = true
 func endmmsounds():
 	soundmanager.endmm()
+
 func _process(delta):
+	if isInMenu:
+		if Input.is_action_just_pressed("interact"):
+			
+			logoIntro.endmm()
+			endmmsounds()
+			player.canInput = true
+			isInMenu = false
+
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("fullscreen"):
@@ -49,7 +63,7 @@ func _process(delta):
 
 
 func _input(event):
-	if event is InputEventMouseMotion and player.canInput:
+	if event is InputEventMouseMotion and player.canInput and not isInMenu or isInLogo:
 		player.head._input(event)
 
 func toggle_fullscreen():

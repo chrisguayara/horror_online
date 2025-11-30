@@ -8,7 +8,8 @@ var interactable_sounds = {}
 @onready var bunnyD = $deathSounds/bunny
 @onready var intro = $intro/startup
 @onready var windssong = $intro/windssong
-
+@onready var select = $select
+@onready var outdoorSounds = $outdoors
 
 
 
@@ -31,10 +32,18 @@ func loopIntro():
 	windssong.play()
 
 	var tw = create_tween()
-	tw.tween_property(windssong, "volume_db", 0, 1.0)
+	tw.tween_property(windssong, "volume_db", -1, 1.0)
 func endmm():
 	windssong.playing = false
 	windssong.queue_free()
+	playSelect()
+	await get_tree().create_timer(.3).timeout
+	outDoors()
+
+func outDoors():
+	outdoorSounds.play()
+	
+
 func _on_alarmclock_playsound(str: String):
 	if interactable_sounds.has(str):
 		interactable_sounds[str].play()
@@ -51,7 +60,8 @@ func _on_inventory_add_sound(str: String):
 		print("not a song")
 
 
-
+func playSelect():
+	select.play()
 
 func playDeath(enemy_name: String) -> void:
 	

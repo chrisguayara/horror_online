@@ -26,7 +26,7 @@ func finish():
 	tw.tween_property(logoScreen, "modulate:a", 0.0, 0.9) # fade out
 	
 	await tw.finished
-	background.visible = false
+	background.visible = true
 	logoScreen.visible = false
 	var p = get_parent()
 	p.mmscreen()
@@ -34,10 +34,10 @@ func finish():
 
 func playmm():
 	mainmenu.visible = true
-	if Input.is_action_just_pressed("interact"):
-		var p = get_parent()
-		p.endmmsounds()
-		endmm()
+	
 
 func endmm():
 	mainmenu.visible = false
+	await get_tree().create_timer(.3).timeout
+	background.visible = false
+	
