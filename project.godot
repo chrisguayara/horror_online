@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="powerScale"
+config/name="The Amberleaf Stalker"
 run/main_scene="uid://ce44wurxmtn8p"
-config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="uid://hnmq4okmbbng"
 
 [autoload]
 
@@ -26,6 +26,10 @@ window/size/viewport_height=480
 window/size/mode=3
 window/size/always_on_top=true
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="The Amberleaf Stalker"
 
 [global_group]
 

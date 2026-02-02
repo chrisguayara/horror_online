@@ -11,13 +11,27 @@ var crtOn = true
 @onready var soundmanager = $SubViewportContainer/SubViewport/Soundmanager
 var isInMenu = false
 var isInLogo = true
+var SKIP_INTRO = true
 
 func _ready():
+	if SKIP_INTRO:
+		skip_intro_scene()
+	else: 
+		intro_scene()
+
+func intro_scene():
 	crteffect.visible = true
 	logoIntro.pre()
 	soundmanager.startup()
 	player.canInput = false
-
+	
+func skip_intro_scene():
+	isInLogo = false
+	isInMenu = false
+	crteffect.visible = true
+	logoIntro.visible = false
+	player.canInput = true
+	endmmsounds()
 
 func mmscreen():
 	isInLogo = false
