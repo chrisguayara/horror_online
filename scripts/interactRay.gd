@@ -8,7 +8,8 @@ func _ready():
 	enabled = true
 
 func _process(delta):
-	prompt.text = ""
+	#
+	#prompt.text = ""
 	if is_colliding():
 		var collider = get_collider()
 		
