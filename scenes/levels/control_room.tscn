@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://du40bgcbdilv6"]
+[gd_scene format=4 uid="uid://du40bgcbdilv6"]
 
 [ext_resource type="Script" uid="uid://bdi8pev0qd8kc" path="res://scripts/player.gd" id="1_mpgot"]
 [ext_resource type="Script" uid="uid://blmy0yy26ub0d" path="res://scripts/camera.gd" id="2_723uf"]
@@ -6,9 +6,11 @@
 [ext_resource type="Shader" uid="uid://dbfcqo4xbdgpd" path="res://shaders/post_process.gdshader" id="5_baf72"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="6_jruyh"]
 [ext_resource type="PackedScene" uid="uid://ccffsasbu2pqc" path="res://assets/blendfiles/testroom.blend" id="6_mpgot"]
+[ext_resource type="Script" uid="uid://b75gdexgb2v2w" path="res://scripts/interactable.gd" id="7_723uf"]
+[ext_resource type="Material" uid="uid://d1bidw8p34uwf" path="res://assets/texture/materials/static.tres" id="8_t4v5u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d5npd"]
-sky_top_color = Color(0.7373463, 0.26079425, 0.31292772, 1)
+sky_top_color = Color(0.415418, 0.4546994, 0.4951272, 1)
 sky_horizon_color = Color(0.68334556, 0.5564575, 0.56049097, 1)
 ground_horizon_color = Color(0.68334556, 0.5564575, 0.56049097, 1)
 
@@ -35,6 +37,101 @@ shader_parameter/dither_amount = 0.25
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p82f2"]
+resource_name = "other"
+cull_mode = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d5npd"]
+_surfaces = [{
+"aabb": AABB(-0.6733498, -0.5912801, 0.43989962, 1.3466996, 1.18256, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "screen.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAAAAAAAP//AAAAAP////8AAAAAAAAAAAAAAAA=")
+}, {
+"aabb": AABB(-0.86763835, -0.77878886, -0.5473478, 1.7352767, 1.5575775, 1.0946957),
+"format": 34359742465,
+"index_count": 78,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAADAAEAAAAEAAEABAAFAAMABAAAAAYABAAGAAUABQAHAAMAAwAHAAIABQAGAAcACAAAAAIACQAGAAAACQAAAAgACgAHAAYACgAGAAkACwACAAcACwAHAAoACAACAAsACQAMAAoACgAMAA0ACgANAAsACQAOAAwACAAOAAkACwANAA8ACAAPAA4ACwAPAAgA"),
+"name": "other",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("jB1ev7VeR7/+Hgw/jB1ev7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1eP7FeRz/8Hgy/jB1ev7VeR7/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7VeR7/+Hgw/jB1eP7FeRz/+Hgw/JJ46v0zfI7/+Hgw/JJ46P0zfI7/+Hgw/JJ46P0jfIz/+Hgw/JJ46v0jfIz/+Hgw/p2AsPx5eFz+GOuE+p2Asvx5eFz+GOuE+p2AsPyJeF7+GOuE+p2AsvyJeF7+GOuE+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_baf72"]
+resource_name = "testroom_Cube_003"
+_surfaces = [{
+"aabb": AABB(-0.6733498, -0.5912801, 0.43989962, 1.3466996, 1.18256, 1e-05),
+"attribute_data": PackedByteArray("+ddPylDe1MNQ3k/K+dfUww=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": ExtResource("8_t4v5u"),
+"name": "screen.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAA/78AAP//AAD/v/////8AAP+/AAAAAAAA/7//////////////////////")
+}, {
+"aabb": AABB(-0.86763835, -0.77878886, -0.5473478, 1.7352767, 1.5575775, 1.0946957),
+"attribute_data": PackedByteArray("fkpXP8sRYj8gAV8/KltaPyABXz/LEWI/fkpXPypbWj9+Slc/KltaPyABXz+IpFI/IAFfPypbWj9+Slc/iKRSP35KVz+IpFI/IAFfP+XtSj8gAV8/iKRSP35KVz/l7Uo/VVFePxtQSj9VUV4/DtVDP1VRXj8O1UM/VVFePxtQSj/ck08/iKRSP35KVz/l7Uo/fkpXP4ikUj/ck08/5e1KPyABXz+IpFI/wrdmP+XtSj/Ct2Y/iKRSPyABXz/l7Uo/SPpXPw7VQz8gAV8/QzdDP1VRXj8O1UM/IAFfP+XtSj9+Slc/QzdDP1VRXj8bUEo/SPpXPxtQSj9+Slc/5e1KP0j6Vz8bUEo/VVFePxtQSj9VUV4/G1BKP0j6Vz8bUEo/SPpXPw7VQz9I+lc/G1BKP0j6Vz8bUEo/SPpXPw7VQz9VUV4/DtVDP0j6Vz8O1UM/SPpXPw7VQz9VUV4/DtVDPw=="),
+"format": 34359742487,
+"index_count": 78,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGgAZABsAGAAcABkAGgAbAB0AHgAcABgAHQAbAB8AHgAfABwAHQAfAB4AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkA"),
+"material": SubResource("StandardMaterial3D_p82f2"),
+"name": "other",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("jB1ev7VeR7/+Hgw/jB1ev7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1ev7VeR7/8Hgy/jB1ev7VeR7/8Hgy/jB1eP7FeRz/8Hgy/jB1ev7FeRz/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7FeRz/+Hgw/jB1eP7FeRz/8Hgy/jB1eP7VeR7/+Hgw/JJ46P0jfIz/+Hgw/p2Asvx5eFz+GOuE+JJ46v0jfIz/+Hgw/p2AsPx5eFz+GOuE+jB1ev7VeR7/8Hgy/jB1eP7VeR7/+Hgw/jB1eP7VeR7/8Hgy/jB1ev7VeR7/+Hgw/jB1eP7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1ev7FeRz/8Hgy/jB1eP7FeRz/+Hgw/JJ46v0zfI7/+Hgw/jB1ev7FeRz/+Hgw/JJ46v0jfIz/+Hgw/jB1eP7FeRz/+Hgw/jB1ev7VeR7/+Hgw/JJ46P0jfIz/+Hgw/JJ46P0zfI7/+Hgw/jB1eP7VeR7/+Hgw/JJ46P0zfI7/+Hgw/p2AsPx5eFz+GOuE+JJ46P0jfIz/+Hgw/p2AsPyJeF7+GOuE+JJ46v0zfI7/+Hgw/p2AsPyJeF7+GOuE+JJ46P0zfI7/+Hgw/p2AsvyJeF7+GOuE+JJ46v0jfIz/+Hgw/p2AsvyJeF7+GOuE+JJ46v0zfI7/+Hgw/p2Asvx5eFz+GOuE+AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9//////////3//////////f/////////9//////////3///////3//f///////f/9///////9//3///////3//f////38AKP///z//fwAo////P/9/ACj///8//38AKP///z//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3//f/9/////f/9//3////9//3//f////3//f/9/////f/9//3////9//3//f////3//f/9/////f/9//3///6gr/3////8/qCv/f////z+oK/9/////P6gr/3////8//3/+1////z//f/7X////P/9//tf///8//3/+1////z9W1P9/////P1bU/3////8/VtT/f////z9W1P9/////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_d5npd")
+
+[sub_resource type="Animation" id="Animation_t4v5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:mesh:surface_0/material:emission_texture:noise:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d5npd"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:mesh:surface_0/material:emission_texture:noise:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.97),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(74.63, 223.88, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_baf72"]
+_data = {
+&"RESET": SubResource("Animation_t4v5u"),
+&"idle": SubResource("Animation_d5npd")
+}
+
 [node name="control_room" type="Node3D" unique_id=1645294370]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1667911674]
@@ -42,7 +139,7 @@ environment = SubResource("Environment_jruyh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1007898998]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.64059365, 0.28694382, 0.18804806, 1)
+light_color = Color(0.36619073, 0.6542814, 0.82526445, 1)
 shadow_enabled = true
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=1694939741]
@@ -59,9 +156,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_723uf")
 
 [node name="camera" type="Camera3D" parent="player/head" unique_id=1694413616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999981)
 
 [node name="InteractRay" type="RayCast3D" parent="player/head/camera" unique_id=1207084112]
-target_position = Vector3(0, 0, -30)
+target_position = Vector3(0, 0, -3.5)
 collision_mask = 7
 collide_with_areas = true
 debug_shape_custom_color = Color(0.170856, 0.632033, 0.495872, 1)
@@ -97,12 +195,23 @@ skeleton = NodePath("../../../../..")
 [node name="inventory" type="Node3D" parent="player" unique_id=1519141227]
 script = ExtResource("6_jruyh")
 
-[node name="testroom" parent="." unique_id=1602121954 instance=ExtResource("6_mpgot")]
+[node name="testroom" parent="." unique_id=341604464 instance=ExtResource("6_mpgot")]
 
-[node name="StaticBody3D" parent="testroom/Plane" parent_id_path=PackedInt32Array(1602121954, 1391442616) index="0" unique_id=1780175420]
+[node name="StaticBody3D" parent="testroom/Plane" parent_id_path=PackedInt32Array(341604464, 1425125702) index="0" unique_id=947118772]
 collision_layer = 2
 
-[node name="StaticBody3D" parent="testroom/control_panel" parent_id_path=PackedInt32Array(1602121954, 1688742130) index="0" unique_id=1381057105]
+[node name="StaticBody3D" parent="testroom/tv1" parent_id_path=PackedInt32Array(341604464, 638174495) index="0" unique_id=2145066895]
+script = ExtResource("7_723uf")
+
+[node name="StaticBody3D" parent="testroom/control_panel" parent_id_path=PackedInt32Array(341604464, 1365648584) index="0" unique_id=398011648]
 collision_layer = 2
+
+[node name="tv3" parent="testroom" index="3" unique_id=1104370361]
+mesh = SubResource("ArrayMesh_baf72")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="testroom/tv3" index="0" unique_id=306010788]
+root_node = NodePath("../StaticBody3D")
+libraries/ = SubResource("AnimationLibrary_baf72")
+autoplay = &"idle"
 
 [editable path="testroom"]

@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="The Amberleaf Stalker"
+config/name="Channel 2"
 run/main_scene="uid://ce44wurxmtn8p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://hnmq4okmbbng"
