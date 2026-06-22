@@ -5,7 +5,6 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gjv3j"]
 noise_type = 0
 frequency = 0.3161
-offset = Vector3(47.401688, 142.19873, 0)
 fractal_type = 3
 domain_warp_amplitude = 62.345
 domain_warp_frequency = 3.685

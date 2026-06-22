@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d1mlqyfv3nfkd"]
+
+[ext_resource type="Texture2D" uid="uid://dyvousxi1hja3" path="res://assets/texture/materials/TV/s26f1d30ffabc6612b6f880b932b92940.png" id="1_q4r5b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4r5b"]
+atlas = ExtResource("1_q4r5b")
+region = Rect2(0, 0, 160, 120)
+
+[resource]
+shading_mode = 2
+emission_operator = 1
+emission_texture = SubResource("AtlasTexture_q4r5b")
+texture_filter = 0

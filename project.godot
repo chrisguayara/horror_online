@@ -22,6 +22,7 @@ config/icon="uid://hnmq4okmbbng"
 [autoload]
 
 Global="*res://Global.gd"
+EventManager="*uid://jl00uum5xgvk"
 
 [display]
 

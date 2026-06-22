@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ccffsasbu2pqc" path="res://assets/blendfiles/testroom.blend" id="6_mpgot"]
 [ext_resource type="Script" uid="uid://b75gdexgb2v2w" path="res://scripts/interactable.gd" id="7_723uf"]
 [ext_resource type="Material" uid="uid://d1bidw8p34uwf" path="res://assets/texture/materials/static.tres" id="8_t4v5u"]
+[ext_resource type="Texture2D" uid="uid://dyvousxi1hja3" path="res://assets/texture/materials/TV/s26f1d30ffabc6612b6f880b932b92940.png" id="9_d5npd"]
+[ext_resource type="Script" uid="uid://c2svstarfpehn" path="res://scripts/interactables/phone.gd" id="10_baf72"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d5npd"]
 sky_top_color = Color(0.415418, 0.4546994, 0.4951272, 1)
@@ -96,19 +98,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d5npd")
 
 [sub_resource type="Animation" id="Animation_t4v5u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:mesh:surface_0/material:emission_texture:noise:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_d5npd"]
 resource_name = "idle"
@@ -131,6 +120,75 @@ _data = {
 &"RESET": SubResource("Animation_t4v5u"),
 &"idle": SubResource("Animation_d5npd")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baf72"]
+albedo_texture = ExtResource("9_d5npd")
+emission_enabled = true
+emission = Color(0.29580906, 0.5887809, 0.14837494, 1)
+emission_energy_multiplier = 4.35
+emission_operator = 1
+emission_texture = ExtResource("9_d5npd")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jruyh"]
+resource_name = "other"
+cull_mode = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0r3uw"]
+_surfaces = [{
+"aabb": AABB(-0.6733498, -0.5912801, 0.43989962, 1.3466996, 1.18256, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "screen_blue",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAAAAAAAP//AAAAAP////8AAAAAAAAAAAAAAAA=")
+}, {
+"aabb": AABB(-0.86763835, -0.77878886, -0.5473478, 1.7352767, 1.5575775, 1.0946957),
+"format": 34359742465,
+"index_count": 78,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAADAAEAAAAEAAEABAAFAAMABAAAAAYABAAGAAUABQAHAAMAAwAHAAIABQAGAAcACAAAAAIACQAGAAAACQAAAAgACgAHAAYACgAGAAkACwACAAcACwAHAAoACAACAAsACQAMAAoACgAMAA0ACgANAAsACQAOAAwACAAOAAkACwANAA8ACAAPAA4ACwAPAAgA"),
+"name": "other",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("jB1ev7VeR7/+Hgw/jB1ev7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1eP7FeRz/8Hgy/jB1ev7VeR7/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7VeR7/+Hgw/jB1eP7FeRz/+Hgw/JJ46v0zfI7/+Hgw/JJ46P0zfI7/+Hgw/JJ46P0jfIz/+Hgw/JJ46v0jfIz/+Hgw/p2AsPx5eFz+GOuE+p2Asvx5eFz+GOuE+p2AsPyJeF7+GOuE+p2AsvyJeF7+GOuE+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p0u8r"]
+resource_name = "testroom_Cube_003"
+_surfaces = [{
+"aabb": AABB(-0.6733498, -0.5912801, 0.43989962, 1.3466996, 1.18256, 1e-05),
+"attribute_data": PackedByteArray("ij9b/ngAowGKP6MBeABb/g=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_baf72"),
+"name": "screen_blue",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAAAIAAAP//AAAAgP////8AAACAAAAAAAAAAID/f////3////9/////f///")
+}, {
+"aabb": AABB(-0.86763835, -0.77878886, -0.5473478, 1.7352767, 1.5575775, 1.0946957),
+"attribute_data": PackedByteArray("fkpXP8sRYj8gAV8/KltaPyABXz/LEWI/fkpXPypbWj9+Slc/KltaPyABXz+IpFI/IAFfPypbWj9+Slc/iKRSP35KVz+IpFI/IAFfP+XtSj8gAV8/iKRSP35KVz/l7Uo/VVFePxtQSj9VUV4/DtVDP1VRXj8O1UM/VVFePxtQSj/ck08/iKRSP35KVz/l7Uo/fkpXP4ikUj/ck08/5e1KPyABXz+IpFI/wrdmP+XtSj/Ct2Y/iKRSPyABXz/l7Uo/SPpXPw7VQz8gAV8/QzdDP1VRXj8O1UM/IAFfP+XtSj9+Slc/QzdDP1VRXj8bUEo/SPpXPxtQSj9+Slc/5e1KP0j6Vz8bUEo/VVFePxtQSj9VUV4/G1BKP0j6Vz8bUEo/SPpXPw7VQz9I+lc/G1BKP0j6Vz8bUEo/SPpXPw7VQz9VUV4/DtVDP0j6Vz8O1UM/SPpXPw7VQz9VUV4/DtVDPw=="),
+"format": 34359742487,
+"index_count": 78,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGgAZABsAGAAcABkAGgAbAB0AHgAcABgAHQAbAB8AHgAfABwAHQAfAB4AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkA"),
+"material": SubResource("StandardMaterial3D_jruyh"),
+"name": "other",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("jB1ev7VeR7/+Hgw/jB1ev7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1ev7VeR7/8Hgy/jB1ev7VeR7/8Hgy/jB1eP7FeRz/8Hgy/jB1ev7FeRz/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7VeR7/8Hgy/jB1eP7FeRz/+Hgw/jB1eP7FeRz/8Hgy/jB1eP7VeR7/+Hgw/JJ46P0jfIz/+Hgw/p2Asvx5eFz+GOuE+JJ46v0jfIz/+Hgw/p2AsPx5eFz+GOuE+jB1ev7VeR7/8Hgy/jB1eP7VeR7/+Hgw/jB1eP7VeR7/8Hgy/jB1ev7VeR7/+Hgw/jB1eP7FeRz/8Hgy/jB1ev7FeRz/+Hgw/jB1ev7FeRz/8Hgy/jB1eP7FeRz/+Hgw/JJ46v0zfI7/+Hgw/jB1ev7FeRz/+Hgw/JJ46v0jfIz/+Hgw/jB1eP7FeRz/+Hgw/jB1ev7VeR7/+Hgw/JJ46P0jfIz/+Hgw/JJ46P0zfI7/+Hgw/jB1eP7VeR7/+Hgw/JJ46P0zfI7/+Hgw/p2AsPx5eFz+GOuE+JJ46P0jfIz/+Hgw/p2AsPyJeF7+GOuE+JJ46v0zfI7/+Hgw/p2AsPyJeF7+GOuE+JJ46P0zfI7/+Hgw/p2AsvyJeF7+GOuE+JJ46v0jfIz/+Hgw/p2AsvyJeF7+GOuE+JJ46v0zfI7/+Hgw/p2Asvx5eFz+GOuE+AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9//////////3//////////f/////////9//////////3///////3//f///////f/9///////9//3///////3//f////38AKP///z//fwAo////P/9/ACj///8//38AKP///z//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3//f/9/////f/9//3////9//3//f////3//f/9/////f/9//3////9//3//f////3//f/9/////f/9//3///6gr/3////8/qCv/f////z+oK/9/////P6gr/3////8//3/+1////z//f/7X////P/9//tf///8//3/+1////z9W1P9/////P1bU/3////8/VtT/f////z9W1P9/////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0r3uw")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d5npd"]
 
 [node name="control_room" type="Node3D" unique_id=1645294370]
 
@@ -197,21 +255,38 @@ script = ExtResource("6_jruyh")
 
 [node name="testroom" parent="." unique_id=341604464 instance=ExtResource("6_mpgot")]
 
-[node name="StaticBody3D" parent="testroom/Plane" parent_id_path=PackedInt32Array(341604464, 1425125702) index="0" unique_id=947118772]
+[node name="StaticBody3D" parent="testroom/Walls" parent_id_path=PackedInt32Array(341604464, 530677812) index="0" unique_id=1975781110]
 collision_layer = 2
 
-[node name="StaticBody3D" parent="testroom/tv1" parent_id_path=PackedInt32Array(341604464, 638174495) index="0" unique_id=2145066895]
+[node name="StaticBody3D" parent="testroom/tv1" parent_id_path=PackedInt32Array(341604464, 1032663584) index="0" unique_id=1061062994]
 script = ExtResource("7_723uf")
 
-[node name="StaticBody3D" parent="testroom/control_panel" parent_id_path=PackedInt32Array(341604464, 1365648584) index="0" unique_id=398011648]
+[node name="StaticBody3D" parent="testroom/control_panel" parent_id_path=PackedInt32Array(341604464, 670223515) index="0" unique_id=1945095683]
 collision_layer = 2
 
-[node name="tv3" parent="testroom" index="3" unique_id=1104370361]
+[node name="tv3" parent="testroom" index="3" unique_id=120719497]
 mesh = SubResource("ArrayMesh_baf72")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="testroom/tv3" index="0" unique_id=306010788]
 root_node = NodePath("../StaticBody3D")
 libraries/ = SubResource("AnimationLibrary_baf72")
 autoplay = &"idle"
+
+[node name="tv4" parent="testroom" index="7" unique_id=950345759]
+mesh = SubResource("ArrayMesh_p0u8r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="testroom/tv4" index="0" unique_id=1562021530]
+root_node = NodePath("../StaticBody3D")
+libraries/ = SubResource("AnimationLibrary_baf72")
+autoplay = &"idle"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="testroom/phone" parent_id_path=PackedInt32Array(341604464, 1344557771) index="0" unique_id=1357358721]
+collision_layer = 4
+script = ExtResource("10_baf72")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="testroom/phone/StaticBody3D" unique_id=1579952844]
+shape = SubResource("SphereShape3D_d5npd")
+
+[connection signal="interacted" from="testroom/phone/StaticBody3D" to="testroom/phone/StaticBody3D" method="answer_calls"]
 
 [editable path="testroom"]

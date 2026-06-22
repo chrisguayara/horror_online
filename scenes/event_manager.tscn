@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://jl00uum5xgvk"]
+
+[ext_resource type="Script" uid="uid://cf4rie1geqfx5" path="res://scripts/managers/event_manager.gd" id="1_loi6m"]
+
+[node name="event_manager" type="Node" unique_id=1185662682]
+script = ExtResource("1_loi6m")
+
+[node name="phone_ring" type="AudioStreamPlayer" parent="." unique_id=1858249958]
+
+[node name="call1" type="AudioStreamPlayer" parent="." unique_id=2029171980]
