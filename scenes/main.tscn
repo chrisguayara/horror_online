@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=4 uid="uid://ce44wurxmtn8p"]
+[gd_scene format=4 uid="uid://ce44wurxmtn8p"]
 
 [ext_resource type="Script" uid="uid://ktw53yl65yqq" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dbw58v4iwg8nn" path="res://scripts/player/inventory.gd" id="3_tbgi4"]
@@ -7,7 +7,6 @@
 [ext_resource type="Material" uid="uid://cf6cxj8qqk62f" path="res://assets/texture/environment/textureres.tres" id="6_c6pm6"]
 [ext_resource type="Script" uid="uid://3gr5qrr16u8n" path="res://scripts/interactables/alarmclock.gd" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dh3361yabq7es" path="res://assets/models/alarmclock.glb" id="6_tefeu"]
-[ext_resource type="PackedScene" uid="uid://bjnoupe4adxxd" path="res://scripts/interact_ray.tscn" id="6_y6deb"]
 [ext_resource type="Texture2D" uid="uid://cp3jr8od5sc7e" path="res://assets/models/environment/environmentv1_huntinggroundsv1.png" id="7_5he1u"]
 [ext_resource type="Script" uid="uid://e7b18qm8nw4x" path="res://scripts/weapon/huntingrifle/huntingray.gd" id="7_pm3ni"]
 [ext_resource type="Material" uid="uid://bpdy17xvqn0gj" path="res://assets/texture/environment/treetexres.tres" id="8_5poiv"]
@@ -38,6 +37,7 @@
 [ext_resource type="Script" uid="uid://bknscsovjgv2d" path="res://scripts/UI/escapeButton.gd" id="26_qkpxi"]
 [ext_resource type="Script" uid="uid://cljlmcwnkosrm" path="res://scenes/inWorld/animals/duckmovement.gd" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://dxqpghd2060m" path="res://scripts/managers/day_manager.gd" id="28_yq6so"]
+[ext_resource type="Script" uid="uid://d25ipp1mljpju" path="res://scripts/interactRay.gd" id="31_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://cgj8pury5ddpu" path="res://assets/texture/screenemblemoverlay.png" id="32_5q0nq"]
 [ext_resource type="Script" uid="uid://b30g3oe6yj6wf" path="res://scripts/logointro.gd" id="32_j8jky"]
 [ext_resource type="Texture2D" uid="uid://byr2fhl4lmci2" path="res://assets/texture/screenemblemBG.png" id="33_kmb1v"]
@@ -1015,14 +1015,14 @@ shader_parameter/scanline_strength = 0.34
 size = Vector2(640, 480)
 center_offset = Vector3(640, 480, 0)
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=868176786]
 script = ExtResource("1_sugp2")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1983978289]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1505403854]
 handle_input_locally = false
 use_occlusion_culling = true
 audio_listener_enable_2d = true
@@ -1030,317 +1030,315 @@ audio_listener_enable_3d = true
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1480862863]
 environment = SubResource("Environment_tbgi4")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=2024878519]
 transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport" unique_id=2138183550]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.481361, 0)
 collision_layer = 6
 collision_mask = 7
 
-[node name="floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/floor"]
+[node name="floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/floor" unique_id=1528049653]
 visible = false
 mesh = SubResource("PlaneMesh_jkv2x")
 skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/floor" unique_id=262613483]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.5, 0.5)
 shape = SubResource("BoxShape3D_jkv2x")
 debug_color = Color(0.796758, 0.561828, 0.0723352, 0.42)
 
-[node name="Items" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="Items" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=445592367]
 
-[node name="RemingtonPickup" parent="SubViewportContainer/SubViewport/Items" instance=ExtResource("18_dp3eg")]
+[node name="RemingtonPickup" parent="SubViewportContainer/SubViewport/Items" unique_id=907469200 instance=ExtResource("18_dp3eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1, 3.8)
 prompt_msg = "Interact"
 
-[node name="Area3D" parent="SubViewportContainer/SubViewport/Items" instance=ExtResource("19_0ld40")]
+[node name="Area3D" parent="SubViewportContainer/SubViewport/Items" unique_id=519582553 instance=ExtResource("19_0ld40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 4.9)
 prompt_msg = "Interact"
 
-[node name="HuntingRifle" type="Area3D" parent="SubViewportContainer/SubViewport"]
+[node name="HuntingRifle" type="Area3D" parent="SubViewportContainer/SubViewport" unique_id=1086407930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 1.1, 0)
 collision_layer = 4
 script = ExtResource("9_jscy8")
 item_name = "Hunting Rifle"
 item_scene = ExtResource("17_dp3eg")
 
-[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/HuntingRifle"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/HuntingRifle" unique_id=758993071]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/HuntingRifle/Graphics"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/HuntingRifle/Graphics" unique_id=2043688708]
 transform = Transform3D(2.1, 0, 0, 0, 0.15, 0, 0, 0, 0.162, 0, 0, 0)
 mesh = SubResource("BoxMesh_6ov11")
 material = SubResource("StandardMaterial3D_kqqf6")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/HuntingRifle/Graphics"]
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/HuntingRifle/Graphics" unique_id=883061057]
 transform = Transform3D(0.294, 0, 0, 0, 0.5301, 0, 0, 0, 0.162, -0.585617, -0.3, -0.00135899)
 mesh = SubResource("BoxMesh_6ov11")
 material = SubResource("StandardMaterial3D_kqqf6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/HuntingRifle"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/HuntingRifle" unique_id=2050917771]
 transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0302734, -0.15, -2.23517e-08)
 shape = SubResource("BoxShape3D_jngjb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/HuntingRifle"]
-libraries = {
-&"": SubResource("AnimationLibrary_apvuv")
-}
-autoplay = "rotateidle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/HuntingRifle" unique_id=1045785280]
+libraries/ = SubResource("AnimationLibrary_apvuv")
+autoplay = &"rotateidle"
 
-[node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=15666999]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 4, 0, -2)
 
-[node name="environmentv1" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="environmentv1" type="Node3D" parent="SubViewportContainer/SubViewport/Environment" unique_id=17306309]
 
-[node name="Plane_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="Plane_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=611809068]
 transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, -2, 0, 0)
 mesh = SubResource("ArrayMesh_gi7gg")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Plane_002"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Plane_002" unique_id=1556661702]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Plane_002/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Plane_002/StaticBody3D" unique_id=337086592]
 shape = SubResource("ConcavePolygonShape3D_pxs5d")
 
-[node name="tree1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=380832850]
 transform = Transform3D(0.123585, 0, 0, 0, 1, 0, 0, 0, 0.123585, 2.21262, 1.62332, -4.12978)
 mesh = SubResource("ArrayMesh_127nd")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1" unique_id=352970152]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1/StaticBody3D" unique_id=442113640]
 shape = SubResource("ConcavePolygonShape3D_37i5w")
 
-[node name="tree1_002-col" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_002-col" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1815035652]
 transform = Transform3D(-0.118185, 0, 0.0361327, 0, 1, 0, -0.0361327, 0, -0.118185, -1.96145, 1.36422, -2.94505)
 mesh = SubResource("ArrayMesh_ka3dn")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002-col"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002-col" unique_id=1587905780]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002-col/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002-col/StaticBody3D" unique_id=1208317069]
 shape = SubResource("ConcavePolygonShape3D_ao301")
 
-[node name="tree1_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=430912837]
 transform = Transform3D(-0.118185, 0, 0.0361327, 0, 1, 0, -0.0361327, 0, -0.118185, -19.1573, 1.36422, -4.18482)
 mesh = SubResource("ArrayMesh_y7u7x")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003" unique_id=778663180]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003/StaticBody3D" unique_id=367614492]
 shape = SubResource("ConcavePolygonShape3D_giuw2")
 
-[node name="tree1_004" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_004" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1241629430]
 transform = Transform3D(-0.122382, 0, -0.0171997, 0, 1, 0, 0.0171997, 0, -0.122382, -24.5482, 1.36422, -4.18482)
 mesh = SubResource("ArrayMesh_jvwjr")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_004"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_004" unique_id=692959090]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_004/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_004/StaticBody3D" unique_id=663253508]
 shape = SubResource("ConcavePolygonShape3D_1ny4e")
 
-[node name="tree1_005" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_005" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1438411954]
 transform = Transform3D(-0.151611, 0, -0.0213076, 0, 1.23883, 0, 0.0213076, 0, -0.151611, -13.0155, 5.55871, -20.5983)
 mesh = SubResource("ArrayMesh_1dwkx")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_005"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_005" unique_id=1408871390]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_005/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_005/StaticBody3D" unique_id=1289574003]
 shape = SubResource("ConcavePolygonShape3D_w1ry5")
 
-[node name="Cube_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="Cube_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=591332927]
 transform = Transform3D(0.171548, 0, 0.171548, 0, 1.00262, 0, -0.171548, 0, 0.171548, -9.30556, 4.58568, -3.07319)
 mesh = SubResource("ArrayMesh_po5sm")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Cube_003"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Cube_003" unique_id=1604400012]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Cube_003/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/Cube_003/StaticBody3D" unique_id=333396184]
 shape = SubResource("ConcavePolygonShape3D_7exx5")
 
-[node name="tree1_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1749362457]
 transform = Transform3D(-0.0873877, 0, 0.0873877, 0, 1, 0, -0.0873877, 0, -0.0873877, -1.79668, 1.36422, 7.55993)
 mesh = SubResource("ArrayMesh_shbcn")
 skeleton = NodePath("")
 
-[node name="tree1_002_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_002_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1526158753]
 transform = Transform3D(-0.118185, 0, 0.0361327, 0, 1, 0, -0.0361327, 0, -0.118185, 3.47705, 1.36422, 5.06315)
 mesh = SubResource("ArrayMesh_jcrmo")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002_001"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002_001" unique_id=982674441]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002_001/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_002_001/StaticBody3D" unique_id=1498736942]
 shape = SubResource("ConcavePolygonShape3D_p2ho6")
 
-[node name="tree1_003_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=744767428]
 transform = Transform3D(-0.123579, 0, 0.00122648, 0, 1, 0, -0.00122648, 0, -0.123579, -5.25571, 1.36422, 3.97672)
 mesh = SubResource("ArrayMesh_8jp70")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_001"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_001" unique_id=63953813]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_001/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_001/StaticBody3D" unique_id=1864861411]
 shape = SubResource("ConcavePolygonShape3D_v03tk")
 
-[node name="tree1_003_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1205157124]
 transform = Transform3D(-0.123579, 0, 0.00122648, 0, 1, 0, -0.00122648, 0, -0.123579, -5.25571, 1.36422, 3.97672)
 mesh = SubResource("ArrayMesh_xblnn")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_002"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_002" unique_id=1792115738]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_002/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_002/StaticBody3D" unique_id=1429168773]
 shape = SubResource("ConcavePolygonShape3D_l0gm0")
 
-[node name="tree1_003_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_003" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=495831136]
 transform = Transform3D(-0.123579, 0, 0.00122648, 0, 1, 0, -0.00122648, 0, -0.123579, 6.94455, 1.36422, -4.76136)
 mesh = SubResource("ArrayMesh_tgqay")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_003"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_003" unique_id=488919853]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_003/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_003/StaticBody3D" unique_id=800843569]
 shape = SubResource("ConcavePolygonShape3D_fv76p")
 
-[node name="tree1_003_004" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_004" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=543912491]
 transform = Transform3D(-0.118185, 0, -0.0361328, 0, 1, 0, 0.0361328, 0, -0.118185, -19.1573, 4.52688, 22.6077)
 mesh = SubResource("ArrayMesh_iao1a")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_004"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_004" unique_id=961512396]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_004/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_004/StaticBody3D" unique_id=1399075957]
 shape = SubResource("ConcavePolygonShape3D_d0msf")
 
-[node name="tree1_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=1581829820]
 transform = Transform3D(0.123585, 0, 0, 0, 1, 0, 0, 0, 0.123585, -23.2142, 5.43642, 25.8632)
 mesh = SubResource("ArrayMesh_edct2")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_001"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_001" unique_id=1477675514]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_001/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_001/StaticBody3D" unique_id=1762376883]
 shape = SubResource("ConcavePolygonShape3D_d8xt0")
 
-[node name="tree1_003_006" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_006" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=801213478]
 transform = Transform3D(-0.123579, 0, 0.00122648, 0, 1, 0, -0.00122648, 0, -0.123579, -5.25571, 1.36422, -11.7741)
 mesh = SubResource("ArrayMesh_oom8s")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_006"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_006" unique_id=1263188426]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_006/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_006/StaticBody3D" unique_id=1448328448]
 shape = SubResource("ConcavePolygonShape3D_qe83x")
 
-[node name="tree1_003_007" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_007" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=416811855]
 transform = Transform3D(-0.0882507, 0, -0.0865162, 0, 1, 0, 0.0865162, 0, -0.0882507, 1.54508, 1.36422, -16.1841)
 mesh = SubResource("ArrayMesh_getak")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_007"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_007" unique_id=1300359938]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_007/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_007/StaticBody3D" unique_id=49267043]
 shape = SubResource("ConcavePolygonShape3D_1doxh")
 
-[node name="tree1_003_008" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1"]
+[node name="tree1_003_008" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1" unique_id=105097223]
 transform = Transform3D(-0.0119924, 0, -0.123002, 0, 1, 0, 0.123002, 0, -0.0119924, -4.55117, 1.36422, -18.8553)
 mesh = SubResource("ArrayMesh_4emlg")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_008"]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_008" unique_id=369581203]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_008/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Environment/environmentv1/tree1_003_008/StaticBody3D" unique_id=1155792558]
 shape = SubResource("ConcavePolygonShape3D_xhwyk")
 
-[node name="inside" type="Node3D" parent="SubViewportContainer/SubViewport/Environment"]
+[node name="inside" type="Node3D" parent="SubViewportContainer/SubViewport/Environment" unique_id=1565197074]
 
-[node name="alarmclock" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="alarmclock" type="StaticBody3D" parent="SubViewportContainer/SubViewport" unique_id=969632937]
 transform = Transform3D(-0.271184, 0, 0.42007, 0, 0.5, 0, -0.42007, 0, -0.271184, -1.37581, 0.504935, -0.157654)
 physics_material_override = SubResource("PhysicsMaterial_o6xl0")
 script = ExtResource("6_o6xl0")
 prompt_msg = "Set Alarm"
 
-[node name="alarmclock" parent="SubViewportContainer/SubViewport/alarmclock" instance=ExtResource("6_tefeu")]
+[node name="alarmclock" parent="SubViewportContainer/SubViewport/alarmclock" unique_id=2029144939 instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 3.51928, 1, -3.08577)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/alarmclock"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/alarmclock" unique_id=2022611819]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 1.77916, 1.14826, -1.50337)
 shape = SubResource("BoxShape3D_tipki")
 
-[node name="Soundmanager" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("alarm_node", "inventory_node", "shotGun_PU_node")]
+[node name="Soundmanager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1681319387 node_paths=PackedStringArray("alarm_node", "inventory_node", "shotGun_PU_node")]
 script = ExtResource("8_tipki")
 alarm_node = NodePath("alarm")
 inventory_node = NodePath("Pickup")
 shotGun_PU_node = NodePath("shotGun_Pickup")
 
-[node name="Pickup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="Pickup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=109179073]
 stream = ExtResource("9_eb6dy")
 volume_db = 8.0
 
-[node name="alarm" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="alarm" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=251565057]
 stream = ExtResource("9_ya4ey")
 volume_db = 2.734
 
-[node name="shotGun_Pickup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="shotGun_Pickup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=236940742]
 stream = ExtResource("14_gqmmt")
 volume_db = -6.09
 
-[node name="deathSounds" type="Node3D" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="deathSounds" type="Node3D" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=358236291]
 
-[node name="bunny" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/deathSounds"]
+[node name="bunny" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/deathSounds" unique_id=867236781]
 stream = ExtResource("13_tel4y")
 volume_db = -3.21
 
-[node name="intro" type="Node3D" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="intro" type="Node3D" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=833414952]
 
-[node name="startup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/intro"]
+[node name="startup" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/intro" unique_id=1617184501]
 stream = ExtResource("14_kmb1v")
 
-[node name="windssong" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/intro"]
+[node name="windssong" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager/intro" unique_id=1272961691]
 stream = ExtResource("15_fuf3a")
 parameters/looping = true
 
-[node name="select" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="select" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=676818145]
 stream = ExtResource("18_5poiv")
 
-[node name="outdoors" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager"]
+[node name="outdoors" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Soundmanager" unique_id=776068287]
 stream = ExtResource("19_2cjbq")
 volume_db = -2.568
 pitch_scale = 0.9
 parameters/looping = true
 
-[node name="EnemyManager" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="EnemyManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1534306974]
 script = ExtResource("24_fv21b")
 
-[node name="bunny2" parent="SubViewportContainer/SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+[node name="bunny2" parent="SubViewportContainer/SubViewport/EnemyManager" unique_id=1221192807 instance=ExtResource("25_fv21b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -6.209)
 
-[node name="bunny1" parent="SubViewportContainer/SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+[node name="bunny1" parent="SubViewportContainer/SubViewport/EnemyManager" unique_id=1223974904 instance=ExtResource("25_fv21b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0.15, -3.3)
 
-[node name="bunny4" parent="SubViewportContainer/SubViewport/EnemyManager" instance=ExtResource("25_fv21b")]
+[node name="bunny4" parent="SubViewportContainer/SubViewport/EnemyManager" unique_id=1282022569 instance=ExtResource("25_fv21b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0.15, 4.4)
 
-[node name="Duck" type="CharacterBody3D" parent="SubViewportContainer/SubViewport/EnemyManager"]
+[node name="Duck" type="CharacterBody3D" parent="SubViewportContainer/SubViewport/EnemyManager" unique_id=1927972194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
 collision_layer = 8
 collision_mask = 3
@@ -1349,59 +1347,59 @@ script = ExtResource("19_2wyq8")
 enemy_name = "duck"
 health = 30
 
-[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck" unique_id=1414939698]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck/Graphics"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck/Graphics" unique_id=1524200145]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_cjhqa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck" unique_id=1301151241]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_fnxnt")
 
-[node name="MovementManager" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck"]
+[node name="MovementManager" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck" unique_id=1326323680]
 script = ExtResource("27_2f3dj")
 
-[node name="shootable" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck"]
+[node name="shootable" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/Duck" unique_id=2128455290]
 script = ExtResource("20_vxglm")
 max_health = 46
 
-[node name="spawnpoints" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager"]
+[node name="spawnpoints" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager" unique_id=615116167]
 
-[node name="Rabbit" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints"]
+[node name="Rabbit" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints" unique_id=1170443353]
 
-[node name="sp1" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit"]
+[node name="sp1" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit" unique_id=265525166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 0, -4.5)
 
-[node name="sp2" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit"]
+[node name="sp2" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit" unique_id=1996069631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8.6)
 
-[node name="sp3" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit"]
+[node name="sp3" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit" unique_id=763986380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6)
 
-[node name="sp4" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit"]
+[node name="sp4" type="Marker3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints/Rabbit" unique_id=351074601]
 
-[node name="Owl" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints"]
+[node name="Owl" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints" unique_id=95167033]
 
-[node name="Deer" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints"]
+[node name="Deer" type="Node3D" parent="SubViewportContainer/SubViewport/EnemyManager/spawnpoints" unique_id=1780615258]
 
-[node name="player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=703705014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 3.74523)
 collision_mask = 6
 script = ExtResource("4_jscy8")
 
-[node name="hitbox" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="hitbox" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/player" unique_id=1517777187]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_u8vuu")
 
-[node name="head" type="Node3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="head" type="Node3D" parent="SubViewportContainer/SubViewport/player" unique_id=2005278876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("5_pm3ni")
 
-[node name="camera" type="Camera3D" parent="SubViewportContainer/SubViewport/player/head"]
+[node name="camera" type="Camera3D" parent="SubViewportContainer/SubViewport/player/head" unique_id=1393916736]
 keep_aspect = 0
 
-[node name="UILayers" type="Control" parent="SubViewportContainer/SubViewport/player/head/camera"]
+[node name="UILayers" type="Control" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=1550615762]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1410,7 +1408,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("17_0ld40")
 
-[node name="InventoryMenu" type="Control" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers"]
+[node name="InventoryMenu" type="Control" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers" unique_id=862587913]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1421,7 +1419,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_vxglm")
 
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/InventoryMenu"]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/InventoryMenu" unique_id=1975301953]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1430,7 +1428,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("25_qkpxi")
 
-[node name="Escape" type="MarginContainer" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers"]
+[node name="Escape" type="MarginContainer" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers" unique_id=975541162]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -1445,39 +1443,54 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("26_qkpxi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape" unique_id=1164887315]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer" unique_id=308247002]
 z_index = 1
 layout_mode = 2
 text = "Sensitivity"
 
-[node name="Button2" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+[node name="Button2" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer" unique_id=576690861]
 z_index = 1
 layout_mode = 2
 text = "Volume"
 
-[node name="button_crt" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+[node name="button_crt" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer" unique_id=1106829260]
 z_index = 1
 layout_mode = 2
 text = "CRT TOGGLE"
 
-[node name="button_quit" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer"]
+[node name="button_quit" type="Button" parent="SubViewportContainer/SubViewport/player/head/camera/UILayers/Escape/VBoxContainer" unique_id=1630652623]
 z_index = 1
 layout_mode = 2
 text = "Quit Game"
 
-[node name="InteractRay" parent="SubViewportContainer/SubViewport/player/head/camera" instance=ExtResource("6_y6deb")]
+[node name="InteractRay" type="RayCast3D" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=151097474]
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 4
+collide_with_areas = true
 debug_shape_custom_color = Color(0.510941, 0.48979, 0.865396, 1)
 debug_shape_thickness = 4
+script = ExtResource("31_2cjbq")
 
-[node name="hand" type="Marker3D" parent="SubViewportContainer/SubViewport/player/head/camera"]
+[node name="Prompt" type="Label" parent="SubViewportContainer/SubViewport/player/head/camera/InteractRay" unique_id=860292731]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Prompt
+[key]"
+horizontal_alignment = 1
+
+[node name="hand" type="Marker3D" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=1289123059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, -1.1)
 
-[node name="aimlabel" type="Label" parent="SubViewportContainer/SubViewport/player/head/camera"]
+[node name="aimlabel" type="Label" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=1191384863]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1486,17 +1499,17 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HuntingRay" type="RayCast3D" parent="SubViewportContainer/SubViewport/player/head/camera" node_paths=PackedStringArray("player")]
+[node name="HuntingRay" type="RayCast3D" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=1346104949 node_paths=PackedStringArray("player")]
 target_position = Vector3(0, 0, -30)
 collision_mask = 8
 debug_shape_custom_color = Color(0.730773, 0.0889113, 0.369955, 1)
 script = ExtResource("7_pm3ni")
 player = NodePath("../../..")
 
-[node name="UIManager" type="Node3D" parent="SubViewportContainer/SubViewport/player/head/camera"]
+[node name="UIManager" type="Node3D" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=75738915]
 script = ExtResource("11_2wyq8")
 
-[node name="scopeset" type="TextureRect" parent="SubViewportContainer/SubViewport/player/head/camera"]
+[node name="scopeset" type="TextureRect" parent="SubViewportContainer/SubViewport/player/head/camera" unique_id=1533416336]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -1505,75 +1518,71 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_muem4")
 
-[node name="quantitylabel" type="Label" parent="SubViewportContainer/SubViewport/player"]
+[node name="quantitylabel" type="Label" parent="SubViewportContainer/SubViewport/player" unique_id=326167988]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="visual" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="visual" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/player" unique_id=281522315]
 mesh = SubResource("CapsuleMesh_qhqgy")
 
-[node name="postFX" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="postFX" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/player" unique_id=1100530265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3.74523)
 material_override = SubResource("ShaderMaterial_yc10j")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0ld40")
 skeleton = NodePath("../../../..")
 
-[node name="inventory" type="Node3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="inventory" type="Node3D" parent="SubViewportContainer/SubViewport/player" unique_id=155155708]
 script = ExtResource("3_tbgi4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/player"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/player" unique_id=1808377988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 2.69638, -0.987268)
 visible = false
 light_color = Color(0.872584, 0.88047, 0.871289, 1)
 light_energy = 12.73
 omni_range = 4.32
 
-[node name="DayManager" type="Node3D" parent="."]
+[node name="DayManager" type="Node3D" parent="." unique_id=2027971041]
 script = ExtResource("28_yq6so")
 
-[node name="AboveUI" type="Control" parent="."]
+[node name="AboveUI" type="Control" parent="." unique_id=1483000440]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("32_j8jky")
 
-[node name="background" type="TextureRect" parent="AboveUI"]
+[node name="background" type="TextureRect" parent="AboveUI" unique_id=269333902]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("33_kmb1v")
 
-[node name="logo" type="TextureRect" parent="AboveUI"]
+[node name="logo" type="TextureRect" parent="AboveUI" unique_id=983586692]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("32_5q0nq")
 
-[node name="mainmenu" type="TextureRect" parent="AboveUI"]
+[node name="mainmenu" type="TextureRect" parent="AboveUI" unique_id=13748973]
 texture_filter = 1
-layout_direction = 2
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 480.0
+layout_direction = 2
 texture = ExtResource("39_5he1u")
 stretch_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AboveUI"]
-libraries = {
-&"": SubResource("AnimationLibrary_chjal")
-}
-autoplay = "mainmenu"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AboveUI" unique_id=2144939721]
+libraries/ = SubResource("AnimationLibrary_chjal")
+autoplay = &"mainmenu"
 
-[node name="CRT" type="CanvasLayer" parent="."]
+[node name="CRT" type="CanvasLayer" parent="." unique_id=2115019282]
 offset = Vector2(-320, -240)
 transform = Transform2D(1, 0, 0, 1, -320, -240)
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CRT"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CRT" unique_id=539734651]
 material = SubResource("ShaderMaterial_jscy8")
 mesh = SubResource("QuadMesh_pm3ni")
 
 [connection signal="playsound" from="SubViewportContainer/SubViewport/alarmclock" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_alarmclock_playsound"]
-[connection signal="activeInHand" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/player/head/camera/hand" method="_on_inventory_active_in_hand"]
-[connection signal="addSound" from="SubViewportContainer/SubViewport/player/inventory" to="SubViewportContainer/SubViewport/Soundmanager" method="_on_inventory_add_sound"]

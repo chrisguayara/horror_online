@@ -1,4 +1,4 @@
-extends CharacterBody3D
+	extends CharacterBody3D
 
 var states: Dictionary = {
 	"stalking": _stalking_state,

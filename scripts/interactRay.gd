@@ -15,7 +15,8 @@ func _process(delta):
 			prompt.text = collider.prompt_msg
 
 			if Input.is_action_just_pressed("interact"):
-				collider.interact(get_parent().get_parent().get_parent())  # or however you pass the player
+				var player = get_tree().get_first_node_in_group("player")
+				collider.interact(player)
 		else:
 			prompt.visible = false  # colliding, but not an Interactable
 	else:

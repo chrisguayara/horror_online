@@ -14,9 +14,15 @@ var prevLocation : Vector3
 var is_scoped = false
 var mode = "idle"
 var crtOn = true
+@export var default_pistol : PackedScene 
+var current_weapon
 
 
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	
 	if canInput:
 		if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
 			var target = interact_ray.get_collider()
@@ -44,6 +50,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
+	
+
 
 
 
@@ -54,6 +62,14 @@ func _physics_process(delta: float) -> void:
 func add_to_inventory(item):
 	return inventorymanager.add_to_inventory(item)
 
+func add_gun():
+	if default_pistol:
+		var pistol = default_pistol.instantiate()
+		current_weapon = pistol
+		head.camera.add_child(pistol)
+		inventorymanager.add_to_inventory(pistol)
+	
+	
 func toggleInput():
 	canInput = !canInput
 	head.setCanLook(canInput)
